@@ -23,15 +23,17 @@ jobs:
           -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
           jekyll/builder:latest /bin/bash -c "chmod -R 777 /srv/jekyll && jekyll build --future"
 
-      # - name: Download latest.json to check for new posts
-        # run: wget https://path/to/file -O path/to/save
+      - name: Download latest.json for comparison
+        run: wget https://damn.engineer/latest.json -O ${{ github.workspace }}/current-latest.json
 
-
-
-
-
-
-
+      - name: Check if a new post has been created
+        id: new-post-check
+        uses: LouisBrunner/diff-action@v0.1.0
+        with:
+          old: ${{ github.workspace }}/current-latest.json
+          new: ${{ github.workspace }}/_site/latest.json
+          mode: addition
+          tolerance: mixed
 
       - name: Deploy to Azure Static Web App
         uses: Azure/static-web-apps-deploy@v1
@@ -42,13 +44,21 @@ jobs:
           skip_app_build: true
           output_location: ""
 
-      # - name: Tweet new article
-        # uses: Eomm/why-don-t-you-tweet@v1
-        # with:
-          # tweet-message: "The site has launched!"
-        # env:
-          # TWITTER_CONSUMER_API_KEY: ${{ secrets.TWITTER_CONSUMER_API_KEY }}
-          # TWITTER_CONSUMER_API_SECRET: ${{ secrets.TWITTER_CONSUMER_API_SECRET }}
-          # TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
-          # TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
-# 
+      - name: Get new post info
+        if: contains(steps.new-post-check.outputs.output, 'title')
+        run: |
+          title=$(jq -r '.title' ${{ github.workspace }}/_site/latest.json)
+          url=$(jq -r '.url' ${{ github.workspace }}/_site/latest.json)
+          echo "NEW_POST_TITLE=$title"  >> $GITHUB_ENV
+          echo "NEW_POST_URL=$url"  >> $GITHUB_ENV
+
+      - name: Tweet new article
+        uses: Eomm/why-don-t-you-tweet@v1
+        if: contains(steps.new-post-check.outputs.output, 'title')
+        with:
+          tweet-message: "${{ env.NEW_POST_TITLE }}\n${{ env.NEW_POST_URL }}"
+        env:
+          TWITTER_CONSUMER_API_KEY: ${{ secrets.TWITTER_CONSUMER_API_KEY }}
+          TWITTER_CONSUMER_API_SECRET: ${{ secrets.TWITTER_CONSUMER_API_SECRET }}
+          TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
