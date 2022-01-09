@@ -392,11 +392,15 @@ main {
   position: initial;
 
   .social-footer-icons {
-     
+
     .fa {
       font-size: 1.3rem;
       margin-right: 0.5em;
       color: #a9a9a9;
+
+      @media(max-width: 860px) {
+        font-size: 48px;
+      }
 
       &:hover {
         color: darken(#a9a9a9, 25%);
