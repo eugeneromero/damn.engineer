@@ -2,14 +2,24 @@
   "short_name": "damn.engineer",
   "name": "damn.engineer",
   "icons": [
-    { "src": "/assets/icons/icon-192.png", "type": "image/png", "sizes": "192x192" },
-    { "src": "/assets/icons/icon-512.png", "type": "image/png", "sizes": "512x512" }
+    {
+      "src": "/assets/icons/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/assets/icons/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
   ],
   "start_url": "/",
   "id": "/",
-  "background_color": "#131418",
+  "lang": "en-US",
   "display": "minimal-ui",
+  "orientation": "portrait-primary",
   "scope": "/",
+  "background_color": "#131418",
   "theme_color": "#131418",
   "description": "A DevOps and Cloud tech blog",
   "screenshots": [

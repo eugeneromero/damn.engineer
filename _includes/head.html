@@ -8,6 +8,18 @@
     gtag('config', 'G-LX4418N5MB');
   </script>
 
+  <script async defer>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener('load', function () {
+      if (navigator.serviceWorker.controller) {} else { 
+        navigator.serviceWorker.register("/service-worker.js", {scope: "/"});
+        const ref = document.getElementById("installComponent");
+        ref.getInstalledStatus();
+      }
+    });
+  }
+  </script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
