@@ -486,21 +486,9 @@ color: #333;
   }
 }
 
-#search-results {
-
-  text-align: center;
-  li {
-    text-align: left;
-		list-style: none;
-  }
-}
-
-#search-results li::before {
-	content: "›";
-	display: inline-block;
-	margin-left: -1.3em;
-	width: 1.3em;
-	color: var(--main-text-color);
+.result {
+  text-align: left;
+  padding-bottom: 1em;
 }
 
 .post-nav {
@@ -550,7 +538,6 @@ color: #333;
     }
   }
 } 	
-
 
 .tags ul {
 	list-style: none;

@@ -88,18 +88,18 @@ layout: compress
   </footer>
 
   {% if page.url == '/' %}
-  <script src="{{ site.url }}{{ site.baseurl }}/assets/js/simple-jekyll-search.js"></script>
-  <script>
-    var sjs = SimpleJekyllSearch({
-      searchInput: document.getElementById("search-input"),
-      resultsContainer: document.getElementById("search-results"),
-      json: "{{ site.url }}{{ site.baseurl }}/search.json",
-      searchResultTemplate:
-        '<li><a href="{url}" title="{description}">{title}</a></li>',
-      noResultsText: "No results found",
-      limit: 10,
-      fuzzy: true,
-    });
-  </script>
-  {% endif %}
+  <script
+    src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+    integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
+    crossorigin="anonymous"
+  ></script>
+
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/1.0.0/lunr.min.js"
+    integrity="sha512-c0gfTQFunqkbrbIC8XU4qJ57iA0R8SLZ9F39e33DUHVOa50kVv1QyYSUVCK9gb/AoBoJBlIc6prk7SbahLxy1w=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+
+  {% include search.html %} {% endif %}
 </html>
