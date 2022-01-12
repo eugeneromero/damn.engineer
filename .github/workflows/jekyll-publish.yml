@@ -52,11 +52,12 @@ jobs:
           echo "NEW_POST_TITLE=$title"  >> $GITHUB_ENV
           echo "NEW_POST_URL=$url"  >> $GITHUB_ENV
 
+      # Any tweets from @damnDotEngineer tagged #newPost are published on LinkedIn also, by means of ifttt.com
       - name: Tweet new article
         uses: Eomm/why-don-t-you-tweet@v1
         if: contains(steps.new-post-check.outputs.output, 'title')
         with:
-          tweet-message: "${{ env.NEW_POST_TITLE }}\n${{ env.NEW_POST_URL }}"
+          tweet-message: "${{ env.NEW_POST_TITLE }}\n${{ env.NEW_POST_URL }}\n#newPost"
         env:
           TWITTER_CONSUMER_API_KEY: ${{ secrets.TWITTER_CONSUMER_API_KEY }}
           TWITTER_CONSUMER_API_SECRET: ${{ secrets.TWITTER_CONSUMER_API_SECRET }}
