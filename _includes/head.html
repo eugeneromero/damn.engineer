@@ -36,26 +36,17 @@
     site.description | escape }} {% endunless %}
   </title>
 
-  <meta property="og:title" content=
-    {% if page.tag or page.title %} {% if page.tag %} {{ page.tag | escape }} {%
-    else %} {{ page.title | escape }} {% endif %} - {% endif %} {% if paginator
-    and paginator.page and paginator.total_pages > 1 and paginator.page > 1 %}
-    Page {{ paginator.page }} of {{ paginator.total_pages }} - {% endif %} {{
-    site.title | escape }} {% unless page.tag or page.title %} - {{
-    site.description | escape }} {% endunless %} />
-  <meta property="og:description" content="{{ page.description }}" />
-  <meta property="og:image" content="{{ site.url }}{{ site.baseurl }}/assets/icons/icon-512.png" />
+  <meta name="title" property="og:title" content="{{ page.title | escape }}" />
+  <meta name="description" property="og:description" content="{{ page.description | escape }}" />
+  <meta name="image" property="og:image" content="{{ site.url }}{{ site.baseurl }}/assets/icons/banner.png" />
+  <meta name="author" content="Eugene Romero">
 
-  <meta property="twitter:site" content="@DamnDotEngineer" />
-  <meta property="twitter:title" content=
-    {% if page.tag or page.title %} {% if page.tag %} {{ page.tag | escape }} {%
-    else %} {{ page.title | escape }} {% endif %} - {% endif %} {% if paginator
-    and paginator.page and paginator.total_pages > 1 and paginator.page > 1 %}
-    Page {{ paginator.page }} of {{ paginator.total_pages }} - {% endif %} {{
-    site.title | escape }} {% unless page.tag or page.title %} - {{
-    site.description | escape }} {% endunless %} />
-  <meta property="twitter:description" content="{{ page.description }}" />
-  <meta property="twitter:image" content="{{ site.url }}{{ site.baseurl }}/assets/icons/icon-512.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@DamnDotEngineer">
+  <meta name="twitter:creator" content="@theEugeneRomero">
+  <meta name="twitter:title" content="{{ page.title | escape }}">
+  <meta name="twitter:description" content="{{ page.description | escape }}">
+  <meta name="twitter:image" content="{{ site.url }}{{ site.baseurl }}/assets/icons/icon.png" />
 
   <link
     rel="shortcut icon"
