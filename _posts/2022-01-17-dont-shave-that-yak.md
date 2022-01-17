@@ -47,7 +47,7 @@ At this point, my colleague and I realized that this was an exercise in futility
 
 I think this classic scene from Malcolm in the Middle describes the situation perfectly:
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/8fnfeuoh4s8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe>
+<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src="https://www.youtube.com/embed/8fnfeuoh4s8" frameborder='0' allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
 
 So what is the lesson here? [Don't Shave that Yak](https://seths.blog/2005/03/dont_shave_that/). Stick to the planned work.
 
