@@ -2,12 +2,12 @@
 layout: post
 title: Bash alias for cleaning git branches
 description: How to create a Bash alias for quickly cleaning out stale git branches
-tags: bash quick-tips
+tags: bash tips
 ---
 
 # The problem
 
-As a `git` user, I got tired of constanly seeing my list of branches grow out of control. Git is great for keeping the history of a repository, but at least for me, there isn't a lot of value in keeping deleted branches in my local history. Besides, if you are using [short-lived feature branches](https://trunkbaseddevelopment.com/short-lived-feature-branches/) (and you _really_ should be), you will be creating and deleting several new branches per week.
+As a `git` user, I got tired of constantly seeing my list of branches grow out of control. Git is great for keeping the history of a repository, but at least for me, there isn't a lot of value in keeping deleted branches in my local history. Besides, if you are using [short-lived feature branches](https://trunkbaseddevelopment.com/short-lived-feature-branches/) (and you _really_ should be), you will be creating and deleting several new branches per week.
 
 Because of this, I decided to create an alias to remove old branches from my local machine. My criteria was:
 
@@ -44,7 +44,7 @@ git remote prune origin
 
 Putting it all together, I ended up with this alias, which I then added to my `.bashrc` file:
 
-# The TLDR
+# The TL;DR
 
 **git-clean-branches:**
 

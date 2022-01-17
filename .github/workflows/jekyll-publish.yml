@@ -69,5 +69,5 @@ jobs:
         with:
           event: new_damn_engineer_blog_post
           key: ${{ secrets.IFTTT_WEBHOOK_KEY }}
-          value1: "${{ env.NEW_POST_TITLE }}"
+          value1: ${{ env.NEW_POST_TITLE }}
           value2: ${{ env.NEW_POST_URL }}
