@@ -5,5 +5,6 @@ layout: null
 {
     {% assign post = site.posts.first %}
     "title": {{ post.title | jsonify }},
-    "url": "{{ post.url | absolute_url }}"
+    "url": "{{ post.url | absolute_url }}",
+    "filename": "{{ post.relative_path }}"
 }
