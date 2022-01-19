@@ -5,9 +5,9 @@ description: Don't shave that yak, or when a 10 minute change becomes a multi-ho
 tags: tips
 ---
 
-# When a 10 minute change, becomes a multi-hour project
+## When a 10 minute change, becomes a multi-hour project
 
-![Someone not following the advice of this article](/assets/images/dont-shave-that-yak/yak-shave.jpg)
+![Someone not following the advice of this article](https://damn.engineer/assets/images/dont-shave-that-yak/yak-shave.jpg)
 Photo by <a href="https://burst.shopify.com/@lightleaksin?utm_campaign=photo_credit&amp;utm_content=Browse+Free+HD+Images+of+Bet+You+Didn%27t+Expect+To+See+A+Yak+Being+Shaved+Today&amp;utm_medium=referral&amp;utm_source=credit">Samantha Hurley</a> from <a href="https://burst.shopify.com/animal?utm_campaign=photo_credit&amp;utm_content=Browse+Free+HD+Images+of+Bet+You+Didn%27t+Expect+To+See+A+Yak+Being+Shaved+Today&amp;utm_medium=referral&amp;utm_source=credit">Burst</a>
 
 

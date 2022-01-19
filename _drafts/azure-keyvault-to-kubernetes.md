@@ -5,7 +5,7 @@ description: How to query and inject Azure Key Vault secrets in Kubernetes
 tags: azure azure-keyvault cloud kubernetes
 ---
 
-# The problem 
+## The problem 
 
 If you use Kubernetes to run your applications, sooner or later your cluster pods will need access to **secrets**.
 
@@ -17,7 +17,7 @@ Nowadays, a common approach to secrets management are vaults. Vaults keep secret
 
 Some time ago I was tasked with finding a way for injecting Azure Key Vault secrets into our Kubernetes microservices. After some research and testing, I found what is currently the best (only?) solution for this: Enter [**Kubernetes Secrets Store CSI Driver**](https://secrets-store-csi-driver.sigs.k8s.io/introduction.html). Now that's a mouthful.
 
-# Secrets Store Driver
+## Secrets Store Driver
 
 At the most basic level, Kubernetes Secrets Store CSI Driver (KSSCD) is a tool which connects to a vault, pulls one or multiple secrets from it, and makes them available inside the cluster as Kubernetes secrets. Pods can then use those Kubernetes secrets natively, without any additional work. If the secrets update on the Vault side, KSSCD will make those updates available in the cluster.
 
@@ -29,7 +29,7 @@ To accomplish this task, there are several steps involved:
 1. <a href="#configuring-ksscd">KSSCD must be configured to know which vault secrets to query, and which Kubernetes secret(s) to create from them</a>
 1. <a href="#using-the-secrets">Pods have to be configured to use the new Kubernetes secret(s)</a>
 
-## Granting KSSCD access to Azure Key Vault
+### Granting KSSCD access to Azure Key Vault
 
 For KSSCD to have access to the key vault, we must create a new Service Principal, or identity. This SP can then be given specific permissions to our vault secrets. There are many ways of creating Service Principals, but my preferred way is by using the Azure CLI:
 
@@ -37,10 +37,8 @@ For KSSCD to have access to the key vault, we must create a new Service Principa
 az ad sp create-for-rbac --name KSSCD-ServicePrincipal
 ```
 
-## Installing KSSCD
+### Installing KSSCD
 
-## Configuring KSSCD
+### Configuring KSSCD
 
-## Using the secrets
-
-
+### Using the secrets

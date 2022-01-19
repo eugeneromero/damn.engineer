@@ -23,17 +23,17 @@ jobs:
           -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
           jekyll/builder:latest /bin/bash -c "chmod -R 777 /srv/jekyll && jekyll build --future"
 
-      # - name: Download latest.json for comparison
-      #   run: wget https://damn.engineer/latest.json -O ${{ github.workspace }}/current-latest.json
+      - name: Download latest.json for comparison
+        run: wget https://damn.engineer/latest.json -O ${{ github.workspace }}/current-latest.json
 
-      # - name: Check if a new post has been created
-      #   id: new-post-check
-      #   uses: LouisBrunner/diff-action@v0.1.0
-      #   with:
-      #     old: ${{ github.workspace }}/current-latest.json
-      #     new: ${{ github.workspace }}/_site/latest.json
-      #     mode: addition
-      #     tolerance: mixed
+      - name: Check if a new post has been created
+        id: new-post-check
+        uses: LouisBrunner/diff-action@v0.1.0
+        with:
+          old: ${{ github.workspace }}/current-latest.json
+          new: ${{ github.workspace }}/_site/latest.json
+          mode: addition
+          tolerance: mixed
 
       - name: Deploy to Azure Static Web App
         uses: Azure/static-web-apps-deploy@v1
@@ -44,41 +44,62 @@ jobs:
           skip_app_build: true
           output_location: ""
 
-      # - name: Get new post info
-      #   if: contains(steps.new-post-check.outputs.output, 'title')
-      #   run: |
-      #     title=$(jq -r '.title' ${{ github.workspace }}/_site/latest.json)
-      #     url=$(jq -r '.url' ${{ github.workspace }}/_site/latest.json)
-      #     echo "NEW_POST_TITLE=$title" >> $GITHUB_ENV
-      #     echo "NEW_POST_URL=$url" >> $GITHUB_ENV
+      - name: Get new post info
+        if: contains(steps.new-post-check.outputs.output, 'title')
+        run: |
+          title=$(jq -r '.title' ${{ github.workspace }}/_site/latest.json)
+          url=$(jq -r '.url' ${{ github.workspace }}/_site/latest.json)
+          filename=$(jq -r '.filename' ${{ github.workspace }}/_site/latest.json)
+          echo "NEW_POST_TITLE=$title" >> $GITHUB_ENV
+          echo "NEW_POST_URL=$url" >> $GITHUB_ENV
+          echo "NEW_POST_FILENAME=$filename" >> $GITHUB_ENV
 
-      # - name: Tweet new article
-      #   uses: Eomm/why-don-t-you-tweet@v1
-      #   if: contains(steps.new-post-check.outputs.output, 'title')
-      #   with:
-      #     tweet-message: "New post:\n${{ env.NEW_POST_TITLE }}\n${{ env.NEW_POST_URL }}\n#DevOps #Cloud #InfrastructureAsCode #CICD"
-      #   env:
-      #     TWITTER_CONSUMER_API_KEY: ${{ secrets.TWITTER_CONSUMER_API_KEY }}
-      #     TWITTER_CONSUMER_API_SECRET: ${{ secrets.TWITTER_CONSUMER_API_SECRET }}
-      #     TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
-      #     TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+      - name: Tweet new article
+        uses: Eomm/why-don-t-you-tweet@v1
+        if: contains(steps.new-post-check.outputs.output, 'title')
+        with:
+          tweet-message: "New post:\n${{ env.NEW_POST_TITLE }}\n${{ env.NEW_POST_URL }}\n#DevOps #Cloud #InfrastructureAsCode #CICD"
+        env:
+          TWITTER_CONSUMER_API_KEY: ${{ secrets.TWITTER_CONSUMER_API_KEY }}
+          TWITTER_CONSUMER_API_SECRET: ${{ secrets.TWITTER_CONSUMER_API_SECRET }}
+          TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
 
-      # - name: Publish on LinkedIn through IFTTT
-      #   uses: actionsflow/ifttt-webhook-action@v1
-      #   if: contains(steps.new-post-check.outputs.output, 'title')
-      #   with:
-      #     event: new_damn_engineer_blog_post
-      #     key: ${{ secrets.IFTTT_WEBHOOK_KEY }}
-      #     value1: ${{ env.NEW_POST_TITLE }}
-      #     value2: ${{ env.NEW_POST_URL }}
+      - name: Publish on LinkedIn through IFTTT
+        uses: actionsflow/ifttt-webhook-action@v1
+        if: contains(steps.new-post-check.outputs.output, 'title')
+        with:
+          event: new_damn_engineer_blog_post
+          key: ${{ secrets.IFTTT_WEBHOOK_KEY }}
+          value1: ${{ env.NEW_POST_TITLE }}
+          value2: ${{ env.NEW_POST_URL }}
 
+      - name: Extract Markdown from latest post
+        if: contains(steps.new-post-check.outputs.output, 'title')
+        run: |
+          echo "# ${{ env.NEW_POST_TITLE }}" > latest.md
+          sed '/---/,/---/d' $NEW_POST_FILENAME >> latest.md
 
+      - name: Create Medium draft
+        uses: philips-software/post-to-medium-action@v0.4.1
+        id: medium-draft
+        if: contains(steps.new-post-check.outputs.output, 'title')
+        with:
+          integration_token: "${{ secrets.MEDIUM_ACCESS_TOKEN }}"
+          file: latest.md
+          content_format: "markdown"
+          notify_followers: "false"
+          tags: "Technology,DevOps,Cloud,Cloud Computing,Software Development"
+          title: ${{ env.NEW_POST_TITLE }}
+          canonical_url: ${{ env.NEW_POST_URL }}
+          license: "all-rights-reserved"
+          publish_status: "draft"
 
-      # - name: Read the post
-      #   id: post
-      #   run: echo "::set-output name=data::$(cat ./content/post.md)"
-
-      # - uses: infraway/medium-post-markdown@v1.5.0
-      #   with:
-      #     access_token: ${{ secrets.MEDIUM_ACCESS_TOKEN }}
-      #     markdown: ${{ steps.post.outputs.data }}
+      - name: Notify about new Medium draft
+        uses: actionsflow/ifttt-webhook-action@v1
+        if: contains(steps.new-post-check.outputs.output, 'title')
+        with:
+          event: new_medium_draft
+          key: ${{ secrets.IFTTT_WEBHOOK_KEY }}
+          value1: ${{ env.NEW_POST_TITLE }}
+          value2: ${{ steps.medium-draft.outputs.url }}
