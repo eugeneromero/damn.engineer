@@ -5,7 +5,7 @@ description: Something
 tags: tag other-tag
 ---
 
-# Ideas
+## Ideas, also the subtitle in Medium
 
 cdc alias
 
