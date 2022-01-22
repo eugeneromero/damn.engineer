@@ -2,7 +2,9 @@ name: Publish future-dated articles
 
 on:
   schedule:
-    - cron: '30 9 * * *'
+    - cron: '20 8 * * *'
+  push:
+    branches: [master]
 
 jobs:
   check-drafts:
@@ -33,7 +35,7 @@ jobs:
           done
 
       - name: Push changes back to repository
-        if: steps.move-drafts.outputs.new-post == "true"
+        if: steps.move-drafts.outputs.new-post
         uses: EndBug/add-and-commit@v8
         with:
           message: "Publish: ${{ steps.move-drafts.outputs.new-post-title }}"

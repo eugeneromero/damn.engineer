@@ -1,3 +1,5 @@
+[![Publish Jekyll site](https://github.com/eugeneromero/damn.engineer/actions/workflows/jekyll-publish.yml/badge.svg?branch=master)](https://github.com/eugeneromero/damn.engineer/actions/workflows/jekyll-publish.yml)
+
 # damn.engineer
 
 Some information on creating content:
