@@ -5,7 +5,7 @@ description: How to query and inject Azure Key Vault secrets in Kubernetes
 tags: azure azure-keyvault cloud kubernetes
 ---
 
-## The problem 
+## Querying and injecting Azure Key Vault secrets into Kubernetes services
 
 If you use Kubernetes to run your applications, sooner or later your cluster pods will need access to **secrets**.
 
