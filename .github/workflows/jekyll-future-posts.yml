@@ -4,8 +4,6 @@ on:
   workflow_dispatch:
   schedule:
     - cron: '20 8 * * *'
-  push:
-    branches: [master]
 
 jobs:
   check-drafts:
@@ -41,7 +39,7 @@ jobs:
         with:
           message: "Scheduled publish: ${{ steps.move-drafts.outputs.new-post-title }}"
 
-      - name: Invoke workflow without inputs
+      - name: Run Publish Site workflow
         if: steps.move-drafts.outputs.new-post
         uses: benc-uk/workflow-dispatch@v1
         with:
