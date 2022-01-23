@@ -1,4 +1,4 @@
-name: Publish future-dated articles
+name: Publish scheduled articles
 
 on:
   workflow_dispatch:
@@ -13,7 +13,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Move finished drafts
+      - name: Check for articles dated for today
         id: move-drafts
         working-directory: ${{ github.workspace }}/_drafts/
         run: |
@@ -33,7 +33,7 @@ jobs:
             fi
           done
 
-      - name: Push changes back to repository
+      - name: Push changes back to repo
         if: steps.move-drafts.outputs.new-post
         uses: EndBug/add-and-commit@v8
         with:
@@ -43,6 +43,6 @@ jobs:
         if: steps.move-drafts.outputs.new-post
         uses: benc-uk/workflow-dispatch@v1
         with:
-          workflow: Publish Jekyll site
+          workflow: Publish site
           token: ${{ secrets.WORKFLOW_PAT }}
           ref: master

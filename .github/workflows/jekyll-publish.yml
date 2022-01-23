@@ -1,4 +1,4 @@
-name: Publish Jekyll site
+name: Publish site
 
 on:
   workflow_dispatch:
@@ -16,7 +16,7 @@ jobs:
       - name: Replace development URL
         run: sed -i 's@http://127.0.0.1:4000@https://damn.engineer@' ${{ github.workspace }}/_config.yml
 
-      - name: Build site
+      - name: Build Jekyll site
         run: |
           docker run \
           -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
