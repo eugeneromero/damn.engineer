@@ -1,6 +1,7 @@
 name: Publish future-dated articles
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: '20 8 * * *'
   push:
@@ -38,4 +39,12 @@ jobs:
         if: steps.move-drafts.outputs.new-post
         uses: EndBug/add-and-commit@v8
         with:
-          message: "Publish: ${{ steps.move-drafts.outputs.new-post-title }}"
+          message: "Scheduled publish: ${{ steps.move-drafts.outputs.new-post-title }}"
+
+      - name: Invoke workflow without inputs
+        if: steps.move-drafts.outputs.new-post
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          workflow: Publish Jekyll site
+          token: ${{ secrets.WORKFLOW_PAT }}
+          ref: master
