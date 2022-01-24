@@ -88,6 +88,7 @@ jobs:
           file: latest.md
           content_format: "markdown"
           notify_followers: "false"
+          publication_name: capgemini-norway
           tags: "Technology,DevOps,Cloud,Cloud Computing,Software Development"
           title: ${{ env.NEW_POST_TITLE }}
           canonical_url: ${{ env.NEW_POST_URL }}
