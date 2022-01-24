@@ -8,7 +8,7 @@ tags: tips
 ## When a 10 minute change, becomes a multi-hour project
 
 ![Someone not following the advice of this article]({{ site.url }}{{ site.baseurl }}/assets/images/dont-shave-that-yak/yak-shave.jpg)
-Photo by <a href="https://burst.shopify.com/@lightleaksin?utm_campaign=photo_credit&amp;utm_content=Browse+Free+HD+Images+of+Bet+You+Didn%27t+Expect+To+See+A+Yak+Being+Shaved+Today&amp;utm_medium=referral&amp;utm_source=credit">Samantha Hurley</a> from <a href="https://burst.shopify.com/animal?utm_campaign=photo_credit&amp;utm_content=Browse+Free+HD+Images+of+Bet+You+Didn%27t+Expect+To+See+A+Yak+Being+Shaved+Today&amp;utm_medium=referral&amp;utm_source=credit">Burst</a>
+Photo by [Samantha Hurley](https://burst.shopify.com/@lightleaksin?utm_campaign=photo_credit&amp;utm_content=Browse+Free+HD+Images+of+Bet+You+Didn%27t+Expect+To+See+A+Yak+Being+Shaved+Today&amp;utm_medium=referral&amp;utm_source=credit) on [Burst](https://burst.shopify.com/animal?utm_campaign=photo_credit&amp;utm_content=Browse+Free+HD+Images+of+Bet+You+Didn%27t+Expect+To+See+A+Yak+Being+Shaved+Today&amp;utm_medium=referral&amp;utm_source=credit)
 
 
 **Note:** This article was originally published in 2019 on the [Capgemini Medium](https://medium.com/capgemini-norway/dont-shave-that-yak-872e994da32b) account, and on [kode24.no](https://www.kode24.no/guider/stick-to-your-planned-work/71207835).    
