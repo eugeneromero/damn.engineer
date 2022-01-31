@@ -7,7 +7,7 @@ tags: bash tips
 
 ## Tired of hunting for stale git branches?
 
-![Git branches]({{ site.url }}{{ site.baseurl }}/assets/images/git-clean-branches/git-branches.jpg)
+![Git branches](https://damn.engineer/assets/images/git-clean-branches/git-branches.jpg)
 Photo by [Yancy Min](https://unsplash.com/@yancymin?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 
 As a `git` user, I got tired of constantly seeing my list of branches grow out of control. Git is great for keeping the history of a repository, but at least for me, there isn't a lot of value in keeping deleted branches in my local history. Besides, if you are using [short-lived feature branches](https://trunkbaseddevelopment.com/short-lived-feature-branches/) (and you _really_ should be), you will be creating and deleting several new branches per week.

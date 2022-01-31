@@ -78,7 +78,7 @@ jobs:
         run: |
           echo "# ${{ env.NEW_POST_TITLE }}" > latest.md
           sed '/---/,/---/d' $NEW_POST_FILENAME >> latest.md
-          echo "*This story was originally published on my personal blog, [damn.engineer](https://damn.engineer)*" >> latest.md
+          echo -e "\n*This story was originally published on my personal blog, [damn.engineer](https://damn.engineer)*" >> latest.md
 
       - name: Create Medium draft
         uses: philips-software/post-to-medium-action@v0.4.1
@@ -89,7 +89,7 @@ jobs:
           file: latest.md
           content_format: "markdown"
           notify_followers: "false"
-          publication_name: capgemini-norway
+          publication_id: ${{ secrets.MEDIUM_CAP_NORWAY_ID }}
           tags: "Technology,DevOps,Cloud,Cloud Computing,Software Development"
           title: ${{ env.NEW_POST_TITLE }}
           canonical_url: ${{ env.NEW_POST_URL }}
