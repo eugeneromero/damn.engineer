@@ -25,7 +25,7 @@
     {
       "title": {{post.title | jsonify}},
       "url": {{ post.url | jsonify }},
-      "date": {{ post.date | date: '%m/%Y' | jsonify }}
+      "date": {{ post.date | date: '%b %Y' | jsonify }}
     }{% unless forloop.last %},{% endunless %}
   {% endfor %}];
 

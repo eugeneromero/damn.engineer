@@ -14,7 +14,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Replace development URL
-        run: sed -i 's@http://127.0.0.1:4000@https://damn.engineer@' ${{ github.workspace }}/_config.yml
+        run: sed -i 's!http://127.0.0.1:4000!https://damn.engineer!g' ${{ github.workspace }}/_config.yml
 
       - name: Build Jekyll site
         run: |
@@ -77,8 +77,8 @@ jobs:
         if: contains(steps.new-post-check.outputs.output, 'title')
         run: |
           echo "# ${{ env.NEW_POST_TITLE }}" > latest.md
-          sed '/---/,/---/d' $NEW_POST_FILENAME >> latest.md
-          echo -e "\n*This story was originally published on my personal blog, [damn.engineer](https://damn.engineer)*" >> latest.md
+          sed '/---/,/---/d;s!{{ site.url }}{{ site.baseurl }}!https://damn.engineer!g' $NEW_POST_FILENAME >> latest.md
+          echo -e "\n*This story was originally published on my personal blog, [damn.engineer](https://damn.engineer).*\n*You can follow the [blog's Twitter account](https://twitter.com/DamnDotEngineer) for new post notifications, and reach me through my [personal Twitter](https://twitter.com/theEugeneRomero).*" >> latest.md
 
       - name: Create Medium draft
         uses: philips-software/post-to-medium-action@v0.4.1

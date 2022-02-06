@@ -7,7 +7,7 @@ tags: azure terraform
 
 ## A tale of two ~~cities~~ Azure subscriptions
 
-![One Terraform, two subscriptions](https://damn.engineer/assets/images/terraform-multiple-azure-subscriptions/highway.jpg)
+![One Terraform, two subscriptions]({{ site.url }}{{ site.baseurl }}/assets/images/terraform-multiple-azure-subscriptions/highway.jpg)
 Photo by [Adrian Schwarz](https://unsplash.com/@aeschwarz?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/cities?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 
 When infrastructure is declared as Terraform code, resources are usually only created in a single Azure subscription. It normally is best practice to keep multiple subscriptions separated in code, to prevent ending up with a large codebase which can be difficult to maintain and understand. However, there are times when it is necessary, or most logical, to create or query resources from different subscriptions. Luckily, Terraform allows us to work with two (or more) subscriptions in a single run if needed, by means of [configuration aliases](https://www.terraform.io/language/providers/configuration#alias-multiple-provider-configurations).

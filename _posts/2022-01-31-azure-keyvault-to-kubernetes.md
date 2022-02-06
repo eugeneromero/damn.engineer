@@ -7,7 +7,7 @@ tags: azure azure-keyvault cloud kubernetes
 
 ## Querying and injecting Azure Key Vault secrets into Kubernetes microservices
 
-![Application secrets should be properly protected](https://damn.engineer/assets/images/azure-keyvault-to-kubernetes/secrets.jpg)
+![Application secrets should be properly protected]({{ site.url }}{{ site.baseurl }}/assets/images/azure-keyvault-to-kubernetes/secrets.jpg)
 Photo by [FLY:D](https://unsplash.com/@flyd2069?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/padlock?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 
 If you use Kubernetes to run your applications, sooner or later your cluster pods will need access to **secrets**.
