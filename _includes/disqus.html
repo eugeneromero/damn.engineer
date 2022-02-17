@@ -2,7 +2,7 @@
 	<div id="disqus_thread" class="article-comments"></div>
 	<script>
 		var disqus_config = function () {
-		  this.page.title = '{{ page.title | jsonify }}';
+		  this.page.title = '{{ page.title | smartify }}';
       this.page.url = '{{ page.url | absolute_url }}';
       this.page.identifier = '{{ page.id }}';
     };
