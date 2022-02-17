@@ -7,7 +7,7 @@ lang: en-US
 timezone:  Europe/Oslo
 repo: https://github.com/eugeneromero/damn.engineer
 data-theme: dark
-# discus-identifier: eugeneromero
+discus-identifier: damndotengineer
 
 author:
   name: Eugene Romero
