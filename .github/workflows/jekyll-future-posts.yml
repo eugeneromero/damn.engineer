@@ -1,4 +1,4 @@
-name: Publish scheduled articles
+name: "[AUTO]: Publish scheduled articles"
 
 on:
   workflow_dispatch:

@@ -2,6 +2,7 @@
 layout: post
 title: Using SSL/TLS certificates from Azure Key Vault in Kubernetes pods
 description: How to access, make available, and mount SSL/TLS certificates from an Azure Key Vault into a Kubernetes pod
+publish-to-medium: true
 tags: azure azure-keyvault kubernetes
 ---
 

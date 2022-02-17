@@ -2,6 +2,7 @@
 layout: post
 title: Bash alias for cleaning git branches
 description: How to create a Bash alias for quickly cleaning out stale git branches
+publish-to-medium: true
 tags: bash tips
 ---
 

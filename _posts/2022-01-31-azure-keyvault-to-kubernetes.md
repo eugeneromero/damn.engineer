@@ -2,6 +2,7 @@
 layout: post
 title: Accessing Azure Key Vault secrets from Kubernetes
 description: How to query and inject Azure Key Vault secrets in Kubernetes
+publish-to-medium: true
 tags: azure azure-keyvault cloud kubernetes
 ---
 

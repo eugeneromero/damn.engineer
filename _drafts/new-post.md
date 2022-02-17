@@ -2,6 +2,7 @@
 layout: post
 title: New post
 description: Something
+publish-to-medium: true/false
 tags: tag other-tag
 ---
 

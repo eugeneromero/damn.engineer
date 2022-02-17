@@ -46,12 +46,22 @@ jobs:
       - name: Get new post info
         if: contains(steps.new-post-check.outputs.output, 'title')
         run: |
-          title=$(jq -r '.title' ${{ github.workspace }}/_site/latest.json)
-          url=$(jq -r '.url' ${{ github.workspace }}/_site/latest.json)
-          filename=$(jq -r '.filename' ${{ github.workspace }}/_site/latest.json)
-          echo "NEW_POST_TITLE=$title" >> $GITHUB_ENV
-          echo "NEW_POST_URL=$url" >> $GITHUB_ENV
-          echo "NEW_POST_FILENAME=$filename" >> $GITHUB_ENV
+          latest=${{ github.workspace }}/_site/latest.json
+
+          echo "NEW_POST_TITLE=$(jq -r '.title' $latest)" >> $GITHUB_ENV
+          echo "NEW_POST_URL=$(jq -r '.url' $latest)" >> $GITHUB_ENV
+          echo "NEW_POST_FILENAME=$(jq -r '.filename' $latest)" >> $GITHUB_ENV
+          echo "PUBLISH_TO_MEDIUM=$(jq -r '.medium' $latest)" >> $GITHUB_ENV
+
+      - name: Test
+        if: |
+          contains(steps.new-post-check.outputs.output, 'title')
+          && env.PUBLISH_TO_MEDIUM == 'true'
+        run: |
+          echo "$NEW_POST_TITLE"
+          echo "$NEW_POST_URL" 
+          echo "$NEW_POST_FILENAME"
+          echo "$PUBLISH_TO_MEDIUM"
 
       - name: Tweet new article
         uses: Eomm/why-don-t-you-tweet@v1
@@ -74,7 +84,9 @@ jobs:
           value2: ${{ env.NEW_POST_URL }}
 
       - name: Extract Markdown from latest post
-        if: contains(steps.new-post-check.outputs.output, 'title')
+        if: |
+          contains(steps.new-post-check.outputs.output, 'title')
+          && env.PUBLISH_TO_MEDIUM == 'true'
         run: |
           echo "# ${{ env.NEW_POST_TITLE }}" > latest.md
           sed '/---/,/---/d;s!{{ site.url }}{{ site.baseurl }}!https://damn.engineer!g' $NEW_POST_FILENAME >> latest.md
@@ -83,7 +95,9 @@ jobs:
       - name: Create Medium draft
         uses: philips-software/post-to-medium-action@v0.4.1
         id: medium-draft
-        if: contains(steps.new-post-check.outputs.output, 'title')
+        if: |
+          contains(steps.new-post-check.outputs.output, 'title')
+          && env.PUBLISH_TO_MEDIUM == 'true'
         with:
           integration_token: "${{ secrets.MEDIUM_ACCESS_TOKEN }}"
           file: latest.md
@@ -98,7 +112,9 @@ jobs:
 
       - name: Notify about new Medium draft
         uses: actionsflow/ifttt-webhook-action@v1
-        if: contains(steps.new-post-check.outputs.output, 'title')
+        if: |
+          contains(steps.new-post-check.outputs.output, 'title')
+          && env.PUBLISH_TO_MEDIUM == 'true'
         with:
           event: new_medium_draft
           key: ${{ secrets.IFTTT_WEBHOOK_KEY }}
