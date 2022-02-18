@@ -12,3 +12,5 @@ tags: tag other-tag
 How the blog is deployed
 
 Performing Elasticsearch API calls with Terraform
+
+Terraform compliance
