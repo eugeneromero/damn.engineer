@@ -3,7 +3,7 @@ name: "[AUTO]: Publish scheduled articles"
 on:
   workflow_dispatch:
   schedule:
-    - cron: '20 14 * * *'
+    - cron: '20 12 * * *'
 
 jobs:
   check-drafts:

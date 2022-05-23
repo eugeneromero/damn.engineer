@@ -33,7 +33,7 @@ With `pip3` installed, I then installed the `azure-cli` package:
 pip3 install azure-cli
 ```
 
-`pip3` installs packages on the `~/.local/bin` directory, which is not in the PATH by default. So I also added this line at the end of my `.bashrc`:
+`pip3` installs packages in the `~/.local/bin` directory, which is not in the $PATH by default. So I also added this line at the end of my `.bashrc`:
 
 ```
 export PATH=$PATH:/home/$USER/.local/bin
