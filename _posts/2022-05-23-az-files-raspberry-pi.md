@@ -1,13 +1,13 @@
 ---
 layout: post
 title: Uploading files to an Azure File Share from a Raspberry Pi
-description: How to use the az CLI to upload files from a Raspberry Pi to an Azure Storage File Share
+description: How to use the Azure CLI to upload files from a Raspberry Pi to an Azure Storage File Share
 comments: true
 publish-to-medium: false
 tags: azure azure-storage raspberry-pi
 ---
 
-## How to use the az-cli to upload files from a Raspberry Pi to an Azure Storage File Share
+## How to use the Azure CLI to upload files from a Raspberry Pi to an Azure Storage File Share
 
 Recently, I used an [Azure Storage Account](https://docs.microsoft.com/en-us/azure/storage/common/storage-introduction) to set up a Cloud [file share](https://docs.microsoft.com/en-us/azure/storage/files/storage-files-introduction). My goal was to have a file share that could be mounted across all my computers/phones/tablets (by using SMB) and accessed from anywhere.
 
@@ -15,9 +15,9 @@ Once the file share was set up, I decided I wanted to upload a copy of all the f
 
 To do this, I decided to use the Azure CLI, which conveniently has an `azure storage file upload-batch` function. These were the steps I followed:
 
-## Installing the az CLI in the Raspberry Pi
+## Installing the Azure CLI on the Raspberry Pi
 
-I attempted to install the `az cli` using the all-in-one script found in the [Azure documentation](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt). However, even though the packages installed, attempting to use them threw an error. There currently aren't packages for ARM64 architectures, and the packages that the all-in-one installs are mislabeled as ALL, which makes them install but not run. This is tracked in [this GitHub issue](https://github.com/Azure/azure-cli/issues/7368).
+I attempted to install `azure-cli` using the all-in-one script found in the [Azure documentation](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt). However, even though the packages installed, attempting to use them threw an error. There currently aren't packages for ARM64 architectures, and the packages that the all-in-one installs are mislabeled as ALL, which makes them install but not run. This is tracked in [this GitHub issue](https://github.com/Azure/azure-cli/issues/7368).
 
 Instead, I used the package found in the pip3 repositories, which does work on ARM64 systems (notice that although there is also an `azure-cli` package in the Python2's `pip` repos, this package failed to install on my system).
 
@@ -56,8 +56,8 @@ Check the [documentation](https://docs.microsoft.com/en-us/cli/azure/storage/fil
 
 ## Conclusion
 
-Remember that the upload is recursive, so all files and subdirectories found in the source path will be uploaded to the share. Also, `az cli` does not skip over already present files - it simply overwrites them if they already exist. So this command might not be ideal for syncing directories regularly, like how one might use `rsync`, for example.
+Remember that the upload is recursive, so all files and subdirectories found in the source path will be uploaded to the share. Also, the `upload-batch` subcommand does not skip over already present files - it simply overwrites them if they already exist. So this command might not be ideal for syncing directories regularly, like how one might use `rsync`, for example.
 
-Uploading files from a Raspberry Pi to an Azure File Share is not difficult once all pieces are in place. This process should become even easier once Microsoft releases the ARM64 version of the `az cli`.
+Uploading files from a Raspberry Pi to an Azure File Share is not difficult once all pieces are in place. This process should become even easier once Microsoft releases the ARM64 version of `azure-cli`.
 
 Did this tip help you out? Let me know in the comments below!
