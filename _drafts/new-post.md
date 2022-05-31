@@ -14,3 +14,5 @@ How the blog is deployed
 Terraform compliance
 
 Deploying to different environments with Azure DevOps (on PR, merge to master, etc)
+
+Introduction to PVs and PVCs in Kubernetes
