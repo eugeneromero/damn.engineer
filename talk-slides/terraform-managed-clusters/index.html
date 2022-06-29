@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+	<html class="sl-root decks export offline loaded">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>Automate every layer: Using Terraform to deploy, configure and maintain Azure Kubernetes clusters</title>
+
+		<meta name="description" content="(35 min) Managed Kubernetes clusters are all the rage these days. With a few clicks, you can easily spin up a Kubernetes cluster without having to worry about the underlying workings of the technology. But, where do we go from there? How can we easily reproduce a Kubernetes setup, configure it, deploy our microservices to it, and maintain it? In this talk, I will discuss how we use Terraform to automate our Azure Kubernetes clusters end-to-end. Automate all the things!">
+
+		<link rel="stylesheet" type="text/css" href="lib/offline-v2.css">
+
+
+
+	</head>
+	<body class="reveal-viewport theme-font-montserrat theme-color-grey-blue">
+		<div class="reveal">
+			<div class="slides">
+				<section data-id="8b05d8b93d9405406bc204b76e6cfff4"><div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 84.5px; height: auto;" data-block-id="112567803db114c8f3c800a299169606"><div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" style="z-index: 10;">
+<h1>AUTOMATE EVERY LAYER</h1>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 806px; left: 77px; top: 344px;" data-name="text-03b4b4" data-block-id="4039cd0493397da3b002ea2e2449dca3"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+<p><span style="font-size:1.2em">Using Terraform to deploy, configure and maintain (managed) Azure Kubernetes clusters</span></p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 232px; left: 720px; top: 630px;" data-name="text-9a9e6a" data-block-id="76b2489da3e4bfd6b1f9903e82247858"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12; font-size: 75%;">
+<p>@theEugeneRomero</p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 449px; left: 15.5px; top: 620px;" data-block-id="6142d3cfe2fb665ecdf8e78f94bbad6a" data-name="text-116440"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;">
+<p><span style="font-size:0.7em"><strong>Get the slides:</strong> https://damn.engineer/slides</span></p>
+</div></div></section><section data-id="903adc39d13d1005bccf36ac936a8c05"><div class="sl-block" data-block-type="text" style="width: 413px; left: 29px; top: 84px; height: auto;" data-block-id="20b2bfebabdde6034a3a474f392e2e14"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="text-align: left; z-index: 10;">
+<h2>WHO AM I?</h2>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 413px; left: 29px; top: 158px; height: auto;" data-block-id="c20dd1133805bd2fe9b15ee54e35f4fb"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus justo. Aliquam erat volutpat." style="z-index: 12; text-align: left;">
+<p>Senior Cloud and DevOps Engineer @ Capgemini Norway</p>
+
+<p> </p>
+
+<p>15+ years in infrastructure and software development</p>
+
+<p> </p>
+
+<p><span style="color:rgb(255, 255, 255)">Linux nerd</span></p>
+
+<p> </p>
+
+<p>Restoring and modifying old gaming systems</p>
+
+<p> </p>
+</div></div>
+<div class="sl-block" data-block-type="image" style="width: 451px; height: 630px; left: 480px; top: 35px; min-width: 1px; min-height: 1px;" data-block-id="549137200067cc0fef0d3a3b876eceeb"><div class="sl-block-content" style="z-index: 11;"><img style="left: -141px; top: 0px; width: 630px; height: 630px;" data-natural-width="1351" data-natural-height="1350" data-crop-x="0.22381" data-crop-y="0" data-crop-width="0.715343" data-crop-height="1" data-lazy-loaded="" data-src="automate-every-layer-using-terraform-to-deploy-configure-and-maintain-azure-kubernetes-clusters/2d4185890125ccdb57b96eebed020767.jpg"></div></div></section><section data-id="7c1fcd419f38a0b1968d28c60eddd7f3"><div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 252.5px; height: auto;" data-block-id="dd6aaed3abc4fef52d4c2ac747c0a4b6"><div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" style="z-index: 10;">
+<h1>Managed Kubernetes clusters?</h1>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 232px; left: 720px; top: 630px;" data-name="text-9a9e6a" data-block-id="59bbbc404210c1feeea3948dec19b5e5"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; font-size: 75%;">
+<p>@theEugeneRomero</p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 449px; left: 15.5px; top: 620px;" data-name="text-116440" data-block-id="f7712c77f9fa47973089433e42bb16b6"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;">
+<p><span style="font-size:0.7em"><strong>Get the slides:</strong> https://damn.engineer/slides</span></p>
+</div></div></section><section data-id="e9c414e2369dc191c6703bf5415a594b">
+
+
+
+
+<div class="sl-block" data-block-type="image" style="width: 299.781px; height: 291.037px; left: 330.109px; top: 225.373px; min-width: 1px; min-height: 1px;" data-name="image-b260e6" data-block-id="ddb658b467ded3ef761769d0163f11e8"><div class="sl-block-content" style="z-index: 10;"><img style="" data-natural-width="1200" data-natural-height="1165" data-lazy-loaded="" data-src="automate-every-layer-using-terraform-to-deploy-configure-and-maintain-azure-kubernetes-clusters/e99ea4669d8e82f88808fbb1760cc362.png"></div></div>
+<div class="sl-block" data-block-type="image" style="width: 240.112px; height: 181.159px; left: 359.944px; top: 0px; min-width: 1px; min-height: 1px;" data-name="image-ce78f1" data-block-id="125a80220ddcf95998625a37e14ee71e"><div class="sl-block-content" style="z-index: 11; transition-duration: 0.6s; transition-delay: 2s;" data-animation-type="fade-in"><img style="" data-natural-width="391" data-natural-height="295" data-lazy-loaded="" data-src="automate-every-layer-using-terraform-to-deploy-configure-and-maintain-azure-kubernetes-clusters/c7d1570a690976feddaeeb31053f1776.png"></div></div>
+<div class="sl-block" data-block-type="image" style="width: 240px; height: 240px; left: 40px; top: 99px; min-width: 1px; min-height: 1px;" data-name="image-767e8b" data-block-id="eae689ec8ae04c8b1be3aaa185458c76"><div class="sl-block-content" style="z-index: 12; transition-duration: 0.6s; transition-delay: 1s;" data-inline-svg="false" data-animation-type="fade-in"><img style="" data-natural-width="587" data-natural-height="587" data-lazy-loaded="" data-src="automate-every-layer-using-terraform-to-deploy-configure-and-maintain-azure-kubernetes-clusters/a3c922d96c1f5bc8c6040f0927a162b7.svg"></div></div>
+<div class="sl-block" data-block-type="image" style="width: 240px; height: 240px; left: 665.363px; top: 90px; min-width: 1px; min-height: 1px;" data-name="image-166f92" data-block-id="fb7ae6219e29408a6481bb4281add534"><div class="sl-block-content" style="z-index: 13; transition-duration: 0.6s; transition-delay: 3s;" data-inline-svg="false" data-animation-type="fade-in"><img style="" data-natural-width="128" data-natural-height="128" data-lazy-loaded="" data-src="automate-every-layer-using-terraform-to-deploy-configure-and-maintain-azure-kubernetes-clusters/61377f6a1df059aa6c783d8c973f5710.svg"></div></div>
+<div class="sl-block" data-block-type="image" style="width: 240.413px; height: 247px; left: 61.587px; top: 453px; min-width: 1px; min-height: 1px;" data-name="image-2b135c" data-block-id="25cf220d885e727f334cff388ab6961d"><div class="sl-block-content" style="z-index: 14; border-width: 1px; transition-duration: 0.6s; transition-delay: 5s;" data-animation-type="fade-in"><img style="" data-natural-width="292" data-natural-height="300" data-lazy-loaded="" data-src="automate-every-layer-using-terraform-to-deploy-configure-and-maintain-azure-kubernetes-clusters/92fa6d66b96aa16cf45a68e93f555e19.png"></div></div>
+<div class="sl-block" data-block-type="image" style="width: 239.582px; height: 221.819px; left: 655.26px; top: 465.591px; min-width: 1px; min-height: 1px;" data-name="image-2863d4" data-block-id="a4f4198f37cc746373a5f02ead4c2a9c"><div class="sl-block-content" style="z-index: 15; transition-duration: 0.6s; transition-delay: 4s;" data-animation-type="fade-in"><img style="" data-natural-width="553" data-natural-height="512" data-lazy-loaded="" data-src="automate-every-layer-using-terraform-to-deploy-configure-and-maintain-azure-kubernetes-clusters/2e569f48cb14553d9f0c35c2a3d75820.png"></div></div></section><section data-id="3fa38b68483d3858bd3a7aa9a4f925db"><div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 301px; height: auto;" data-block-id="13f50d9950a3975f9c6b25816dda7733"><div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" style="z-index: 10;">
+<h1>Terraform?</h1>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 232px; left: 720px; top: 630px;" data-name="text-9a9e6a" data-block-id="ec6e4cc0822f43e3f8a4c5c035e16bee"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; font-size: 75%;">
+<p>@theEugeneRomero</p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 449px; left: 15.5px; top: 620px;" data-name="text-116440" data-block-id="3e08d9d1a96d81bb895d72d5e6933d78"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;">
+<p><span style="font-size:0.7em"><strong>Get the slides:</strong> https://damn.engineer/slides</span></p>
+</div></div></section><section data-id="d44cdc8892a98f0e5ac163c6ff716da0">
+<div class="sl-block" data-block-type="text" style="width: 534.583px; left: 45.75px; top: 398px; height: auto;" data-block-id="a5179545d4d47bd0228b6a04ef5735e8"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus justo. Aliquam erat volutpat." style="z-index: 10; text-align: left; font-size: 114%; color: rgb(255, 255, 255);" data-fragment-index="0">
+<p>Open-source</p>
+</div></div>
+<div class="sl-block" data-block-type="image" style="width: 299.667px; height: 341px; left: 580.333px; top: 70px; min-width: 1px; min-height: 1px;" data-name="image-ab0c25" data-block-id="b8a647bcfabb0a9facd413f408a7439f"><div class="sl-block-content" style="z-index: 11;"><img style="" data-natural-width="58" data-natural-height="66" data-lazy-loaded="" data-src="automate-every-layer-using-terraform-to-deploy-configure-and-maintain-azure-kubernetes-clusters/62e5cc7c93ed86c18a3b5e22eaa6790e.svg"></div></div>
+<div class="sl-block" data-block-type="text" style="width: 434.25px; left: 45.75px; top: 258px; height: auto;" data-block-id="feffde55d0d590964fb35366fb9e650f" data-name="text-178cf3"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus justo. Aliquam erat volutpat." style="z-index: 12; text-align: left; font-size: 114%; color: rgb(255, 255, 255);">
+<p>Infrastructure-as-code tool</p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 868.5px; left: 45.75px; top: 538px; height: auto;" data-block-id="229c4401b153f325d2123839407fbbcd" data-name="text-4c957f"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus justo. Aliquam erat volutpat." style="z-index: 13; text-align: left; font-size: 114%; color: rgb(255, 255, 255);" data-fragment-index="1">
+<p>Predictably create, change, and improve infrastructure</p>
+</div></div></section><section data-id="cb66599b20fc22a2493696880e623341"><div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 301px; height: auto;" data-block-id="8487beb5ebcd1b32b9f7ae1bee4ea447"><div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" style="z-index: 10;">
+<h1>Terraform providers</h1>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 232px; left: 720px; top: 630px;" data-name="text-9a9e6a" data-block-id="b601f10885ad703a6ad5663455d221a3"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; font-size: 75%;">
+<p>@theEugeneRomero</p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 449px; left: 15.5px; top: 620px;" data-name="text-116440" data-block-id="dce65cf8c4d77f957e7f732e0be19ead"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;">
+<p><span style="font-size:0.7em"><strong>Get the slides:</strong> https://damn.engineer/slides</span></p>
+</div></div></section><section data-id="4f943e1d95cb0b83708696f391eeca53">
+<div class="sl-block" data-block-type="text" style="width: 790.5px; left: 76.5px; top: 152px; height: auto;" data-block-id="8448b3b56b7ed4faadc31889b85dadf1"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus justo. Aliquam erat volutpat." style="z-index: 10; text-align: left; font-size: 114%; color: rgb(255, 255, 255);" data-fragment-index="0">
+<p style="color:rgb(255, 255, 255)">Responsible for exposing and creating resources</p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 600.5px; left: 76.5px; top: 48px; height: auto;" data-block-id="534e7bdadd9f722b3ddd2c95ae14c1fd" data-name="text-0131bb"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus justo. Aliquam erat volutpat." style="z-index: 11; text-align: left; font-size: 114%; color: rgb(255, 255, 255);">
+<p style="color:rgb(255, 255, 255)">Logical abstraction of upstream APIs</p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 607.5px; left: 76.5px; top: 258px; height: auto;" data-block-id="6672524dc348272a6e64f68c08db9ed1" data-name="text-07c525"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus justo. Aliquam erat volutpat." style="z-index: 12; text-align: left; font-size: 114%; color: rgb(255, 255, 255);" data-fragment-index="1">
+<p style="color:rgb(255, 255, 255)">2200+ available providers (June 2022)</p>
+</div></div>
+<div class="sl-block" data-block-type="image" style="width: 588.599px; height: 280.896px; left: 185.701px; top: 373.104px; min-width: 1px; min-height: 1px;" data-name="image-0f4f7d" data-block-id="3e8d44a8a7a40abd906f6997b50a4c48"><div class="sl-block-content fragment" style="z-index: 13;" data-fragment-index="1"><img style="" data-natural-width="1010" data-natural-height="482" data-lazy-loaded="" data-src="automate-every-layer-using-terraform-to-deploy-configure-and-maintain-azure-kubernetes-clusters/20c4f00965ed22ec0d1c4b3754219008.png"></div></div></section><section data-id="d95da0a523e99a33d2cba21eabc92dde"><div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 33px; height: auto;" data-block-id="6b00721d02b1abaa0bfddf4a14deb62e"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 10;">
+<h2>What does it look like?</h2>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 818px; left: 71px; top: 243px; height: auto;" data-block-id="36b810047d4466b75579b2aadd819b45"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; font-size: 120%;">
+<p style="text-align:left"><span style="color:#4ec9b0">resource</span> <span style="color:#4fc1ff">"provider_resource"</span> <span style="color:#4fc1ff">"any_name"</span> {</p>
+
+<p style="text-align:left"><span style="color:#9cdcfe">        key</span><span style="color:#9cdcfe"> </span>=<span style="color:#9cdcfe"> </span><span style="color:rgb(206, 145, 120)">"value"</span></p>
+
+<p style="text-align:left"><span style="color:#9cdcfe">        other_key</span><span style="color:#9cdcfe"> </span>=<span style="color:#9cdcfe"> data.from.different.resource</span></p>
+
+<p style="text-align:left">}</p>
+</div></div></section><section data-id="891ca01697cd47087c52f8f70ca321c7"><div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 33px; height: auto;" data-block-id="e88cd0552c171aba74ca62b4fb16fdde"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 10;">
+<h2>Example</h2>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 935px; left: 12.5px; top: 169px; height: auto;" data-block-id="2d092a04c48ce2f60f00da7895b60df9"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; font-size: 95%;">
+<p style="text-align: left;"><span style="font-size:1.0em"><span style="color:#4ec9b0">resource</span> <span style="color:#4fc1ff">"azurerm_kubernetes_cluster"</span> <span style="color:#4fc1ff">"my_cluster"</span> {</span></p>
+
+<p style="text-align: left;"><span style="font-size:1.0em"><span style="color:#9cdcfe">    name </span>=<span style="color:#9cdcfe"> </span><span style="color:#ce9178">"</span><span style="color:#569cd6">${</span><span style="color:#9cdcfe">var</span>.<span style="color:#9cdcfe">environment</span><span style="color:#569cd6">}</span><span style="color:#ce9178">-cluster"</span></span></p>
+
+<p style="text-align: left;"><span style="font-size:1.0em"><span style="color:#9cdcfe">    resource_group_name </span>=<span style="color:#9cdcfe"> data</span>.<span style="color:#9cdcfe">azurerm_resource_group</span>.<span style="color:#9cdcfe">my_rg</span>.<span style="color:#9cdcfe">name</span></span></p>
+
+<p style="text-align: left;"><span style="font-size:1.0em"><span style="color:#9cdcfe">    location </span>=<span style="color:#9cdcfe"> </span><span style="color:#ce9178">"westeurope"</span></span></p>
+
+<p style="text-align: left;"><span style="font-size:1.0em"><span style="color:#ce9178">    ...</span></span></p>
+
+<p style="text-align: left;"><span style="font-size:1.0em"><span style="color:#4ec9b0">    default_node_pool</span> {</span></p>
+
+<p style="text-align: left;"><span style="font-size:1.0em"><span style="color:#9cdcfe">        min_count </span>=<span style="color:#9cdcfe"> </span><span style="color:#ce9178">"3"</span></span></p>
+
+<p style="text-align: left;"><span style="font-size:1.0em"><span style="color:#9cdcfe">        max_count </span>=<span style="color:#9cdcfe"> </span><span style="color:#ce9178">"6"</span></span></p>
+
+<p style="text-align: left;"><span style="font-size:1.0em"><span style="color:#ce9178">        ...</span></span></p>
+
+<p style="text-align: left;">    <span style="font-size:1.0em">}</span></p>
+
+<p style="text-align: left;"><span style="font-size:1.0em">}</span></p>
+
+<p> </p>
+</div></div></section><section data-id="2e1c11867c5a6ec550c43fd88974bd65"><div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 91px; height: auto;" data-block-id="1e165a8384995339dce56d681072251f"><div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" style="z-index: 10;">
+<h1>The Process</h1>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 232px; left: 720px; top: 630px;" data-name="text-9a9e6a" data-block-id="27c66f0950c3fcce8fea814742c134a1"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; font-size: 75%;">
+<p>@theEugeneRomero</p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 449px; left: 15.5px; top: 620px;" data-name="text-116440" data-block-id="b68c24f3a8b9bc1b5c235633b8290021"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;">
+<p><span style="font-size:0.7em"><strong>Get the slides:</strong> https://damn.engineer/slides</span></p>
+</div></div>
+<div class="sl-block" data-block-type="image" style="width: 506.667px; height: 380px; left: 226.667px; top: 210px;" data-name="image-ead474" data-block-id="3a66e7a1c63a6a9c73e0f8b44d313e32"><div class="sl-block-content" style="z-index: 13;"><img style="" data-natural-width="480" data-natural-height="360" data-src="automate-every-layer-using-terraform-to-deploy-configure-and-maintain-azure-kubernetes-clusters/6e258c054664b05e11d316284e7a6a06.gif"></div></div></section><section data-id="9293f9ecac38396e717e9e50fd624fa3">
+<div class="sl-block" data-block-type="text" style="width: 208.5px; left: 375.75px; top: 320.5px; height: auto;" data-block-id="636d78a2dcc3eddb6476739ab6ab62e4"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus justo. Aliquam erat volutpat." style="z-index: 10; text-align: left; font-size: 150%; color: rgb(255, 255, 255);" data-fragment-index="0">
+<p style="color:rgb(255, 255, 255)"><span style="font-size:1.0em">Configure</span></p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 143.5px; left: 408.25px; top: 180.5px; height: auto;" data-name="text-0131bb" data-block-id="4f3c0a2aa54ee530a5fc34c82d8b4dec"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus justo. Aliquam erat volutpat." style="z-index: 11; text-align: left; font-size: 150%; color: rgb(255, 255, 255);">
+<p style="color:rgb(255, 255, 255)">Create</p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 193.5px; left: 383.25px; top: 460.5px; height: auto;" data-name="text-07c525" data-block-id="090dfaafac3513cf5b42fb3dc22c21ab"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus justo. Aliquam erat volutpat." style="z-index: 12; text-align: left; font-size: 150%; color: rgb(255, 255, 255);" data-fragment-index="1">
+<p style="color:rgb(255, 255, 255)">Populate</p>
+</div></div></section><section data-id="f196b417a48b820f4780bb78a32c1362"><div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 91px; height: auto;" data-block-id="0aff1e1f259e8d19d03863eab43df2a7"><div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" style="z-index: 10;">
+<h1>Cluster creation</h1>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 232px; left: 720px; top: 630px;" data-name="text-9a9e6a" data-block-id="577df890c5ae61def4b31d591b84387d"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; font-size: 75%;">
+<p>@theEugeneRomero</p>
+</div></div>
+<div class="sl-block" data-block-type="image" style="width: 373px; height: 373px; left: 293.5px; top: 233.5px; min-width: 1px; min-height: 1px;" data-name="image-80cc76" data-block-id="fed7c502a7b13aa514b841716a2d226d"><div class="sl-block-content" style="z-index: 12;"><img style="" data-natural-width="450" data-natural-height="450" data-lazy-loaded="" data-src="automate-every-layer-using-terraform-to-deploy-configure-and-maintain-azure-kubernetes-clusters/825ca2f4cb3afe63389bb1cdc0528999.gif"></div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 449px; left: 15.5px; top: 620px;" data-name="text-116440" data-block-id="a183df0cd28532c387bb7030afa18033"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;">
+<p><span style="font-size:0.7em"><strong>Get the slides:</strong> https://damn.engineer/slides</span></p>
+</div></div></section><section data-id="eb7189389ae1a2bba47172d35a03ee65">
+
+<div class="sl-block" data-block-type="text" style="height: auto; width: 800px; left: 80px; top: 258px;" data-name="text-88ad8e" data-block-id="39f958e3ef815af7ea56ff6fdbda22cf"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10; font-size: 120%;">
+<p>Minimum resources needed:</p>
+
+<ul>
+	<li>Resource group</li>
+	<li>Virtual network + subnet</li>
+	<li>Kubernetes cluster</li>
+</ul>
+
+<p> </p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 627.5px; left: 166.25px; top: 81px; height: auto;" data-name="text-0131bb" data-block-id="d62b091d20c8503d49f65711608b264f"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus justo. Aliquam erat volutpat." style="z-index: 11; text-align: left; font-size: 150%; color: rgb(255, 255, 255);">
+<p style="color:rgb(255, 255, 255)">Terraform provider: azurerm</p>
+</div></div></section><section data-id="d815900514ed9c7f127b8dec29276f32">
+
+<div class="sl-block" data-block-type="text" style="height: auto; width: 815px; left: 72.5px; top: 191px;" data-name="text-88ad8e" data-block-id="1b016f3ebed2247a8df0dea1fefb91c7"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+<p><span style="color:#4ec9b0">resource</span> <span style="color:#4fc1ff">"azurerm_resource_group"</span> <span style="color:#4fc1ff">"demo_rg"</span> {}</p>
+
+<p> </p>
+
+<p><span style="color:#4ec9b0">resource</span> <span style="color:#4fc1ff">"azurerm_virtual_network"</span> <span style="color:#4fc1ff">"demo_vnet"</span> {}</p>
+
+<p> </p>
+
+<p><span style="color:#4ec9b0">resource</span> <span style="color:#4fc1ff">"azurerm_subnet"</span> <span style="color:#4fc1ff">"demo_subnet"</span> {}</p>
+
+<p> </p>
+
+<p><span style="color:#4ec9b0">resource</span> <span style="color:#4fc1ff">"azurerm_kubernetes_cluster"</span> <span style="color:#4fc1ff">"demo_cluster"</span> {}</p>
+</div></div></section><section data-id="5a87d3257e6ba1ad589df5660d1fbf26">
+
+<div class="sl-block" data-block-type="text" style="height: auto; width: 800px; left: 80px; top: 271px;" data-name="text-88ad8e" data-block-id="6722b200727b05592cf93e0486c38714"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10; font-size: 120%;">
+<p>Optional resources:</p>
+
+<ul>
+	<li>Azure Container Registry</li>
+	<li>Key Vault</li>
+</ul>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 627.5px; left: 166.25px; top: 81px; height: auto;" data-name="text-0131bb" data-block-id="a28e47fb52cdde8c9e268602658dfcb7"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus justo. Aliquam erat volutpat." style="z-index: 11; text-align: left; font-size: 150%; color: rgb(255, 255, 255);">
+<p style="color:rgb(255, 255, 255)">Terraform provider: azurerm</p>
+</div></div></section><section data-id="4db026dfed975fc6651bf364dfa408cb">
+
+<div class="sl-block" data-block-type="text" style="height: auto; width: 815px; left: 72.5px; top: 191px;" data-name="text-88ad8e" data-block-id="dca4fe841c980c8153642b52ca2f9a9c"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+<p><span style="color:#4ec9b0">resource</span> <span style="color:#4fc1ff">"azurerm_container_registry"</span> <span style="color:#4fc1ff">"demo_acr"</span> {}</p>
+
+<p> </p>
+
+<p><span style="color:#4ec9b0">resource</span> <span style="color:#4fc1ff">"azurerm_key_vault"</span> <span style="color:#4fc1ff">"demo_kv"</span> {}</p>
+
+<p> </p>
+
+<p><span style="color:#4ec9b0">resource</span> <span style="color:#4fc1ff">"azurerm_role_assignment"</span> <span style="color:#4fc1ff">"pull_from_acr"</span> {}</p>
+
+<p> </p>
+
+<p><span style="color:#4ec9b0">resource</span> <span style="color:#4fc1ff">"azurerm_role_assignment"</span> <span style="color:#4fc1ff">"read_kv_secrets"</span> {}</p>
+</div></div></section><section data-id="f0e6c47c2ed44ba9deeacd62aed0a023"><div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 91px; height: auto;" data-block-id="f5f37f77f4d10c998ebea39147059454"><div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" style="z-index: 10;">
+<h1>Cluster configuration</h1>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 232px; left: 720px; top: 630px;" data-name="text-9a9e6a" data-block-id="924b8a45d1445c90e162f9b7b4aa7674"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; font-size: 75%;">
+<p>@theEugeneRomero</p>
+</div></div>
+<div class="sl-block" data-block-type="image" style="width: 649.996px; height: 361.56px; left: 155.002px; top: 239.22px; min-width: 1px; min-height: 1px;" data-name="image-39476d" data-block-id="c9447a8e65c379ad9ee7279e81b97f52"><div class="sl-block-content" style="z-index: 12;"><img style="" data-natural-width="480" data-natural-height="267" data-lazy-loaded="" data-src="automate-every-layer-using-terraform-to-deploy-configure-and-maintain-azure-kubernetes-clusters/ba47ff40ffecd5500f0661095bce9ca9.gif"></div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 449px; left: 15.5px; top: 620px;" data-name="text-116440" data-block-id="5cf77162ed09b89cb566d509d8297a5e"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;">
+<p><span style="font-size:0.7em"><strong>Get the slides:</strong> https://damn.engineer/slides</span></p>
+</div></div></section><section data-id="8c478a209f4913b09a1196c84ac0067c">
+
+<div class="sl-block" data-block-type="text" style="height: auto; width: 800px; left: 80px; top: 271px;" data-name="text-88ad8e" data-block-id="8f0696c91bd102d26a1dab027bf1c15d"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10; font-size: 120%;">
+<ul>
+	<li>RBAC</li>
+	<li>Prometheus</li>
+	<li>Linkerd</li>
+	<li>CSI Secrets Provider</li>
+	<li>Ingress</li>
+	<li>... any other helper tools</li>
+</ul>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 838.75px; left: 60.625px; top: 81.5px; height: auto;" data-name="text-0131bb" data-block-id="113fa3604eb256ae5ec264758b5bf92c"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus justo. Aliquam erat volutpat." style="z-index: 11; text-align: left; font-size: 150%; color: rgb(255, 255, 255);">
+<p style="color:rgb(255, 255, 255)">Terraform providers: kubernetes, helm, azurerm, others as needed</p>
+</div></div></section><section data-id="d7cfe5b68096e4ab71deb8611d26e2aa">
+
+<div class="sl-block" data-block-type="text" style="height: auto; width: 903px; left: 28.5px; top: 247px;" data-name="text-88ad8e" data-block-id="27c44c78cb302ae83c913b9be21f4314"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10; font-size: 120%;">
+<p><span style="color:#4ec9b0">resource</span> <span style="color:#4fc1ff">"kubernetes_namespace"</span> <span style="color:#4fc1ff">"linkerd_ns"</span> {}</p>
+
+<p> </p>
+
+<p><span style="color:#4ec9b0">resource</span> <span style="color:#4fc1ff">"helm_release"</span> <span style="color:#4fc1ff">"linkerd_chart"</span> {}</p>
+
+<p> </p>
+
+<p><span style="color:#4ec9b0">resource</span> <span style="color:#4fc1ff">"tls_self_signed_cert"</span> <span style="color:#4fc1ff">"linkerd_tls_cert"</span> {}</p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 838.75px; left: 60.625px; top: 81.5px; height: auto;" data-name="text-0131bb" data-block-id="ced60c6487e5c3c938bee0b30043326b"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus justo. Aliquam erat volutpat." style="z-index: 11; text-align: left; font-size: 150%; color: rgb(255, 255, 255);">
+<p style="color:rgb(255, 255, 255)">Example: Linkerd</p>
+</div></div></section><section data-id="71d6547ba8978cd28fe4ddf34f70e812">
+
+<div class="sl-block" data-block-type="text" style="height: auto; width: 919px; left: 27.5px; top: 236px;" data-name="text-88ad8e" data-block-id="7dd6a6f1b155695697c81af35f9cc290"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10; font-size: 113%;">
+<p><span style="color:#4ec9b0">resource</span> <span style="color:#4fc1ff">"kubernetes_cluster_role"</span> <span style="color:#4fc1ff">"read_access"</span> {}</p>
+
+<p> </p>
+
+<p><span style="color:#4ec9b0">resource</span> <span style="color:#4fc1ff">"kubernetes_cluster_role_binding"</span> <span style="color:#4fc1ff">"k8s_to_ad"</span> {}</p>
+
+<p> </p>
+
+<p><span style="color:#4ec9b0">resource</span> <span style="color:#4fc1ff">"azurerm_role_assignment"</span> <span style="color:#4fc1ff">"ad_assignment"</span> {}</p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 119.75px; left: 420.125px; top: 81px; height: auto;" data-name="text-0131bb" data-block-id="24d8eac881c7caaadb2ce1fd474cd986"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus justo. Aliquam erat volutpat." style="z-index: 11; text-align: left; font-size: 150%; color: rgb(255, 255, 255);">
+<p style="color:rgb(255, 255, 255)">RBAC</p>
+</div></div></section><section data-id="734dfc9757f51d893362017cb6f40073"><div class="sl-block" data-block-type="text" style="width: 846px; left: 57px; top: 91px; height: auto;" data-block-id="71a09b24decf3e989f152259a675b480"><div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" style="z-index: 10;">
+<h1>Populating the cluster</h1>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 232px; left: 720px; top: 630px;" data-name="text-9a9e6a" data-block-id="0a2d32334dc1ffc0c8bec49143fce9ee"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; font-size: 75%;">
+<p>@theEugeneRomero</p>
+</div></div>
+<div class="sl-block" data-block-type="image" style="width: 650.311px; height: 365.8px; left: 154.844px; top: 237.1px; min-width: 1px; min-height: 1px;" data-name="image-de209f" data-block-id="9fd35da0a0d8d551cf117c85f1b9a6cc"><div class="sl-block-content" style="z-index: 12;"><img style="" data-natural-width="480" data-natural-height="270" data-lazy-loaded="" data-src="automate-every-layer-using-terraform-to-deploy-configure-and-maintain-azure-kubernetes-clusters/842fe6b08969206a8944ed254e48b3ed.gif"></div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 449px; left: 15.5px; top: 620px;" data-name="text-116440" data-block-id="093c300b5fc1d2ae41937731650cd0c3"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;">
+<p><span style="font-size:0.7em"><strong>Get the slides:</strong> https://damn.engineer/slides</span></p>
+</div></div></section><section data-id="a511b131902d5ccf64b0f2966be646d3">
+
+<div class="sl-block" data-block-type="text" style="height: auto; width: 800px; left: 80px; top: 420px;" data-name="text-88ad8e" data-block-id="63ee5a4ebeaa7baddd5fa63bed1ff76a"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10; font-size: 120%;">
+<p>Deployment of microservices to cluster</p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 838.75px; left: 72.625px; top: 210px; height: auto;" data-name="text-0131bb" data-block-id="0556a076f6e2dc3543194a62dcca5791"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus justo. Aliquam erat volutpat." style="z-index: 11; text-align: left; font-size: 150%; color: rgb(255, 255, 255);">
+<p style="color:rgb(255, 255, 255)">Terraform providers: kubernetes, helm</p>
+</div></div></section><section data-id="684cedfbda771219bc57386b02d3a808">
+
+<div class="sl-block" data-block-type="text" style="height: auto; width: 903px; left: 28.5px; top: 247px;" data-name="text-88ad8e" data-block-id="dbf62ddb2f11deb14108f5dc1990909f"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10; font-size: 120%;">
+<p><span style="color:#4ec9b0">resource</span> <span style="color:#4fc1ff">"kubernetes_namespace"</span> <span style="color:#4fc1ff">"service_ns"</span> {}</p>
+
+<p> </p>
+
+<p><span style="color:#4ec9b0">resource</span> <span style="color:#4fc1ff">"helm_release"</span> <span style="color:#4fc1ff">"microservice"</span> {}</p>
+</div></div></section><section data-id="79832ec05014e06246ab36af71424d67"><div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 313px; height: auto;" data-block-id="6875d520e649453585077fcbf2bd4482"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 10;">
+<h2>...the sky is the limit</h2>
+</div></div></section><section data-id="f7ee23aa923428200e53b4f04e8282c5"><div class="sl-block" data-block-type="text" style="width: 846px; left: 57px; top: 91px; height: auto;" data-block-id="21d6c9420fde0a95dc87c5febc03b1cc"><div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" style="z-index: 10;">
+<h1>Tips and Warnings</h1>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 232px; left: 720px; top: 630px;" data-name="text-9a9e6a" data-block-id="f14ea3cacdb27dc667a1797d57e02a10"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; font-size: 75%;">
+<p>@theEugeneRomero</p>
+</div></div>
+<div class="sl-block" data-block-type="image" style="width: 491.182px; height: 360.2px; left: 234.409px; top: 239.9px; min-width: 1px; min-height: 1px;" data-name="image-6d25cb" data-block-id="246692b2481a668812f5e9d9d2513abd"><div class="sl-block-content" style="z-index: 12;"><img style="" data-natural-width="480" data-natural-height="352" data-lazy-loaded="" data-src="automate-every-layer-using-terraform-to-deploy-configure-and-maintain-azure-kubernetes-clusters/e9b5d32c0771f3f461df990fbe36459d.gif"></div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 449px; left: 15.5px; top: 620px;" data-name="text-116440" data-block-id="1ffd4d8ba267aaab4a1baaeac2716d05"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;">
+<p><span style="font-size:0.7em"><strong>Get the slides:</strong> https://damn.engineer/slides</span></p>
+</div></div></section><section data-id="8552d7d3678232a9312dc1d18f04e7f1">
+<div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 120.5px; height: auto;" data-block-id="4a13d8a0b3af7d989a4d5268e9ff8497"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;" dir="ui">
+<p>Separate infrastructure and configuration/population</p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 260.5px; height: auto;" data-block-id="ec3365bb059bff0090e31caaf071b3eb" data-name="text-b9b3b7"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;" dir="ui" data-fragment-index="0">
+<p>Plan for growth from the beginning</p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 400.5px; height: auto;" data-block-id="8b618f6d5c6e215d942b1d9ca570f82c" data-name="text-7c5a2c"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;" dir="ui" data-fragment-index="1">
+<p>Use Terraform's capabilities to reduce costs</p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 540.5px; height: auto;" data-block-id="e207e15842b726fa33ffaf8c0984b9d7" data-name="text-2f6b4b"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;" dir="ui" data-fragment-index="2">
+<p>Use <code>terraform plan</code> to visualize changes</p>
+</div></div></section><section data-id="e9dcae27e24e6dd801dd6e351aceeb45"><div class="sl-block" data-block-type="text" style="width: 846px; left: 57px; top: 91px; height: auto;" data-block-id="88d05fa07d5af8b9f51cde2db933ce7e"><div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" style="z-index: 10;">
+<h1>Challenges</h1>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 232px; left: 720px; top: 630px;" data-name="text-9a9e6a" data-block-id="e9a283d752bd82b657672ebae7b54f41"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; font-size: 75%;">
+<p>@theEugeneRomero</p>
+</div></div>
+<div class="sl-block" data-block-type="image" style="width: 650.311px; height: 365.8px; left: 154.844px; top: 237.1px; min-width: 1px; min-height: 1px;" data-name="image-19babf" data-block-id="bbc541e5d888b592d15eb3274aa17440"><div class="sl-block-content" style="z-index: 12;"><img style="" data-natural-width="480" data-natural-height="270" data-lazy-loaded="" data-src="automate-every-layer-using-terraform-to-deploy-configure-and-maintain-azure-kubernetes-clusters/af07bc838ab8cf6665f4ae9f73630eb2.gif"></div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 449px; left: 15.5px; top: 620px;" data-name="text-116440" data-block-id="73d41321235140031e4d59858d1a8f0e"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;">
+<p><span style="font-size:0.7em"><strong>Get the slides:</strong> https://damn.engineer/slides</span></p>
+</div></div></section><section data-id="a6fce7dc0c061c31d1d50f9c07f88c94">
+<div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 120.5px; height: auto;" data-block-id="14942fb3d83ca7590fa88d625d304c17"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;" dir="ui">
+<p>Changing Kubernetes APIs</p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 260.5px; height: auto;" data-name="text-b9b3b7" data-block-id="85b2da0a90027d89b97105070fce361f"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;" dir="ui" data-fragment-index="0">
+<p>Certain cluster changes require destruction/recreation</p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 400.5px; height: auto;" data-name="text-7c5a2c" data-block-id="cb598066fd7121ecabdb95c332cd40aa"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;" dir="ui" data-fragment-index="1">
+<p>Unmaintained custom providers</p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 540.5px; height: auto;" data-name="text-2f6b4b" data-block-id="3ad0ce1fa29a3a69e240d689f90cd82a"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;" dir="ui" data-fragment-index="2">
+<p>Edge cases not yet covered by official providers</p>
+</div></div></section><section data-id="c20ffebb0fec223e38df1ab68f00fdf7"><div class="sl-block" data-block-type="text" style="width: 846px; left: 57px; top: 91px; height: auto;" data-block-id="4361e8c0ea747cb63b5a4fc4e607ec98"><div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" style="z-index: 10;">
+<h1>Wins!</h1>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 232px; left: 720px; top: 630px;" data-name="text-9a9e6a" data-block-id="c67ab0d2b545a390575302f152744690"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; font-size: 75%;">
+<p>@theEugeneRomero</p>
+</div></div>
+<div class="sl-block" data-block-type="image" style="width: 649.956px; height: 365.6px; left: 155.022px; top: 237.2px; min-width: 1px; min-height: 1px;" data-name="image-ecb55b" data-block-id="019f7e10863a2d39950704055874813a"><div class="sl-block-content" style="z-index: 12;"><img style="" data-natural-width="480" data-natural-height="270" data-lazy-loaded="" data-src="automate-every-layer-using-terraform-to-deploy-configure-and-maintain-azure-kubernetes-clusters/542bb62d07c04a7eb102d2873b04257f.gif"></div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 449px; left: 15.5px; top: 620px;" data-name="text-116440" data-block-id="0a96146cb216f47946f67362a42471cc"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;">
+<p><span style="font-size:0.7em"><strong>Get the slides:</strong> https://damn.engineer/slides</span></p>
+</div></div></section><section data-id="83bc900d7991a6d24ab2d4841455e239">
+<div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 120.5px; height: auto;" data-block-id="437c0b817f8df09aaa5c00397f53ae31"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;" dir="ui">
+<p>Full visibility into clusters and Cloud resources</p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 260.5px; height: auto;" data-name="text-b9b3b7" data-block-id="01bfdedd6d0ebb7b3ebff03b47c5b302"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;" dir="ui" data-fragment-index="0">
+<p>Identical environments</p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 540.5px; height: auto;" data-name="text-7c5a2c" data-block-id="5026834f3839cb1e0980541883730a98"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;" dir="ui" data-fragment-index="2">
+<p>Disaster recovery</p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 400.5px; height: auto;" data-block-id="c2288917396d960c8ec8ae8839abae04" data-name="text-bd9c53"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;" dir="ui" data-fragment-index="1">
+<p>Drift prevention</p>
+</div></div></section><section data-id="7c88d93f52188a25a754baa3ef525c39"><div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 66px; height: auto;" data-block-id="660f1ef21c662fe6b49002f5cdf3f49e"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 10;">
+<h2>More information</h2>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 901px; left: 29.5px; top: 210px; height: auto;" data-block-id="48dc712422cd81d8e0c2f5c4bc57265d"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+<p><strong>Azure Kubernetes Service</strong></p>
+
+<p>https://azure.microsoft.com/en-us/services/kubernetes-service/</p>
+
+<p> </p>
+
+<p><strong>Terraform</strong></p>
+
+<p>https://www.terraform.io/</p>
+
+<p> </p>
+
+<p><strong>Terraform providers</strong></p>
+
+<p>https://registry.terraform.io/</p>
+</div></div></section><section data-id="25a149d7cf5126da559ef4e9c3a30fe7"><div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 36px; height: auto;" data-block-id="ebb8d020e88916b5cad55bae7e4e8132"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 10;">
+<h2>Get in touch!</h2>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 417px; left: 241px; top: 145.5px; height: auto;" data-block-id="c80ebbd119cd04227456edb20a17b4c5"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+<p><span style="font-size:1.4em">@theEugeneRomero</span></p>
+</div></div>
+<div class="sl-block" data-block-type="shape" style="width: 70px; height: 70px; left: 126px; top: 130.5px;" data-name="shape-a3ba18" data-block-id="21e396e3d0642569078d19122214f69b"><div class="sl-block-content" data-shape-type="symbol-twitter" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" style="z-index: 12;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="-0.0010004043579101562 2.998000144958496 32.000999450683594 26.005001068115234"><g class="shape-element" fill="rgb(255, 255, 255)" data-viewbox="-0.0010004043579101562 2.998000144958496 32.000999450683594 26.005001068115234"><path d="M32 6.076c-1.177 0.522-2.443 0.875-3.771 1.034 1.355-0.813 2.396-2.099 2.887-3.632-1.269 0.752-2.674 1.299-4.169 1.593-1.198-1.276-2.904-2.073-4.792-2.073-3.626 0-6.565 2.939-6.565 6.565 0 0.515 0.058 1.016 0.17 1.496-5.456-0.274-10.294-2.888-13.532-6.86-0.565 0.97-0.889 2.097-0.889 3.301 0 2.278 1.159 4.287 2.921 5.465-1.076-0.034-2.088-0.329-2.974-0.821-0.001 0.027-0.001 0.055-0.001 0.083 0 3.181 2.263 5.834 5.266 6.437-0.551 0.15-1.131 0.23-1.73 0.23-0.423 0-0.834-0.041-1.235-0.118 0.835 2.608 3.26 4.506 6.133 4.559-2.247 1.761-5.078 2.81-8.154 2.81-0.53 0-1.052-0.031-1.566-0.092 2.905 1.863 6.356 2.95 10.064 2.95 12.076 0 18.679-10.004 18.679-18.68 0-0.285-0.006-0.568-0.019-0.849 1.283-0.926 2.396-2.082 3.276-3.398z"></path></g></svg></div></div>
+<div class="sl-block" data-block-type="shape" style="width: 70px; height: 70px; left: 126px; top: 246px;" data-block-id="40a07d3fe6b5f59d5354a0d05f0d7679" data-name="shape-5d9373"><div class="sl-block-content" data-shape-type="symbol-earth" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" style="z-index: 13;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="-9.5367431640625e-7 -9.5367431640625e-7 32 32"><g class="shape-element" fill="rgb(255, 255, 255)" data-viewbox="-9.5367431640625e-7 -9.5367431640625e-7 32 32"><path d="M27.314 4.686c3.022 3.022 4.686 7.040 4.686 11.314s-1.664 8.292-4.686 11.314c-3.022 3.022-7.040 4.686-11.314 4.686s-8.292-1.664-11.314-4.686c-3.022-3.022-4.686-7.040-4.686-11.314s1.664-8.292 4.686-11.314c3.022-3.022 7.040-4.686 11.314-4.686s8.292 1.664 11.314 4.686zM25.899 25.9c1.971-1.971 3.281-4.425 3.821-7.096-0.421 0.62-0.824 0.85-1.073-0.538-0.257-2.262-2.335-0.817-3.641-1.621-1.375 0.927-4.466-1.802-3.941 1.276 0.81 1.388 4.375-1.858 2.598 1.079-1.134 2.050-4.145 6.592-3.753 8.946 0.049 3.43-3.504 0.715-4.729-0.422-0.824-2.279-0.281-6.262-2.434-7.378-2.338-0.102-4.344-0.314-5.25-2.927-0.545-1.87 0.58-4.653 2.584-5.083 2.933-1.843 3.98 2.158 6.731 2.232 0.854-0.894 3.182-1.178 3.375-2.18-1.805-0.318 2.29-1.517-0.173-2.199-1.358 0.16-2.234 1.409-1.512 2.467-2.632 0.614-2.717-3.809-5.247-2.414-0.064 2.206-4.132 0.715-1.407 0.268 0.936-0.409-1.527-1.594-0.196-1.379 0.654-0.036 2.854-0.807 2.259-1.325 1.225-0.761 2.255 1.822 3.454-0.059 0.866-1.446-0.363-1.713-1.448-0.98-0.612-0.685 1.080-2.165 2.573-2.804 0.497-0.213 0.973-0.329 1.336-0.296 0.752 0.868 2.142 1.019 2.215-0.104-1.862-0.892-3.915-1.363-6.040-1.363-3.051 0-5.952 0.969-8.353 2.762 0.645 0.296 1.012 0.664 0.39 1.134-0.483 1.439-2.443 3.371-4.163 3.098-0.893 1.54-1.482 3.238-1.733 5.017 1.441 0.477 1.773 1.42 1.464 1.736-0.734 0.64-1.185 1.548-1.418 2.541 0.469 2.87 1.818 5.515 3.915 7.612 2.644 2.644 6.16 4.1 9.899 4.1s7.255-1.456 9.899-4.1z"></path></g></svg></div></div>
+<div class="sl-block" data-block-type="text" style="width: 472px; left: 241px; top: 253.5px; height: auto;" data-block-id="a2f468cf66f7db36f943cf214f1ec3fd" data-name="text-118a97"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 14;">
+<p><span style="font-size:1.4em">https://damn.engineer/</span></p>
+</div></div>
+<div class="sl-block" data-block-type="image" style="width: 219.5px; height: 219.5px; left: 370.25px; top: 346.889px;" data-name="image-9c77b9" data-block-id="623809842c0b62c726e40f44434e3380"><div class="sl-block-content" style="z-index: 15;"><img style="" data-natural-width="720" data-natural-height="720" data-lazy-loaded="" data-src="automate-every-layer-using-terraform-to-deploy-configure-and-maintain-azure-kubernetes-clusters/f955a09b73414363bf8b6bb972826c8c.png"></div></div>
+<div class="sl-block" data-block-type="text" style="width: 857px; left: 51.5px; top: 596px; height: auto;" data-block-id="bc1aab178c3cfdfbafebe915d605f2d7" data-name="text-0f33f8"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 16;">
+<p><span style="font-size:42px">(And come visit us in the Capgemini stand)</span></p>
+</div></div>
+<div class="sl-block sl-block-group" data-block-type="group" data-name="group-0e81e6" data-block-id="120f52f963304010072d7b02471298ed" style="width: auto; height: auto;"><div class="sl-block-content sl-block-group-content" style="transform-origin: 826.042px 393.283px; z-index: 17;">
+<div class="sl-block" data-block-type="text" style="height: auto; width: 132px; left: 798.427px; top: 290px;" data-name="text-327b02" data-block-id="de14ab7fd91eb06e2b9f966d4618aa3e"><div class="sl-block-style" style="z-index: 18; transform: rotate(30deg);"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 18; line-height: 0.91;" data-has-line-height="">
+<p><span style="font-size:0.9em">Ask me</span></p>
+
+<p><span style="font-size:0.9em">for a </span></p>
+
+<p><span style="font-size:0.9em">sticker!</span></p>
+</div></div></div>
+<div class="sl-block" data-block-type="image" style="width: 173.892px; height: 108.733px; left: 721.535px; top: 378.078px;" data-name="image-1d6871" data-block-id="9bacb99e7cb7feada095cc43a96052c8"><div class="sl-block-style" style="z-index: 19; transform: rotate(30deg);"><div class="sl-block-content" style="z-index: 19;"><img style="" data-natural-width="2159" data-natural-height="1350" data-lazy-loaded="" data-src="automate-every-layer-using-terraform-to-deploy-configure-and-maintain-azure-kubernetes-clusters/c07b9e96175789a5d343c5fc7c9456e2.png"></div></div></div>
+</div></div></section>
+			</div>
+		</div>
+
+		<script>
+			var SLConfig = {"deck": {"id":2417107,"slug":"automate-every-layer-using-terraform-to-deploy-configure-and-maintain-azure-kubernetes-clusters","title":"Automate every layer: Using Terraform to deploy, configure and maintain Azure Kubernetes clusters","description":"(35 min) Managed Kubernetes clusters are all the rage these days. With a few clicks, you can easily spin up a Kubernetes cluster without having to worry about the underlying workings of the technology. But, where do we go from there? How can we easily reproduce a Kubernetes setup, configure it, deploy our microservices to it, and maintain it? In this talk, I will discuss how we use Terraform to automate our Azure Kubernetes clusters end-to-end. Automate all the things!","width":960,"height":700,"margin":0.05,"visibility":"self","published_at":null,"sanitize_messages":null,"thumbnail_url":"https://s3.amazonaws.com/media-p.slid.es/thumbnails/e9c0aaa4008c7abf649b5bb659babecd/thumb.jpg?1656518710","view_count":0,"user":{"id":2161442,"username":"eugene-romero","name":"Eugene Romero","description":"I am a tech enthusiast, retro gamer, and general nerd. When I am not busy breaking stuff for fun, I can be found breaking stuff professionally at Capgemini. You also might find me restoring and modifying old videogame systems, most notably Game Boys.","thumbnail_url":"https://www.gravatar.com/avatar/11a2a54015914710d64d039e6e7b3561?s=140\u0026d=https%3A%2F%2Fstatic.slid.es%2Fimages%2Fdefault-profile-picture.png","account_type":"lite","team_id":null,"settings":{"id":52406646,"present_controls":true,"present_upsizing":true,"present_pointer":false,"present_notes":true,"default_deck_tag_id":null}},"background_transition":"slide","transition":"slide","theme_id":null,"theme_font":"montserrat","theme_color":"grey-blue","auto_slide_interval":0,"comments_enabled":false,"forking_enabled":false,"rolling_links":false,"center":false,"shuffle":false,"should_loop":false,"share_notes":false,"slide_number":false,"slide_count":33,"rtl":false,"version":2,"collaborative":null,"deck_user_editor_limit":1,"data_updated_at":1656518812806,"font_typekit":null,"font_google":null,"time_limit":35,"navigation_mode":"default","upsizing_enabled":true,"notes":{}}};
+
+
+			// Use local fonts
+			SLConfig.fonts_url = 'lib/fonts/';
+		</script>
+
+		<script src="lib/reveal.js"></script>
+		<script src="lib/reveal-plugins.js"></script>
+		<script src="lib/offline.js"></script>
+
+		<!-- Initialize the presentation -->
+		<script>
+			Reveal.initialize({
+				width: 960,
+				height: 700,
+				margin: 0.05,
+				
+
+				hash: true,
+				controls: true,
+				progress: true,
+				mouseWheel: false,
+				showNotes: false,
+				slideNumber: false,
+				fragmentInURL: true,
+
+				autoSlide: 0,
+				autoSlideStoppable: true,
+
+				autoAnimateMatcher: SL.deck.AutoAnimate.matcher,
+
+				center: false,
+				shuffle: false,
+				loop: false,
+				rtl: false,
+				navigationMode: "default",
+
+				transition: "slide",
+				backgroundTransition: "slide",
+
+				highlight: {
+					escapeHTML: false
+				},
+
+				plugins: [ RevealZoom, RevealNotes, RevealMarkdown, RevealHighlight ]
+			});
+		</script>
+
+		
+
+	</body>
+</html>
