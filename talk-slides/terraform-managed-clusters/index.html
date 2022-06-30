@@ -148,7 +148,7 @@
 <div class="sl-block" data-block-type="text" style="height: auto; width: 449px; left: 15.5px; top: 620px;" data-name="text-116440" data-block-id="b68c24f3a8b9bc1b5c235633b8290021"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;">
 <p><span style="font-size:0.7em"><strong>Get the slides:</strong> https://damn.engineer/slides</span></p>
 </div></div>
-<div class="sl-block" data-block-type="image" style="width: 506.667px; height: 380px; left: 226.667px; top: 210px;" data-name="image-ead474" data-block-id="3a66e7a1c63a6a9c73e0f8b44d313e32"><div class="sl-block-content" style="z-index: 13;"><img style="" data-natural-width="480" data-natural-height="360" data-src="automate-every-layer-using-terraform-to-deploy-configure-and-maintain-azure-kubernetes-clusters/6e258c054664b05e11d316284e7a6a06.gif"></div></div></section><section data-id="9293f9ecac38396e717e9e50fd624fa3">
+<div class="sl-block" data-block-type="image" style="width: 506.667px; height: 380px; left: 226.667px; top: 210px; min-width: 1px; min-height: 1px;" data-name="image-ead474" data-block-id="3a66e7a1c63a6a9c73e0f8b44d313e32"><div class="sl-block-content" style="z-index: 13;"><img style="" data-natural-width="480" data-natural-height="360" data-lazy-loaded="" data-src="automate-every-layer-using-terraform-to-deploy-configure-and-maintain-azure-kubernetes-clusters/6e258c054664b05e11d316284e7a6a06.gif"></div></div></section><section data-id="9293f9ecac38396e717e9e50fd624fa3">
 <div class="sl-block" data-block-type="text" style="width: 208.5px; left: 375.75px; top: 320.5px; height: auto;" data-block-id="636d78a2dcc3eddb6476739ab6ab62e4"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus justo. Aliquam erat volutpat." style="z-index: 10; text-align: left; font-size: 150%; color: rgb(255, 255, 255);" data-fragment-index="0">
 <p style="color:rgb(255, 255, 255)"><span style="font-size:1.0em">Configure</span></p>
 </div></div>
@@ -325,6 +325,78 @@
 </div></div>
 <div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 540.5px; height: auto;" data-block-id="e207e15842b726fa33ffaf8c0984b9d7" data-name="text-2f6b4b"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;" dir="ui" data-fragment-index="2">
 <p>Use <code>terraform plan</code> to visualize changes</p>
+</div></div></section><section data-id="9c895ba697c46ff7d12579e8a2ba071f">
+
+<div class="sl-block" data-block-type="text" style="height: auto; width: 871px; left: 44.5px; top: 123.5px;" data-name="text-88ad8e" data-block-id="ce05c20ee6bcd054b13555434782d9f2"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10; line-height: 0.988; font-size: 85%;" data-has-line-height="">
+<p style="text-align:left"><span style="font-size:1.0em"><span style="color:rgb(156, 220, 254)">Terraform</span> <span style="color:rgb(156, 220, 254)">will</span> <span style="color:rgb(156, 220, 254)">perform</span> <span style="color:rgb(156, 220, 254)">the</span> <span style="color:rgb(156, 220, 254)">following</span> <span style="color:rgb(78, 201, 176)">actions</span>:</span></p>
+
+<p style="text-align:left"> </p>
+
+<p style="text-align:left"><span style="font-size:1.0em"># <span style="color:#dcdcaa">module</span>.<span style="color:#4ec9b0">demoK8s</span>.<span style="color:#4ec9b0">azurerm_kubernetes_cluster</span>.<span style="color:#4ec9b0">cluster</span> <span style="color:#9cdcfe">will</span> <span style="color:#9cdcfe">be</span> <span style="color:#9cdcfe">created</span></span></p>
+
+<p style="text-align:left"><span style="font-size:1.0em">  + <span style="color:#dcdcaa">resource</span> <span style="color:#ce9178">"azurerm_kubernetes_cluster" "cluster" </span>{</span></p>
+
+<p style="text-align:left"><span style="font-size:1.0em">  + <span style="color:#9cdcfe">dns_prefix</span> = <span style="color:#ce9178">"demo-cluster-dns"</span></span></p>
+
+<p style="text-align:left"><span style="font-size:1.0em">  + <span style="color:#9cdcfe">fqdn</span> = (<span style="color:#9cdcfe">known</span> <span style="color:#9cdcfe">after</span> <span style="color:#9cdcfe">apply</span>)</span></p>
+
+<p style="text-align:left"><span style="font-size:1.0em">  + <span style="color:#9cdcfe">kubernetes_version</span> = <span style="color:#ce9178">"1.22.6"</span></span></p>
+
+<p style="text-align:left"><span style="font-size:1.0em">  + <span style="color:#9cdcfe">location</span> = <span style="color:#ce9178">"westeurope"</span></span></p>
+
+<p style="text-align:left"><span style="font-size:1.0em">  + <span style="color:#9cdcfe">name</span> = <span style="color:#ce9178">"demo-cluster"</span></span></p>
+
+<p style="text-align:left"><span style="font-size:1.0em">  + <span style="color:#9cdcfe">sku_tier</span> = <span style="color:#ce9178">"Free"</span></span></p>
+
+<p style="text-align:left"><span style="font-size:1.0em">}</span></p>
+
+<p style="text-align:left"> </p>
+
+<p style="text-align:left"><span style="font-size:1.0em">[<span style="color:#569cd6">...</span>]</span></p>
+
+<p style="text-align:left"> </p>
+
+<p style="text-align:left"><span style="font-size:1.0em"><span style="color:#4ec9b0">Plan</span>: <span style="color:#b5cea8">19</span> <span style="color:#9cdcfe">to</span> <span style="color:#9cdcfe">add</span>, <span style="color:#b5cea8">0</span> <span style="color:#9cdcfe">to</span> <span style="color:#9cdcfe">change</span>, <span style="color:#b5cea8">0</span> <span style="color:#9cdcfe">to</span> <span style="color:#9cdcfe">destroy</span>.</span></p>
+
+<p style="text-align:left"><span style="font-size:1.0em"><span style="color:#9cdcfe">To</span> <span style="color:#9cdcfe">perform</span> <span style="color:#9cdcfe">exactly</span> <span style="color:#9cdcfe">these</span> <span style="color:#9cdcfe">actions</span>, <span style="color:#9cdcfe">run</span> <span style="color:#9cdcfe">the</span> <span style="color:#9cdcfe">following</span> <span style="color:#9cdcfe">command</span> <span style="color:#9cdcfe">to</span> <span style="color:#4ec9b0">apply</span>:</span></p>
+
+<p style="text-align:left"><span style="font-size:1.0em"><span style="color:#9cdcfe">terraform</span> <span style="color:#dcdcaa">apply</span> <span style="color:#ce9178">"terraform.tfplan"</span></span></p>
+
+<p> </p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 531.75px; left: 80px; top: 40.5px; height: auto;" data-name="text-0131bb" data-block-id="a4eb105fcfbf8cd5dc02a2a5e77c8d24"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus justo. Aliquam erat volutpat." style="z-index: 11; text-align: left; font-size: 150%; color: rgb(255, 255, 255);">
+<p style="color:rgb(255, 255, 255)">Terraform plan - changes</p>
+</div></div></section><section data-id="3e9b9f5710c09e0632908f127fb54ed2">
+
+<div class="sl-block" data-block-type="text" style="height: auto; width: 918px; left: 21px; top: 167px;" data-name="text-88ad8e" data-block-id="693a486a7c77d6ce0235af66aa25ea9a"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10; line-height: 0.988; font-size: 85%; color: rgb(0, 255, 0);" data-has-line-height="">
+<p style="text-align:left"><span style="color:#ce9178">Terraform has been successfully initialized!</span></p>
+
+<p style="text-align:left"> </p>
+
+<p style="text-align:left"><span style="color:#ce9178">Creating plan...</span></p>
+
+<p style="text-align:left"> </p>
+
+<p style="text-align:left"><span style="color:#569cd6">module.grantsK8s.azurerm_kubernetes_cluster.cluster</span>: <span style="color:#ce9178">Refreshing state... [id=REDACTED]</span></p>
+
+<p style="text-align:left"> </p>
+
+<p style="text-align:left">[<span style="color:#b5cea8">...</span>]</p>
+
+<p style="text-align:left"> </p>
+
+<p style="text-align:left">No changes<span style="color:#ce9178">. Your infrastructure matches the configuration.</span></p>
+
+<p style="text-align:left"> </p>
+
+<p style="text-align:left"><span style="color:#ce9178">Terraform has compared your real infrastructure against your configuration</span></p>
+
+<p style="text-align:left"><span style="color:#ce9178">and found no differences, so no changes are needed.</span></p>
+
+<p> </p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 600.75px; left: 79.25px; top: 40.5px; height: auto;" data-name="text-0131bb" data-block-id="eae8427f401c0edb3e83f4c590879fad"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus justo. Aliquam erat volutpat." style="z-index: 11; text-align: left; font-size: 150%; color: rgb(255, 255, 255);">
+<p style="color:rgb(255, 255, 255)">Terraform plan - no changes</p>
 </div></div></section><section data-id="e9dcae27e24e6dd801dd6e351aceeb45"><div class="sl-block" data-block-type="text" style="width: 846px; left: 57px; top: 91px; height: auto;" data-block-id="88d05fa07d5af8b9f51cde2db933ce7e"><div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" style="z-index: 10;">
 <h1>Challenges</h1>
 </div></div>
@@ -366,7 +438,7 @@
 <p>Disaster recovery</p>
 </div></div>
 <div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 400.5px; height: auto;" data-block-id="c2288917396d960c8ec8ae8839abae04" data-name="text-bd9c53"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;" dir="ui" data-fragment-index="1">
-<p>Drift prevention</p>
+<p>Drift prevention / idempotency</p>
 </div></div></section><section data-id="7c88d93f52188a25a754baa3ef525c39"><div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 66px; height: auto;" data-block-id="660f1ef21c662fe6b49002f5cdf3f49e"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 10;">
 <h2>More information</h2>
 </div></div>
@@ -415,7 +487,7 @@
 		</div>
 
 		<script>
-			var SLConfig = {"deck": {"id":2417107,"slug":"automate-every-layer-using-terraform-to-deploy-configure-and-maintain-azure-kubernetes-clusters","title":"Automate every layer: Using Terraform to deploy, configure and maintain Azure Kubernetes clusters","description":"(35 min) Managed Kubernetes clusters are all the rage these days. With a few clicks, you can easily spin up a Kubernetes cluster without having to worry about the underlying workings of the technology. But, where do we go from there? How can we easily reproduce a Kubernetes setup, configure it, deploy our microservices to it, and maintain it? In this talk, I will discuss how we use Terraform to automate our Azure Kubernetes clusters end-to-end. Automate all the things!","width":960,"height":700,"margin":0.05,"visibility":"self","published_at":null,"sanitize_messages":null,"thumbnail_url":"https://s3.amazonaws.com/media-p.slid.es/thumbnails/e9c0aaa4008c7abf649b5bb659babecd/thumb.jpg?1656518710","view_count":0,"user":{"id":2161442,"username":"eugene-romero","name":"Eugene Romero","description":"I am a tech enthusiast, retro gamer, and general nerd. When I am not busy breaking stuff for fun, I can be found breaking stuff professionally at Capgemini. You also might find me restoring and modifying old videogame systems, most notably Game Boys.","thumbnail_url":"https://www.gravatar.com/avatar/11a2a54015914710d64d039e6e7b3561?s=140\u0026d=https%3A%2F%2Fstatic.slid.es%2Fimages%2Fdefault-profile-picture.png","account_type":"lite","team_id":null,"settings":{"id":52406646,"present_controls":true,"present_upsizing":true,"present_pointer":false,"present_notes":true,"default_deck_tag_id":null}},"background_transition":"slide","transition":"slide","theme_id":null,"theme_font":"montserrat","theme_color":"grey-blue","auto_slide_interval":0,"comments_enabled":false,"forking_enabled":false,"rolling_links":false,"center":false,"shuffle":false,"should_loop":false,"share_notes":false,"slide_number":false,"slide_count":33,"rtl":false,"version":2,"collaborative":null,"deck_user_editor_limit":1,"data_updated_at":1656518812806,"font_typekit":null,"font_google":null,"time_limit":35,"navigation_mode":"default","upsizing_enabled":true,"notes":{}}};
+			var SLConfig = {"deck": {"id":2417107,"slug":"automate-every-layer-using-terraform-to-deploy-configure-and-maintain-azure-kubernetes-clusters","title":"Automate every layer: Using Terraform to deploy, configure and maintain Azure Kubernetes clusters","description":"(35 min) Managed Kubernetes clusters are all the rage these days. With a few clicks, you can easily spin up a Kubernetes cluster without having to worry about the underlying workings of the technology. But, where do we go from there? How can we easily reproduce a Kubernetes setup, configure it, deploy our microservices to it, and maintain it? In this talk, I will discuss how we use Terraform to automate our Azure Kubernetes clusters end-to-end. Automate all the things!","width":960,"height":700,"margin":0.05,"visibility":"self","published_at":null,"sanitize_messages":null,"thumbnail_url":"https://s3.amazonaws.com/media-p.slid.es/thumbnails/e9c0aaa4008c7abf649b5bb659babecd/thumb.jpg?1656519141","view_count":0,"user":{"id":2161442,"username":"eugene-romero","name":"Eugene Romero","description":"I am a tech enthusiast, retro gamer, and general nerd. When I am not busy breaking stuff for fun, I can be found breaking stuff professionally at Capgemini. You also might find me restoring and modifying old videogame systems, most notably Game Boys.","thumbnail_url":"https://www.gravatar.com/avatar/11a2a54015914710d64d039e6e7b3561?s=140\u0026d=https%3A%2F%2Fstatic.slid.es%2Fimages%2Fdefault-profile-picture.png","account_type":"lite","team_id":null,"settings":{"id":52406646,"present_controls":true,"present_upsizing":true,"present_pointer":false,"present_notes":true,"default_deck_tag_id":null}},"background_transition":"slide","transition":"slide","theme_id":null,"theme_font":"montserrat","theme_color":"grey-blue","auto_slide_interval":0,"comments_enabled":false,"forking_enabled":false,"rolling_links":false,"center":false,"shuffle":false,"should_loop":false,"share_notes":false,"slide_number":false,"slide_count":35,"rtl":false,"version":2,"collaborative":null,"deck_user_editor_limit":1,"data_updated_at":1656584610565,"font_typekit":null,"font_google":null,"time_limit":35,"navigation_mode":"default","upsizing_enabled":true,"notes":{"83bc900d7991a6d24ab2d4841455e239":"FUNF"}}};
 
 
 			// Use local fonts
