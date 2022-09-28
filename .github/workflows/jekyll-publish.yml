@@ -51,17 +51,8 @@ jobs:
           echo "NEW_POST_TITLE=$(jq -r '.title' $latest)" >> $GITHUB_ENV
           echo "NEW_POST_URL=$(jq -r '.url' $latest)" >> $GITHUB_ENV
           echo "NEW_POST_FILENAME=$(jq -r '.filename' $latest)" >> $GITHUB_ENV
+          echo "PUBLISH_TO_LINKEDIN=$(jq -r '.linkedin' $latest)" >> $GITHUB_ENV
           echo "PUBLISH_TO_MEDIUM=$(jq -r '.medium' $latest)" >> $GITHUB_ENV
-
-      - name: Test
-        if: |
-          contains(steps.new-post-check.outputs.output, 'title')
-          && env.PUBLISH_TO_MEDIUM == 'true'
-        run: |
-          echo "$NEW_POST_TITLE"
-          echo "$NEW_POST_URL" 
-          echo "$NEW_POST_FILENAME"
-          echo "$PUBLISH_TO_MEDIUM"
 
       - name: Tweet new article
         uses: Eomm/why-don-t-you-tweet@v1
@@ -76,7 +67,9 @@ jobs:
 
       - name: Publish on LinkedIn through IFTTT
         uses: actionsflow/ifttt-webhook-action@v1
-        if: contains(steps.new-post-check.outputs.output, 'title')
+        if: |
+          contains(steps.new-post-check.outputs.output, 'title')
+          && env.PUBLISH_TO_LINKEDIN == 'true'
         with:
           event: new_damn_engineer_blog_post
           key: ${{ secrets.IFTTT_WEBHOOK_KEY }}

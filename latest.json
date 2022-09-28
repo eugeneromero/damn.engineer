@@ -7,5 +7,6 @@ layout: null
     "title": {{ post.title | jsonify }},
     "url": "{{ post.url | absolute_url }}",
     "filename": "{{ post.relative_path }}",
+    "linkedin": "{{ post.publish-to-linkedin }}",
     "medium": "{{ post.publish-to-medium }}"
 }
