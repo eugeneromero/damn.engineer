@@ -3,6 +3,7 @@ layout: post
 title: Accessing multiple Azure subscriptions in a single Terraform run
 description: How to access data and resources from several different Azure subscriptions in a single Terraform run
 comments: true
+publish-to-linkedin: true
 publish-to-medium: true
 tags: azure terraform
 ---

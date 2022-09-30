@@ -3,6 +3,7 @@ layout: post
 title: Performing Elasticsearch API calls with Terraform, part 1
 description: How to reach the Elasticsearch and Elastic Cloud on Kubernetes (ECK) API with Terraform
 comments: true
+publish-to-linkedin: true
 publish-to-medium: true
 tags: terraform elasticsearch
 ---

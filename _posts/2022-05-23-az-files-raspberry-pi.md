@@ -3,6 +3,7 @@ layout: post
 title: Uploading files to an Azure File Share from a Raspberry Pi
 description: How to use the Azure CLI to upload files from a Raspberry Pi to an Azure Storage File Share
 comments: true
+publish-to-linkedin: true
 publish-to-medium: false
 tags: azure azure-storage raspberry-pi
 ---

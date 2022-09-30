@@ -3,6 +3,7 @@ layout: post
 title: Don't shave that yak!
 description: Don't shave that yak, or when a 10 minute change becomes a multi-hour project
 comments: true
+publish-to-linkedin: true
 publish-to-medium: true
 tags: tips
 ---
