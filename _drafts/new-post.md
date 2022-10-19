@@ -17,3 +17,7 @@ Terraform compliance
 Deploying to different environments with Azure DevOps (on PR, merge to master, etc)
 
 Introduction to PVs and PVCs in Kubernetes
+
+Docker mount volumes vs mount local folder
+
+Moving resources between Azure subscriptions
