@@ -19,5 +19,6 @@ Deploying to different environments with Azure DevOps (on PR, merge to master, e
 Introduction to PVs and PVCs in Kubernetes
 
 Docker mount volumes vs mount local folder
+https://www.freecodecamp.org/news/docker-mount-volume-guide-how-to-mount-a-local-directory/
 
 Moving resources between Azure subscriptions
