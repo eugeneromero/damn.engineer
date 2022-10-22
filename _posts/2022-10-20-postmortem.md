@@ -1,6 +1,6 @@
 ---
 layout: post
-title: damn.engineer Blackout Postmortem
+title: damn.engineer blackout postmortem
 description: A postmortem on the website's blackout
 comments: false
 publish-to-linkedin: true
