@@ -30,8 +30,11 @@ Code/   CAD_info.doc    call.mp3
 
 To enable this functionality, add the following snippet to the end of your `~/.zshrc` file (or create one if it does not exist):
 ``` zsh
+autoload -Uz +X compinit && compinit
+
 ## case insensitive path-completion
-zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+zstyle ':completion:*' menu select
 ```
 
 Next time you open ZSH, the functionality will be enabled. If you wish to enable it in the running terminal, you can also run `source ~/.zshrc`.
