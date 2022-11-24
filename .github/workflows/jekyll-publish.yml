@@ -27,7 +27,7 @@ jobs:
 
       - name: Check if a new post has been created
         id: new-post-check
-        uses: LouisBrunner/diff-action@v0.1.0
+        uses: LouisBrunner/diff-action@v0.2.0
         with:
           old: ${{ github.workspace }}/current-latest.json
           new: ${{ github.workspace }}/_site/latest.json
