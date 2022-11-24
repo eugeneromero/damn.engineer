@@ -5,7 +5,7 @@ description: Video recording and slides for the "Real Life End-to-End Building, 
 comments: true
 publish-to-linkedin: true
 publish-to-medium: false
-tags: terraform cloud azure kubernetes
+tags: terraform cloud azure kubernetes video
 ---
 
 Hashiconf Europe took place in June of 2022 in Amsterdam (The Netherlands). At that conference, I presented the hallway track **"Real Life End-to-End Building, Testing, and Deploying of a Buzzword-Heavy Application"**, in which I showcased a real life application built around all the buzzwords: cloud-native, Kubernetes, microservices, Docker, and many more. I discussed how we automated the building, testing, and deploying of the app with Terraform, what some of the challenges were, and what wins we have experienced.
