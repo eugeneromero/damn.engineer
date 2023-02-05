@@ -39,11 +39,11 @@ This is not a requirement, but it's a good tip that will probably make your life
 
 Renaming a subscription can be done in the Azure Portal by going to the Subscriptions pane, choosing the desired sub, and using the Rename button:
 
-![Renaming subscriptions]({{ site.url }}{{ site.baseurl }}/assets/images/azure-move-subscriptions/1.png)
+![Renaming subscriptions]({{ site.url }}{{ site.baseurl }}/assets/images/azure-move-subscriptions/1.jpg)
 
 Once this is done, your subscriptions will be easily identifiable, which will simplify the process:
 
-![Subscription list]({{ site.url }}{{ site.baseurl }}/assets/images/azure-move-subscriptions/2.png)
+![Subscription list]({{ site.url }}{{ site.baseurl }}/assets/images/azure-move-subscriptions/2.jpg)
 
 ### Resource groups
 
@@ -59,7 +59,7 @@ For example, imagine I have a virtual machine attached to a virtual network in m
 
 Once you are ready to perform the move, the process itself is quite simple. Go into the resource group containing the desired resources. Select the ones you wish to move, and choose `...` -> `Move` -> `Move to another subscription`.
 
-![Moving process]({{ site.url }}{{ site.baseurl }}/assets/images/azure-move-subscriptions/3.png)
+![Moving process]({{ site.url }}{{ site.baseurl }}/assets/images/azure-move-subscriptions/3.jpg)
 
 After inputting the desired destination sub and resource group, Azure will perform a check to see if the resources can be moved. If they can't, Azure will show you a message letting you know why. After pressing "Move" and waiting a few minutes, the resources will appear in the new subscription.
 
