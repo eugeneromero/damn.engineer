@@ -21,6 +21,4 @@ Introduction to PVs and PVCs in Kubernetes
 Docker mount volumes vs mount local folder
 https://www.freecodecamp.org/news/docker-mount-volume-guide-how-to-mount-a-local-directory/
 
-Moving resources between Azure subscriptions
-
 HTTP to HTTPS redirection with Terraform and Azure CDN Endpoints (check Feb 1st changes to APS/Infrastructure/Verify)
