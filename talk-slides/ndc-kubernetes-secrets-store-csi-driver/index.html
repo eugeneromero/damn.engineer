@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+	<html class="sl-root decks export offline loaded">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover, minimal-ui">
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+		<link rel="manifest" href='data:application/manifest+json,{"display": "standalone", "name": "NDC Oslo 2023 - Securing your app&#39;s communications with Kubernetes, Azure Key Vault, and TLS certificates"}' />
+		<title>NDC Oslo 2023 - Securing your app&#39;s communications with Kubernetes, Azure Key Vault, and TLS certificates</title>
+
+		<meta name="description" content="(25 min) Encrypted communications are a basic requirement for any modern software application. However, managing TLS certificates and automatically installing them on Kubernetes apps can seem daunting or time-consuming.  In this talk, I will demonstrate how to use Azure Key Vault, Kubernetes and the CSI Secrets&#39; Store Driver to securely store, install and use TLS certificates in your applications. Encrypt all the things!">
+
+		<link rel="stylesheet" type="text/css" href="lib/offline-v2.css">
+
+
+
+	</head>
+	<body class="reveal-viewport theme-font-league theme-color-black-mint">
+		<div class="reveal">
+			<div class="slides">
+				<section data-id="8b05d8b93d9405406bc204b76e6cfff4"><div class="sl-block" data-block-type="text" style="width: 700px; left: 124px; top: 42px; height: auto;" data-block-id="112567803db114c8f3c800a299169606"><div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" style="z-index: 10; text-align: left; color: rgb(255, 255, 255); letter-spacing: 0.05em;" data-has-letter-spacing=""><h1><span style="font-size:1.0em"><strong>Securing your app's communications with <span style="color:#ff8c00">Kubernetes, Azure Key Vault,</span><span style="color:#008000"> </span>and<span style="color:#008000"> </span><span style="color:#ff8c00">TLS certificates</span></strong></span></h1></div></div>
+
+
+<div class="sl-block sl-block-group" data-block-type="group" data-name="group-8fc15e" data-block-id="c22db1a1aabe6d6d315a0ab991ecdaa8" style="height: auto;"><div class="sl-block-content sl-block-group-content" style="transform-origin: 514px 533.5px; z-index: 11;">
+<div class="sl-block" data-block-type="text" style="height: auto; width: 246px; left: 746px; top: 514px;" data-name="text-9a9e6a" data-block-id="76b2489da3e4bfd6b1f9903e82247858"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;"><p><span style="font-size:0.9em"><span style="color:#ff8c00">@</span>theEugeneRomero</span></p></div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 517px; left: 36px; top: 514px;" data-block-id="6142d3cfe2fb665ecdf8e78f94bbad6a" data-name="text-116440"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;"><p><span style="font-size:0.9em"><span style="color:#ff8c00"><strong>Get the slides:</strong></span> https://damn.engineer/slides</span></p></div></div>
+</div></div></section><section data-id="903adc39d13d1005bccf36ac936a8c05"><div class="sl-block" data-block-type="text" style="width: 413px; left: 61px; top: 35px; height: auto;" data-block-id="20b2bfebabdde6034a3a474f392e2e14"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="text-align: left; z-index: 10;"><h2>
+<span style="color:#ff8c00">WHO</span> AM I?</h2></div></div>
+<div class="sl-block" data-block-type="text" style="width: 474px; left: 30.5px; top: 162px; height: auto;" data-block-id="c20dd1133805bd2fe9b15ee54e35f4fb"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus justo. Aliquam erat volutpat." style="z-index: 12; text-align: left;">
+<p><span style="font-size:1.0em"><strong>Senior <span style="color:#ff8c00">Cloud and DevOps Engineer</span> @ Capgemini</strong></span></p>
+
+<p> </p>
+
+<p><span style="font-size:1.0em"><strong><span style="color:#ff8c00">15+ years</span> in infrastructure and software development</strong></span></p>
+
+<p> </p>
+
+<p><span style="font-size:1.0em"><strong>Restoring and modifying <span style="color:#ff8c00">old gaming systems</span></strong></span></p>
+</div></div>
+<div class="sl-block" data-block-type="image" style="width: 412.343px; height: 576px; left: 531.328px; top: 0px; min-width: 1px; min-height: 1px;" data-block-id="549137200067cc0fef0d3a3b876eceeb"><div class="sl-block-content" style="z-index: 11;"><img style="left: -129px; top: 0px; width: 576px; height: 576px;" data-natural-width="1351" data-natural-height="1350" data-crop-x="0.22381" data-crop-y="0" data-crop-width="0.715343" data-crop-height="1" data-lazy-loaded="" data-src="securing-your-app-s-communications-with-kubernetes-azure-key-vault-and-tls-certificates/2d4185890125ccdb57b96eebed020767.jpg"></div></div></section><section data-id="3fa38b68483d3858bd3a7aa9a4f925db"><div class="sl-block" data-block-type="text" style="width: 806px; left: 109px; top: 229.5px; height: auto;" data-block-id="13f50d9950a3975f9c6b25816dda7733"><div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" style="z-index: 10;"><h1><span style="font-size:1.2em">The <span style="color:#ff8c00">Problem</span></span></h1></div></div>
+
+<div class="sl-block sl-block-group" data-block-type="group" data-name="group-8fc15e" style="height: auto;" data-block-id="941a1d9c217690849bacf671b16b9208"><div class="sl-block-content sl-block-group-content" style="transform-origin: 514px 533.5px; z-index: 11;">
+<div class="sl-block" data-block-type="text" style="height: auto; width: 246px; left: 746px; top: 514px;" data-name="text-9a9e6a" data-origin-id="76b2489da3e4bfd6b1f9903e82247858" data-block-id="b51aca8f2162eb0ae17b8131d62a3edb"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;"><p><span style="font-size:0.9em"><span style="color:#ff8c00">@</span>theEugeneRomero</span></p></div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 517px; left: 36px; top: 514px;" data-name="text-116440" data-origin-id="6142d3cfe2fb665ecdf8e78f94bbad6a" data-block-id="a85c0e4e2e3f3c728468ed6da3213f09"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;"><p><span style="font-size:0.9em"><span style="color:#ff8c00"><strong>Get the slides:</strong></span> https://damn.engineer/slides</span></p></div></div>
+</div></div></section><section data-id="9293f9ecac38396e717e9e50fd624fa3">
+<div class="sl-block" data-block-type="text" style="width: 757px; left: 133.5px; top: 412.5px; height: auto;" data-block-id="636d78a2dcc3eddb6476739ab6ab62e4"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus justo. Aliquam erat volutpat." style="z-index: 10; text-align: left; color: rgb(255, 255, 255);" data-fragment-index="1"><p style="color:#ffffff"><span style="font-size:1.4em"><strong>Secrets should be <span style="color:#ff8c00">automatically injected</span> into apps, without human intervention</strong></span></p></div></div>
+<div class="sl-block" data-block-type="text" style="width: 800px; left: 133.5px; top: 233.5px; height: auto;" data-name="text-0131bb" data-block-id="4f3c0a2aa54ee530a5fc34c82d8b4dec"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus justo. Aliquam erat volutpat." style="z-index: 11; text-align: left; color: rgb(255, 255, 255);" data-fragment-index="0"><p style="color:#ffffff"><span style="font-size:1.4em"><strong>Secrets and code should be <span style="color:#ff8c00">kept separate</span> until runtime</strong></span></p></div></div>
+<div class="sl-block" data-block-type="text" style="width: 800px; left: 133.5px; top: 108.5px; height: auto;" data-block-id="e81f380f5c9f8c0b1fbaaf47a3427fb0" data-name="text-28d014"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus justo. Aliquam erat volutpat." style="z-index: 12; text-align: left; color: rgb(255, 255, 255);"><p style="color:#ffffff"><span style="font-size:1.4em"><strong>Secrets management is <span style="color:#ff8c00">hard</span></strong></span></p></div></div></section><section data-id="81e2a726a4ec3284b3c9f6299b3cbb47"><div class="sl-block" data-block-type="text" style="width: 806px; left: 109px; top: 229.5px; height: auto;" data-block-id="85847b299138d04e0e749a8f89211607"><div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" style="z-index: 10;"><h1><span style="font-size:1.2em">(A) <span style="color:#ff8c00">Solution</span></span></h1></div></div>
+
+<div class="sl-block sl-block-group" data-block-type="group" data-name="group-8fc15e" style="height: auto;" data-block-id="c43030ba6fc60a982b285ef5f3188d32"><div class="sl-block-content sl-block-group-content" style="transform-origin: 514px 533.5px; z-index: 11;">
+<div class="sl-block" data-block-type="text" style="height: auto; width: 246px; left: 746px; top: 514px;" data-name="text-9a9e6a" data-origin-id="76b2489da3e4bfd6b1f9903e82247858" data-block-id="71687824c6d5768275b172aa0dac3db6"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;"><p><span style="font-size:0.9em"><span style="color:#ff8c00">@</span>theEugeneRomero</span></p></div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 517px; left: 36px; top: 514px;" data-name="text-116440" data-origin-id="6142d3cfe2fb665ecdf8e78f94bbad6a" data-block-id="de80f3b3ffd9310360aa2c8dd7f23d43"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;"><p><span style="font-size:0.9em"><span style="color:#ff8c00"><strong>Get the slides:</strong></span> https://damn.engineer/slides</span></p></div></div>
+</div></div></section><section data-id="cb2e8ee77b2d796cd2c18ba38b137e3c" data-auto-animate="">
+
+
+<div class="sl-block" data-block-type="text" style="height: auto; width: 316px; left: 167px; top: 260.5px;" data-name="text-217c6b" data-block-id="85bee2cbadcaf43492fcf8ca845c010b"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;" data-fragment-index="0"><p><strong><span style="font-size:1.4em">Azure <span style="color:#ff8c00">Key Vault</span></span></strong></p></div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 690px; left: 167px; top: 424.5px;" data-block-id="cfca7689d0bc6d2cf51279c7975e6c54" data-name="text-c8c5ce"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;" data-fragment-index="1"><p><strong><span style="font-size:1.4em">Kubernetes <span style="color:#ff8c00">Secrets Store CSI Driver </span></span></strong></p></div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 252px; left: 167px; top: 96.5px;" data-block-id="9a00f3f995f60d846fe0b84c3ab6fe3a" data-name="text-782403"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;"><p><span style="color:#ff8c00"><span style="font-size:1.4em"><strong>Kubernetes</strong></span></span></p></div></div></section><section data-id="d95da0a523e99a33d2cba21eabc92dde"><div class="sl-block" data-block-type="text" style="width: 806px; left: 109px; top: 70px; height: auto;" data-block-id="6b00721d02b1abaa0bfddf4a14deb62e"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 10;"><h2><span style="font-size:1.0em">Kubernetes <span style="color:#ff8c00">Secrets Store CSI Driver</span></span></h2></div></div>
+<div class="sl-block" data-block-type="text" style="width: 800px; left: 74px; top: 203.5px; height: auto;" data-block-id="36b810047d4466b75579b2aadd819b45"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; text-align: left;">
+<p><span style="font-size:1.2em"><strong><span style="color:#ff8c00">Integrates secrets stores with Kubernetes</span> via a</strong></span></p>
+
+<p><span style="font-size:1.2em"><strong>Container Storage Interface (CSI) volume</strong></span></p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 800px; left: 74px; top: 364px;" data-name="text-187320" data-block-id="46586a34879ec85a3ffd3f9fb0ff702d"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12; text-align: left;" data-fragment-index="0"><p><span style="font-size:1.2em"><strong>Allows Kubernetes to <span style="color:#ff8c00">mount secrets, keys, and certs</span> stored in enterprise-grade external secrets stores into pods <span style="color:#ff8c00">as volumes</span></strong></span></p></div></div></section><section data-id="f0e6c47c2ed44ba9deeacd62aed0a023"><div class="sl-block" data-block-type="text" style="width: 806px; left: 109px; top: 23px; height: auto;" data-block-id="f5f37f77f4d10c998ebea39147059454"><div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" style="z-index: 10;"><h1><span style="color:#ff8c00">Demo</span></h1></div></div>
+
+<div class="sl-block" data-block-type="image" style="width: 602.998px; height: 335.418px; left: 210.501px; top: 144px; min-width: 1px; min-height: 1px;" data-name="image-39476d" data-block-id="c9447a8e65c379ad9ee7279e81b97f52"><div class="sl-block-content" style="z-index: 11;"><img style="" data-natural-width="480" data-natural-height="267" data-lazy-loaded="" data-src="securing-your-app-s-communications-with-kubernetes-azure-key-vault-and-tls-certificates/ba47ff40ffecd5500f0661095bce9ca9.gif"></div></div>
+<div class="sl-block sl-block-group" data-block-type="group" data-name="group-8fc15e" style="height: auto;" data-block-id="95e7e2e9653da3bfb6f4e0c0637c5e20"><div class="sl-block-content sl-block-group-content" style="transform-origin: 514px 533.5px; z-index: 12;">
+<div class="sl-block" data-block-type="text" style="height: auto; width: 246px; left: 746px; top: 514px;" data-name="text-9a9e6a" data-origin-id="76b2489da3e4bfd6b1f9903e82247858" data-block-id="a1395543f1a6075d90640e5686ba141a"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;"><p><span style="font-size:0.9em"><span style="color:#ff8c00">@</span>theEugeneRomero</span></p></div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 517px; left: 36px; top: 514px;" data-name="text-116440" data-origin-id="6142d3cfe2fb665ecdf8e78f94bbad6a" data-block-id="851d8c73c4ca67ac9379831f613133a5"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 14;"><p><span style="font-size:0.9em"><span style="color:#ff8c00"><strong>Get the slides:</strong></span> https://damn.engineer/slides</span></p></div></div>
+</div></div></section><section data-auto-animate="" data-id="c8826b3413161dcc27840aa2a44b7818">
+
+
+<div class="sl-block" data-block-type="text" style="height: auto; width: 359px; left: 30.5px; top: 288px;" data-name="text-217c6b" data-block-id="74559678872960c5ab7e6a270a75291f"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;" data-fragment-index="0"><p><span style="font-size:1.2em"><strong><span style="color:#ff8c00">Internal CA</span> Authority</strong></span></p></div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 887px; left: 30.5px; top: 408.5px;" data-name="text-c8c5ce" data-block-id="d59fdbf92d69998342f655cb4acfb96f"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;" data-fragment-index="1"><p><strong><span style="font-size:1.2em">Apps need to access internal sites <span style="color:#ff8c00">securely over HTTPS</span></span></strong></p></div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 543px; left: 30.5px; top: 169px;" data-name="text-782403" data-block-id="fc2613427eae1e767d7cd3c0bb4e73a6"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;"><p><span style="font-size:1.2em"><strong>Company with <span style="color:#ff8c00">internal resources</span></strong></span></p></div></div>
+<div class="sl-block" data-block-type="text" style="width: 806px; left: 109px; top: 35px; height: auto;" data-block-id="6ff8f39ecfad2ab590733cc5968ecfd0" data-name="text-74049f"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 13;"><h2><span style="color:#ff8c00"><span style="font-size:1.0em">Scenario</span></span></h2></div></div></section><section data-id="e05aca7ba882ea718209917ffc18386e">
+<div class="sl-block" data-block-type="text" style="width: 217px; left: 237px; top: 396px; height: auto;" data-block-id="c4226a59cda8e3fdaf22c8f89edebaa9"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus justo. Aliquam erat volutpat." style="z-index: 10; text-align: left; color: rgb(255, 255, 255);" data-fragment-index="1"><p style="color:#ffffff"><span style="color:#ff8c00"><span style="font-size:1.4em"><strong>Helm</strong></span></span><span style="font-size:1.4em"><strong> chart</strong></span></p></div></div>
+<div class="sl-block" data-block-type="text" style="width: 194px; left: 237px; top: 288px; height: auto;" data-name="text-0131bb" data-block-id="82c659a213f505be96a3a9cc0f9f1137"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus justo. Aliquam erat volutpat." style="z-index: 11; text-align: left; color: rgb(255, 255, 255);" data-fragment-index="0"><p style="color:#ffffff"><span style="font-size:1.4em"><strong>Azure <span style="color:#ff8c00">CLI</span></strong></span></p></div></div>
+<div class="sl-block" data-block-type="text" style="width: 457px; left: 245.5px; top: 180.5px; height: auto;" data-name="text-28d014" data-block-id="46172f0dc3a4bd16ea3ca78c514ba9b8"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus justo. Aliquam erat volutpat." style="z-index: 12; text-align: left; color: rgb(255, 255, 255);"><p style="color:#ffffff"><span style="font-size:1.4em"><strong>Kubernetes ( <span style="color:#ff8c00">Minikube </span>)</strong></span></p></div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 600px; left: 174px; top: 35.5px;" data-name="text-b6e2b4" data-block-id="5c613ced71548c5271799a52e69dcc95"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;"><h2>demo <span style="color:#ff8c00">components</span>
+</h2></div></div></section><section data-id="1fae14115bec3dc9f6f0d144acf75ed7"><div class="sl-block" data-block-type="text" style="width: 991.5px; left: 16.25px; top: 46px; height: auto;" data-block-id="faa87a7e9a86ee58bb78de6fddc2410b"><div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" style="z-index: 10;"><h1>Please hold for ( <span style="color:#ff8c00">VERY ABBREVIATED </span>) demo...</h1></div></div>
+
+
+<div class="sl-block" data-block-type="image" style="width: 428.908px; height: 313.639px; left: 297.546px; top: 172.18px; min-width: 1px; min-height: 1px;" data-name="image-738c70" data-block-id="8150c06bf1aed0f58aadee53e0eafb94"><div class="sl-block-content" style="z-index: 11;"><img class="" data-natural-width="320" data-natural-height="234" data-lazy-loaded="" data-src="securing-your-app-s-communications-with-kubernetes-azure-key-vault-and-tls-certificates/9d114502c34afaf73abde1a1c53d231d.gif"></div></div>
+<div class="sl-block sl-block-group" data-block-type="group" data-name="group-8fc15e" style="height: auto;" data-block-id="d5499dbf99e8c769b463a2ba89a0e1dd"><div class="sl-block-content sl-block-group-content" style="transform-origin: 514px 533.5px; z-index: 12;">
+<div class="sl-block" data-block-type="text" style="height: auto; width: 246px; left: 746px; top: 514px;" data-name="text-9a9e6a" data-origin-id="a1395543f1a6075d90640e5686ba141a" data-block-id="21a7b9af6a2ced8f1ac39d0fbb8cfc78"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;"><p><span style="font-size:0.9em"><span style="color:#ff8c00">@</span>theEugeneRomero</span></p></div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 517px; left: 36px; top: 514px;" data-name="text-116440" data-origin-id="851d8c73c4ca67ac9379831f613133a5" data-block-id="7340ce115f79e57ef64bb20e5617001c"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 14;"><p><span style="font-size:0.9em"><span style="color:#ff8c00"><strong>Get the slides:</strong></span> https://damn.engineer/slides</span></p></div></div>
+</div></div></section><section data-id="7c88d93f52188a25a754baa3ef525c39"><div class="sl-block" data-block-type="text" style="width: 806px; left: 109px; top: 35px; height: auto;" data-block-id="660f1ef21c662fe6b49002f5cdf3f49e"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 10;"><h2>More <span style="color:#ff8c00">Information</span>
+</h2></div></div>
+<div class="sl-block" data-block-type="text" style="width: 868px; left: 78px; top: 166px; height: auto;" data-block-id="48dc712422cd81d8e0c2f5c4bc57265d"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; text-align: left;">
+<p><span style="font-size:1.2em"><span style="color:#ff8c00"><strong>Secrets Store CSI Driver</strong></span></span></p>
+
+<p><span style="font-size:1.0em"><strong>secrets-store-csi-driver.sigs.k8s.io</strong></span></p>
+
+<p> </p>
+
+<p><span style="color:#ff8c00"><span style="font-size:1.2em"><strong>Demo repository and files</strong></span></span></p>
+
+<p><span style="font-size:1.0em"><strong>github.com/eugeneromero/kubernetes-tls-azurekeyvault</strong></span></p>
+
+<p> </p>
+
+<p><span style="color:#ff8c00"><span style="font-size:1.2em"><strong>Detailed post and walkthrough</strong></span></span></p>
+
+<p><span style="font-size:1.0em"><strong>damn.engineer/2022/02/07/tls-cert-azure-keyvault-kubernetes</strong></span></p>
+</div></div></section><section data-id="25a149d7cf5126da559ef4e9c3a30fe7"><div class="sl-block" data-block-type="text" style="width: 806px; left: 109px; top: 19px; height: auto;" data-block-id="ebb8d020e88916b5cad55bae7e4e8132"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 10;"><h2>Get in <span style="color:#ff8c00">touch</span>!</h2></div></div>
+
+
+
+
+<div class="sl-block" data-block-type="image" style="width: 196.389px; height: 196.389px; left: 316px; top: 299.319px; min-width: 1px; min-height: 1px;" data-name="image-9c77b9" data-block-id="623809842c0b62c726e40f44434e3380"><div class="sl-block-content" style="z-index: 17;"><img style="" data-natural-width="720" data-natural-height="720" data-lazy-loaded="" data-src="securing-your-app-s-communications-with-kubernetes-azure-key-vault-and-tls-certificates/f955a09b73414363bf8b6bb972826c8c.png"></div></div>
+<div class="sl-block" data-block-type="text" style="width: 338.372px; left: 577.104px; top: 360.354px; height: auto;" data-block-id="bc1aab178c3cfdfbafebe915d605f2d7" data-name="text-0f33f8"><div class="sl-block-style" style="z-index: 18; transform: rotate(-33deg);"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 18;"><p><span style="font-size:1.2em"><strong>( And take a <span style="color:#ff8c00">sticker</span>! )</strong></span></p></div></div></div>
+<div class="sl-block sl-block-group" data-block-type="group" data-name="group-60acfa" data-block-id="35f988ad16c42c4c0369faf156aaa36e" style="height: auto;"><div class="sl-block-content sl-block-group-content" style="transform-origin: 446.5px 155px; z-index: 11;">
+<div class="sl-block" data-block-type="text" style="width: 417px; left: 291.75px; top: 135px; height: auto;" data-block-id="c80ebbd119cd04227456edb20a17b4c5"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;"><p><strong><span style="font-size:1.4em">@theEugeneRomero</span></strong></p></div></div>
+<div class="sl-block" data-block-type="shape" style="width: 70px; height: 70px; left: 184.25px; top: 120px;" data-name="shape-a3ba18" data-block-id="21e396e3d0642569078d19122214f69b"><div class="sl-block-content" data-shape-type="symbol-twitter" data-shape-fill-color="rgb(255, 153, 0)" data-shape-stretch="true" style="z-index: 13;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="-0.0010004043579101562 2.998000144958496 32.000999450683594 26.005001068115234"><g class="shape-element" fill="rgb(255, 153, 0)" data-viewbox="-0.0010004043579101562 2.998000144958496 32.000999450683594 26.005001068115234"><path d="M32 6.076c-1.177 0.522-2.443 0.875-3.771 1.034 1.355-0.813 2.396-2.099 2.887-3.632-1.269 0.752-2.674 1.299-4.169 1.593-1.198-1.276-2.904-2.073-4.792-2.073-3.626 0-6.565 2.939-6.565 6.565 0 0.515 0.058 1.016 0.17 1.496-5.456-0.274-10.294-2.888-13.532-6.86-0.565 0.97-0.889 2.097-0.889 3.301 0 2.278 1.159 4.287 2.921 5.465-1.076-0.034-2.088-0.329-2.974-0.821-0.001 0.027-0.001 0.055-0.001 0.083 0 3.181 2.263 5.834 5.266 6.437-0.551 0.15-1.131 0.23-1.73 0.23-0.423 0-0.834-0.041-1.235-0.118 0.835 2.608 3.26 4.506 6.133 4.559-2.247 1.761-5.078 2.81-8.154 2.81-0.53 0-1.052-0.031-1.566-0.092 2.905 1.863 6.356 2.95 10.064 2.95 12.076 0 18.679-10.004 18.679-18.68 0-0.285-0.006-0.568-0.019-0.849 1.283-0.926 2.396-2.082 3.276-3.398z"></path></g></svg></div></div>
+</div></div>
+<div class="sl-block sl-block-group" data-block-type="group" data-name="group-6de818" data-block-id="ea8b9243b213e60bd844e485ccc61e66" style="height: auto;"><div class="sl-block-content sl-block-group-content" style="transform-origin: 474px 237px; z-index: 14;">
+<div class="sl-block" data-block-type="shape" style="width: 70px; height: 70px; left: 184.25px; top: 202px;" data-block-id="40a07d3fe6b5f59d5354a0d05f0d7679" data-name="shape-5d9373"><div class="sl-block-content" data-shape-type="symbol-earth" data-shape-fill-color="rgb(255, 153, 0)" data-shape-stretch="true" style="z-index: 15;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="-9.5367431640625e-7 -9.5367431640625e-7 32 32"><g class="shape-element" fill="rgb(255, 153, 0)" data-viewbox="-9.5367431640625e-7 -9.5367431640625e-7 32 32"><path d="M27.314 4.686c3.022 3.022 4.686 7.040 4.686 11.314s-1.664 8.292-4.686 11.314c-3.022 3.022-7.040 4.686-11.314 4.686s-8.292-1.664-11.314-4.686c-3.022-3.022-4.686-7.040-4.686-11.314s1.664-8.292 4.686-11.314c3.022-3.022 7.040-4.686 11.314-4.686s8.292 1.664 11.314 4.686zM25.899 25.9c1.971-1.971 3.281-4.425 3.821-7.096-0.421 0.62-0.824 0.85-1.073-0.538-0.257-2.262-2.335-0.817-3.641-1.621-1.375 0.927-4.466-1.802-3.941 1.276 0.81 1.388 4.375-1.858 2.598 1.079-1.134 2.050-4.145 6.592-3.753 8.946 0.049 3.43-3.504 0.715-4.729-0.422-0.824-2.279-0.281-6.262-2.434-7.378-2.338-0.102-4.344-0.314-5.25-2.927-0.545-1.87 0.58-4.653 2.584-5.083 2.933-1.843 3.98 2.158 6.731 2.232 0.854-0.894 3.182-1.178 3.375-2.18-1.805-0.318 2.29-1.517-0.173-2.199-1.358 0.16-2.234 1.409-1.512 2.467-2.632 0.614-2.717-3.809-5.247-2.414-0.064 2.206-4.132 0.715-1.407 0.268 0.936-0.409-1.527-1.594-0.196-1.379 0.654-0.036 2.854-0.807 2.259-1.325 1.225-0.761 2.255 1.822 3.454-0.059 0.866-1.446-0.363-1.713-1.448-0.98-0.612-0.685 1.080-2.165 2.573-2.804 0.497-0.213 0.973-0.329 1.336-0.296 0.752 0.868 2.142 1.019 2.215-0.104-1.862-0.892-3.915-1.363-6.040-1.363-3.051 0-5.952 0.969-8.353 2.762 0.645 0.296 1.012 0.664 0.39 1.134-0.483 1.439-2.443 3.371-4.163 3.098-0.893 1.54-1.482 3.238-1.733 5.017 1.441 0.477 1.773 1.42 1.464 1.736-0.734 0.64-1.185 1.548-1.418 2.541 0.469 2.87 1.818 5.515 3.915 7.612 2.644 2.644 6.16 4.1 9.899 4.1s7.255-1.456 9.899-4.1z"></path></g></svg></div></div>
+<div class="sl-block" data-block-type="text" style="width: 472px; left: 291.75px; top: 217px; height: auto;" data-block-id="a2f468cf66f7db36f943cf214f1ec3fd" data-name="text-118a97"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 16;"><p><strong><span style="font-size:1.4em">https://damn.engineer/</span></strong></p></div></div>
+</div></div></section>
+			</div>
+		</div>
+
+		<script>
+			var SLConfig = {"deck": {"id":2621562,"slug":"securing-your-app-s-communications-with-kubernetes-azure-key-vault-and-tls-certificates","title":"NDC Oslo 2023 - Securing your app's communications with Kubernetes, Azure Key Vault, and TLS certificates","description":"(25 min) Encrypted communications are a basic requirement for any modern software application. However, managing TLS certificates and automatically installing them on Kubernetes apps can seem daunting or time-consuming.  In this talk, I will demonstrate how to use Azure Key Vault, Kubernetes and the CSI Secrets' Store Driver to securely store, install and use TLS certificates in your applications. Encrypt all the things!","width":1024,"height":576,"margin":0.05,"visibility":"self","published_at":null,"sanitize_messages":null,"thumbnail_url":"https://s3.amazonaws.com/media-p.slid.es/thumbnails/82667d97b7b07edda6faa844813d4c61/thumb.jpg?1685098813","view_count":0,"user":{"id":2161442,"username":"eugene-romero","name":"Eugene Romero","description":"I am a tech enthusiast, retro gamer, and general nerd. When I am not busy breaking stuff for fun, I can be found breaking stuff professionally at Capgemini. You also might find me restoring and modifying old videogame systems, most notably Game Boys.","thumbnail_url":"https://www.gravatar.com/avatar/11a2a54015914710d64d039e6e7b3561?s=140\u0026d=https%3A%2F%2Fstatic.slid.es%2Fimages%2Fdefault-profile-picture.png","account_type":"lite","team_id":null,"settings":{"id":52406646,"present_controls":true,"present_upsizing":true,"present_pointer":false,"present_notes":true,"default_deck_tag_id":null}},"background_transition":"slide","transition":"slide","theme_id":null,"theme_font":"league","theme_color":"black-mint","auto_slide_interval":0,"comments_enabled":false,"forking_enabled":false,"rolling_links":false,"center":false,"shuffle":false,"should_loop":false,"share_notes":false,"slide_number":false,"slide_count":13,"rtl":false,"version":2,"collaborative":false,"deck_user_editor_limit":1,"data_updated_at":1685099980940,"font_typekit":null,"font_google":null,"time_limit":25,"navigation_mode":"default","upsizing_enabled":true,"notes":{"83bc900d7991a6d24ab2d4841455e239":"FUNF"}}};
+
+
+			// Use local fonts
+			SLConfig.fonts_url = 'lib/fonts/';
+		</script>
+
+		<script src="lib/reveal.js"></script>
+		<script src="lib/reveal-plugins.js"></script>
+		<script src="lib/offline.js"></script>
+
+		<!-- Initialize the presentation -->
+		<script>
+			Reveal.initialize({
+				width: 1024,
+				height: 576,
+				margin: 0.05,
+				
+
+				hash: true,
+				controls: true,
+				progress: true,
+				mouseWheel: false,
+				showNotes: false,
+				slideNumber: false,
+				fragmentInURL: true,
+
+				autoSlide: 0,
+				autoSlideStoppable: true,
+
+				autoAnimateMatcher: SL.deck.AutoAnimate.matcher,
+
+				center: false,
+				shuffle: false,
+				loop: false,
+				rtl: false,
+				navigationMode: "default",
+
+				transition: "slide",
+				backgroundTransition: "slide",
+
+				highlight: {
+					escapeHTML: false
+				},
+
+				plugins: [ RevealZoom, RevealNotes, RevealMarkdown, RevealHighlight ]
+			});
+		</script>
+
+		
+
+	</body>
+</html>
