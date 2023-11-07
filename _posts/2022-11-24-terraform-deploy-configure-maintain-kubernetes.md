@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Automate Every Layer: Using Terraform to deploy, configure and maintain Azure Kubernetes clusters'
+title: 'KCD Berlin 2022: Automate Every Layer: Using Terraform to deploy, configure and maintain Azure Kubernetes clusters'
 description: 'Video recording and slides for the "Automate Every Layer: Using Terraform to deploy, configure and maintain Azure Kubernetes clusters" talk I presented at Kubernetes Community Days Berlin 2022'
 comments: true
 publish-to-linkedin: true

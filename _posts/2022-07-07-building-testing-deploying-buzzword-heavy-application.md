@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Real Life End-to-End Building, Testing, and Deploying of a Buzzword-Heavy Application
+title: 'Hashiconf Europe 2022: Real Life End-to-End Building, Testing, and Deploying of a Buzzword-Heavy Application'
 description: Video recording and slides for the "Real Life End-to-End Building, Testing, and Deploying of a Buzzword-Heavy Application" talk from Hashiconf Europe 2022
 comments: true
 publish-to-linkedin: true

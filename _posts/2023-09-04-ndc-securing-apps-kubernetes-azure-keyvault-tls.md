@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Securing your app's communications with Kubernetes, Azure Key Vault, and TLS certificates
+title: "NDC Oslo 2023: Securing your app's communications with Kubernetes, Azure Key Vault, and TLS certificates"
 description: Video recording and slides for the "Securing your app's communications with Kubernetes, Azure Key Vault, and TLS certificates" talk I presented at NDC Oslo 2023
 comments: true
 publish-to-linkedin: true
