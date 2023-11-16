@@ -23,7 +23,7 @@ Nowadays, a common approach to secrets management is the use of Vaults. Vaults k
 
 So, how can Kubernetes-based applications access vault secrets in a secure and automated way?
 
-Recently, I was tasked with finding the answer to that question in my current project. After some research and testing, I found what is currently the best (only?) solution for this:
+Recently, I was tasked with finding the answer to that question in my project. After some research and testing, I found what is currently the best (only?) solution for this:
 
 Enter [**Kubernetes Secrets Store CSI Driver**](https://secrets-store-csi-driver.sigs.k8s.io/introduction.html). Now that's a mouthful.
 
@@ -42,7 +42,9 @@ To accomplish this task, we need to perform the following steps:
 
 ### Granting KSSCD access to Azure Key Vault
 
-For KSSCD to have access to the key vault, we must create a new Service Principal, or identity, give it permissions on key vault objects, and store the SP credentials as a Kubernetes secret. There are many ways of creating Service Principals, but my preferred way is by using the Azure CLI:
+UPDATE (November 2023): Although I discuss using a Service Principal here for simplicity, there are other, arguably better, ways of providing access to the Key Vault. You can find an overview of those [here](https://azure.github.io/secrets-store-csi-driver-provider-azure/docs/configurations/identity-access-modes/).
+
+For KSSCD to have access to the key vault, we create a new Service Principal, or identity, give it permissions on key vault objects, and store the SP credentials as a Kubernetes secret. There are many ways of creating Service Principals, but my preferred way is by using the Azure CLI:
 
 ```bash
 az ad sp create-for-rbac --name KSSCD-ServicePrincipal
@@ -79,12 +81,12 @@ The credentials are now ready to be used by KSSCD.
 It's now time to actually install KSSCD in our Kubernetes cluster. In my case, I chose to do it by means of the official Helm chart. Note that this installs the CSI Secrets Provider, and the required bits for an Azure-specific deployment:
 
 ```bash
-helm repo add csi-secrets-store-provider-azure https://raw.githubusercontent.com/Azure/secrets-store-csi-driver-provider-azure/master/charts
+helm repo add csi-secrets-store-provider-azure https://azure.github.io/secrets-store-csi-driver-provider-azure/charts
 
 helm install csi csi-secrets-store-provider-azure/csi-secrets-store-provider-azure --namespace kube-system
 ```
 
-There are several reasons for installing KSSCD in the `kube-system` namespace, which are outlined in the [official documentation](https://azure.github.io/secrets-store-csi-driver-provider-azure/getting-started/installation/).
+There are several reasons for installing KSSCD in the `kube-system` namespace, which are outlined in the [official documentation](https://azure.github.io/secrets-store-csi-driver-provider-azure/docs/getting-started/installation/#deployment-using-helm).
 
 With KSSCD now installed, we are ready to tell it where to go looking for secrets.
 
