@@ -9,6 +9,7 @@ To create a local draft, create a new file inside the `_drafts/` folder, with no
 
 ```bash
 # first time only
+# Currently working on Ruby version 3.2 only (March 2024)
 $ bundle install
 
 $ bundle exec jekyll server -lo --draft
