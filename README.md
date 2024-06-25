@@ -15,6 +15,8 @@ $ bundle install
 $ bundle exec jekyll server -lo --draft
 ```
 
+NOTE: If `bundle` is not working (perhaps complaining about a missing old version of `bundler`), removing the Gemfile.lock file might help.
+
 To publish the post, move it to the `_posts/` folder, and add the publish date to the title, like so: `YYYY-MM-DD-title.md`. When the repository is pushed to GitHub, the post will be published if the pipeline passes succesfully.
 
 ## Tags
