@@ -83,7 +83,7 @@ jobs:
         run: |
           echo "# ${{ env.NEW_POST_TITLE }}" > latest.md
           sed '/---/,/---/d;s!{{ site.url }}{{ site.baseurl }}!https://damn.engineer!g' $NEW_POST_FILENAME >> latest.md
-          echo -e "\n*This story was originally published on my personal blog, [damn.engineer](https://damn.engineer).*\n*You can follow the [blog's Twitter account](https://twitter.com/DamnDotEngineer) for new post notifications, and reach me through my [personal Twitter](https://twitter.com/theEugeneRomero).*" >> latest.md
+          echo -e "\n*This story was originally published on my personal blog, [damn.engineer](https://damn.engineer).*\n*You can follow the [blog's X account](https://x.com/DamnDotEngineer) for new post notifications, and reach me through my [personal X](https://x.com/theEugeneRomero).*" >> latest.md
 
       - name: Create Medium draft
         uses: philips-software/post-to-medium-action@v0.4.1
