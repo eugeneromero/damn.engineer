@@ -20,7 +20,8 @@ jobs:
         run: |
           docker run \
           -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
-          jekyll/builder:latest /bin/bash -c "chmod -R 777 /srv/jekyll && jekyll build --future"
+          -w /srv/jekyll \
+          ruby:3.2.5 /bin/bash -c "gem install bundler && bundle install && jekyll build --future"
 
       - name: Download latest.json for comparison
         run: wget https://damn.engineer/latest.json -O ${{ github.workspace }}/current-latest.json
