@@ -395,17 +395,17 @@ main {
 
   .social-footer-icons {
 
-    .fa {
-      font-size: 1.3rem;
-      margin-right: 0.5em;
-      color: #a9a9a9;
+    .fa-brands, .fa-solid {
+      margin-right: 0.15em;
+      color: var(--main-text-color);
 
       @media(max-width: 860px) {
         font-size: 48px;
+        margin-right: 0.6em;
       }
 
       &:hover {
-        color: color.adjust(#a9a9a9, $lightness: -25%);
+        color: #a9a9a9;
         transition: color 0.3s ease-in;
       }
     }
