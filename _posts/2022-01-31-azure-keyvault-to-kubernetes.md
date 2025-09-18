@@ -224,4 +224,4 @@ KSSCD will query key vaults to check for changes from time to time. However, if 
 ### Conclusion
 The Kubernetes Secrets Store CSI Driver is a very powerful tool which can be leveraged to keep secrets and code separate. By using it in our Kubernetes clusters, our entire workflow can be automated, while maintaining security all around.
 
-Questions? Suggestions? Reach out on [Twitter](https://twitter.com/theEugeneRomero) and let me know!
+Questions? Suggestions? Reach out on [Bluesky](https://bsky.app/profile/eugene-romero.bsky.social) and let me know!

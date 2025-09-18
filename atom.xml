@@ -12,7 +12,6 @@ layout: null
   <id>{{ site.url }}</id>
   <author>
     <name>{{ site.author.name }}</name>
-    <twitter>{{ site.author.twitter }}</twitter>
   </author>
 
  {% for post in site.posts %}
