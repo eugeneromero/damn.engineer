@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro Workout Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1>Workout Tracker</h1>
+            <div class="phase-selector">
+                <button id="prev-phase" class="nav-btn" aria-label="Previous Phase">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </button>
+                <div class="phase-info">
+                    <h2 id="current-phase-name">Phase 1</h2>
+                    <span id="current-phase-dates">Weeks 1–4</span>
+                </div>
+                <button id="next-phase" class="nav-btn" aria-label="Next Phase">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+            </div>
+            <div class="week-selector" id="week-selector">
+                <!-- Weeks will be injected here -->
+            </div>
+        </header>
+
+        <main id="workout-view" class="workout-view">
+            <!-- Daily workouts will be injected here -->
+        </main>
+
+        <footer class="app-footer">
+            <p>Stay Consistent. Trust the Process.</p>
+            <button id="reset-data" class="text-btn">Reset Progress</button>
+        </footer>
+    </div>
+
+    <!-- Reset Confirmation Modal -->
+    <div id="reset-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <h3>Reset Progress?</h3>
+            <p>This will delete all your completed workouts and recorded weights. This action cannot be undone.</p>
+            <div class="modal-actions">
+                <button id="cancel-reset" class="modal-btn cancel">Cancel</button>
+                <button id="confirm-reset" class="modal-btn confirm">Yes, Reset</button>
+            </div>
+        </div>
+    </div>
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
