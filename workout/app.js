@@ -216,7 +216,7 @@ function renderWorkouts() {
                         <div class="exercise-meta">${ex.sets !== '-' ? ex.sets : ''} ${ex.weight && ex.weight !== '-' ? ' • ' + ex.weight : ''}</div>
                     </div>
                     <div class="weight-input-container" onclick="event.stopPropagation()">
-                        <input type="text" class="weight-input" placeholder="Weight" value="${savedWeight}" onchange="saveWeight('${dayKey}', ${index}, this.value)">
+                        <input type="text" class="weight-input" placeholder="${dayData.type === 'Cardio' ? 'Effort' : 'Weight'}" value="${savedWeight}" onchange="saveWeight('${dayKey}', ${index}, this.value)">
                     </div>
                 `;
                 list.appendChild(li);
