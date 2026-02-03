@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+	<html class="sl-root decks export offline loaded">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover, minimal-ui">
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+		<link rel="manifest" href='data:application/manifest+json,{"display": "standalone", "name": "UiS - Intro to Cloud and Containers"}' />
+		<title>UiS - Intro to Cloud and Containers</title>
+
+
+		<link rel="stylesheet" type="text/css" href="lib/offline-v2.css">
+
+
+
+	</head>
+	<body class="reveal-viewport theme-font-helvetica theme-color-black-blue">
+		<div class="reveal">
+			<div class="slides">
+				<section data-background-color="rgb(0, 0, 0)" data-id="a2cc9639405fd75706f31055d4da234a"><div class="sl-block" data-block-type="text" style="width: 1200px; left: 40px; top: 40px; height: auto;" data-text-layout="fixed" data-block-id="83e00e83dd057f30312e713bef67b3af" data-name="Text 1">
+                    <div class="sl-block-content" data-placeholder-tag="h1" style="z-index: 11; font-size: 280%; text-align: left; color: rgb(0, 0, 0); line-height: 0.975; letter-spacing: -0.1em; padding: 10px;" data-has-line-height="" data-has-letter-spacing="" data-placeholder-text="Text"><h1><span style="font-size:0.7em"><strong>introduction to cloud &amp; containers</strong></span></h1></div>
+                </div>
+<div class="sl-block" data-block-type="text" style="width: 1200px; left: 40px; top: 612px; height: auto;" data-name="text-d18e72" data-block-id="e15c0b3277affb9f8116e8cc6b3ad9d2">
+                    <div class="sl-block-content" data-placeholder-tag="h2" style="z-index: 12; text-align: left; padding: 8px; font-size: 70%;" data-placeholder-text="Text"><h2>— Eugene Romero, sjefskonsulent @ Crayon</h2></div>
+                </div>
+<div class="sl-block" data-block-type="shape" style="width: 1200px; height: 542px; left: 40px; top: 40px;" data-name="shape-a85c0a" data-block-id="fe01250a0c5d1053c8dab6ead0a05849">
+                    <div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" style="z-index: 10;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 1200 542">
+
+                            
+                        <rect width="1200" height="542" rx="0" ry="0" class="shape-element" fill="rgb(255, 255, 255)"></rect></svg></div>
+                </div></section><section data-background-color="rgb(0, 0, 0)" data-id="69ae6e2971ff38d4b9e4d3d0e4d7c0bf"><div class="sl-block" data-block-type="text" style="width: 1230px; left: 25px; top: 218px; height: auto;" data-name="text-6e36c0" data-block-id="1cd5b5eec84e743762b73636acc82cbb">
+                    <div class="sl-block-content" data-placeholder-tag="h1" style="z-index: 10; font-size: 140%; text-align: left; line-height: 1.17; padding: 5px;" data-has-line-height="" data-placeholder-text="Text"><h1><strong>what is cloud computing?</strong></h1></div>
+                </div>
+</section><section data-background-color="rgb(0, 0, 0)" data-id="a1edc45086cb3496d166f12bd5fd5aa3"><div class="sl-block" data-block-type="text" style="width: 1212px; left: 52px; top: 260.5px; height: auto;" data-block-id="4c0e5a81721dbc6b09231be5b9683db3" data-name="Text 1">
+                    <div class="sl-block-content" data-placeholder-tag="ul" style="z-index: 10; text-align: left; border-width: 1px; line-height: 2.6; font-size: 110%;" data-has-line-height="" data-placeholder-text="Text"><ul>
+	<li>1960s - John McCarthy proposes computing being offered as a utility</li>
+	<li>1990s - rise of the internet and advancements in virtualization technologies</li>
+	<li>2000s - launch of major public cloud platforms</li>
+	<li>Today - cloud computing powers everything from web apps to AI workloads</li>
+</ul></div>
+                </div>
+<div class="sl-block" data-block-type="text" style="width: 198px; left: 541px; top: 110.5px; height: auto;" data-name="text-c29943" data-block-id="f5e0b772f91158c7ceb7083b9b21d523">
+                    <div class="sl-block-content" data-placeholder-tag="h2" style="text-align: left; z-index: 11; line-height: 1.17;" data-has-line-height="" data-placeholder-text="Text"><h2><strong>history</strong></h2></div>
+                </div></section><section data-background-color="rgb(0, 0, 0)" data-id="8e834e3a0f68bf3cbedc2269b0e7a2e4"><div class="sl-block" data-block-type="shape" style="width: 640px; height: 720px; left: 0px; top: 0px;" data-name="shape-c138f8" data-block-id="c8eb7ccffa3dee3c8dace5647318417b">
+                    <div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" style="z-index: 10;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 640 720">
+
+                            
+                        <rect width="640" height="720" rx="0" ry="0" class="shape-element" fill="rgb(255, 255, 255)"></rect></svg></div>
+                </div>
+<div class="sl-block" data-block-type="text" style="width: 453px; left: 10px; top: 96px; height: auto;" data-name="text-c29943" data-block-id="35021d7b7ea87d408e00d54c113a0f54">
+                    <div class="sl-block-content" data-placeholder-tag="h2" style="text-align: left; z-index: 11; color: rgb(0, 0, 0); padding: 25px; line-height: 1.17;" data-has-line-height="" data-placeholder-text="Text"><h2><strong>cloud</strong></h2></div>
+                </div>
+<div class="sl-block" data-block-type="shape" data-name="shape-6be669" style="width: 54px; height: 54px; left: 36px; top: 32px;" data-block-id="b8aec986767a403731f5dec15ab2398d">
+                    <div class="sl-block-content" data-shape-type="symbol-plus-circle" data-shape-fill-color="rgb(0, 0, 0)" data-shape-stretch="true" style="z-index: 12;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 32 32">
+
+                            
+                        <g class="shape-element" fill="rgb(0, 0, 0)" data-viewbox="0 0 32 32"><path d="M16 0c-8.836 0-16 7.164-16 16s7.164 16 16 16 16-7.164 16-16-7.164-16-16-16zM24 18h-6v6h-4v-6h-6v-4h6v-6h4v6h6v4z"></path></g></svg></div>
+                </div>
+<div class="sl-block" data-block-type="text" style="width: 453px; left: 13.5px; top: 225.5px; height: auto;" data-name="text-d18e72" data-block-id="8d9acc613444e9c907c7915c1c72cfa7">
+                    <div class="sl-block-content" data-placeholder-tag="ul" style="z-index: 13; text-align: left; line-height: 1.69; color: rgb(0, 0, 0); padding: 8px;" data-has-line-height="" data-placeholder-text="Text"><ul>
+	<li>easily scalable</li>
+	<li>only pay for what you use</li>
+	<li>accessible from everywhere</li>
+	<li>distributed</li>
+	<li>reduced maintenance</li>
+</ul></div>
+                </div>
+<div class="sl-block" data-block-type="text" style="width: 453px; left: 684px; top: 96px; height: auto;" data-name="text-e6f20f" data-block-id="3c51229d3209a5d23f8b4dc3107210cf">
+                    <div class="sl-block-content" data-placeholder-tag="h2" style="text-align: left; z-index: 14; padding: 25px; line-height: 1.17;" data-has-line-height="" data-placeholder-text="Text"><h2><strong>traditional</strong></h2></div>
+                </div>
+<div class="sl-block" data-block-type="shape" style="width: 54px; height: 54px; left: 710px; top: 32px;" data-name="shape-4a931b" data-block-id="049535b7b30aea20f1a7dcfb13830a1d">
+                    <div class="sl-block-content" data-shape-type="symbol-x-circle" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" style="z-index: 15;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 32 32">
+
+                            
+                        <g class="shape-element" fill="rgb(255, 255, 255)" data-viewbox="0 0 32 32"><path d="M16 0c-8.836 0-16 7.164-16 16s7.164 16 16 16 16-7.164 16-16-7.164-16-16-16zM23.914 21.086l-2.828 2.828-5.086-5.086-5.086 5.086-2.828-2.828 5.086-5.086-5.086-5.086 2.828-2.828 5.086 5.086 5.086-5.086 2.828 2.828-5.086 5.086 5.086 5.086z"></path></g></svg></div>
+                </div>
+<div class="sl-block" data-block-type="text" style="width: 492px; left: 684px; top: 225.5px; height: auto;" data-name="text-101edc" data-block-id="214e73595eeaff2967611c1eda0731c2">
+                    <div class="sl-block-content" data-placeholder-tag="ul" style="z-index: 16; text-align: left; line-height: 1.69; padding: 8px;" data-has-line-height="" data-placeholder-text="Text"><ul>
+	<li>scaling is costly and slow</li>
+	<li>large initial and ongoing cost</li>
+	<li>location-specific access</li>
+	<li>not distributed</li>
+	<li>maintenance</li>
+</ul></div>
+                </div></section><section data-background-color="rgb(0, 0, 0)" data-id="d86f986696e4b109118740683fa6c3c7"><div class="sl-block" data-block-type="text" style="width: 1081px; left: 99.5px; top: 110.5px; height: auto;" data-name="text-c29943" data-block-id="a82f881ffdb7dd5053e2a709c063f8c6">
+                    <div class="sl-block-content" data-placeholder-tag="h2" style="text-align: center; z-index: 10; line-height: 1.17;" data-has-line-height="" data-placeholder-text="Text"><h2><strong>service models</strong></h2></div>
+                </div>
+<div class="sl-block sl-block-group" data-block-type="group" data-name="group-fb20c8" style="height: auto;" data-block-id="652eb03f140d8445962017e546524d4a">
+                    <div class="sl-block-content sl-block-group-content" style="transform-origin: 279px 432px; z-index: 11; transition-duration: 0.6s; transition-delay: 0.3s;" data-animation-type="slide-up">
+
+                        <div class="sl-block" data-block-type="shape" style="width: 238px; height: 360px; left: 160px; top: 252px;" data-name="shape-e1e4ba" data-block-id="f829fab60c98bafd4fc19ccb4d92a562">
+                            <div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" style="z-index: 15;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 238 360">
+
+                                    
+                                <rect width="238" height="360" rx="0" ry="0" class="shape-element" fill="rgb(255, 255, 255)"></rect></svg></div>
+                        </div>
+
+
+                        <div class="sl-block" data-block-type="text" style="width: 238px; left: 160px; top: 396px; height: auto;" data-name="text-96a5c5" data-block-id="d87aa820c96a86938b58e0880af44fa8">
+                            <div class="sl-block-content" data-placeholder-tag="p" style="z-index: 16; text-align: left; font-size: 60%; color: rgb(0, 0, 0); padding: 20px;" data-placeholder-text="Text">
+<p><strong>Infra as a Service</strong></p>
+
+<p> </p>
+
+<p>AWS EC2 VMs</p>
+
+<p>Azure Virtual Machines</p>
+
+<p>Google Compute Engine</p>
+</div>
+                        </div>
+                        <div class="sl-block" data-block-type="text" style="width: 238px; left: 160px; top: 252px; height: auto;" data-name="text-b45c7e" data-block-id="d17158b7884a973167aeac508bac3b83">
+                            <div class="sl-block-content" data-placeholder-tag="h2" style="text-align: left; z-index: 17; color: rgb(0, 0, 0); font-size: 140%; padding: 20px;" data-placeholder-text="Text"><h2><strong>IaaS</strong></h2></div>
+                        </div>
+                    </div>
+                </div>
+<div class="sl-block sl-block-group" data-block-type="group" style="height: auto;" data-name="group-6e52bc" data-block-id="30c93d419c106c7ef700935fa664238b">
+                    <div class="sl-block-content sl-block-group-content" style="transform-origin: 640px 432px; z-index: 18; transition-duration: 0.7s; transition-delay: 0.4s;" data-animation-type="slide-up">
+
+                        <div class="sl-block" data-block-type="shape" style="width: 238px; height: 360px; left: 521px; top: 252px;" data-name="shape-6cac13" data-block-id="3b78358a02b0182c334537f12cff04ea">
+                            <div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" style="z-index: 22;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 238 360">
+
+                                    
+                                <rect width="238" height="360" rx="0" ry="0" class="shape-element" fill="rgb(255, 255, 255)"></rect></svg></div>
+                        </div>
+
+
+                        <div class="sl-block" data-block-type="text" style="width: 238px; left: 521px; top: 396px; height: auto;" data-name="text-bb1ba6" data-block-id="e5057b473d7030012d5c837a29763b80">
+                            <div class="sl-block-content" data-placeholder-tag="p" style="z-index: 23; text-align: left; font-size: 60%; color: rgb(0, 0, 0); padding: 20px;" data-placeholder-text="Text">
+<p><strong>Platform as a Service</strong></p>
+
+<p> </p>
+
+<p>Heroku</p>
+
+<p>Azure App Service</p>
+
+<p>Google App Engine</p>
+</div>
+                        </div>
+                        <div class="sl-block" data-block-type="text" style="width: 238px; left: 521px; top: 252px; height: auto;" data-name="text-4e447a" data-block-id="d32389cdd14fbbb02eb3ba936b54efae">
+                            <div class="sl-block-content" data-placeholder-tag="h2" style="text-align: left; z-index: 24; color: rgb(0, 0, 0); font-size: 140%; padding: 20px;" data-placeholder-text="Text"><h2><strong>PaaS</strong></h2></div>
+                        </div>
+                    </div>
+                </div>
+<div class="sl-block sl-block-group" data-block-type="group" style="height: auto;" data-name="group-e33cde" data-block-id="0523a374f2fe87c5156e432d875fa492">
+                    <div class="sl-block-content sl-block-group-content" style="transform-origin: 1001px 432px; z-index: 25; transition-duration: 0.8s; transition-delay: 0.5s;" data-animation-type="slide-up">
+
+                        <div class="sl-block" data-block-type="shape" style="width: 238px; height: 360px; left: 882px; top: 252px;" data-name="shape-fc8f7a" data-block-id="f2464da487f0a54cd45fb1628bbf34db">
+                            <div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" style="z-index: 29;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 238 360">
+
+                                    
+                                <rect width="238" height="360" rx="0" ry="0" class="shape-element" fill="rgb(255, 255, 255)"></rect></svg></div>
+                        </div>
+
+
+                        <div class="sl-block" data-block-type="text" style="width: 238px; left: 882px; top: 396px; height: auto;" data-name="text-a99bcf" data-block-id="2e635cb2a84d658b16d57b8bdca342f8">
+                            <div class="sl-block-content" data-placeholder-tag="p" style="z-index: 30; text-align: left; font-size: 60%; color: rgb(0, 0, 0); padding: 20px;" data-placeholder-text="Text">
+<p><strong>Software as a Service</strong></p>
+
+<p> </p>
+
+<p>Office 365</p>
+
+<p>Google Workspace</p>
+
+<p>Dropbox</p>
+</div>
+                        </div>
+                        <div class="sl-block" data-block-type="text" style="width: 238px; left: 882px; top: 252px; height: auto;" data-name="text-ac45e0" data-block-id="240d823cc333f238760ea5e727d489f2">
+                            <div class="sl-block-content" data-placeholder-tag="h2" style="text-align: left; z-index: 31; color: rgb(0, 0, 0); font-size: 140%; padding: 20px;" data-placeholder-text="Text"><h2><strong>SaaS</strong></h2></div>
+                        </div>
+                    </div>
+                </div>
+</section><section data-background-color="rgb(0, 0, 0)" data-id="4bf73611c22a2a714096b8214e6bf6a8"><div class="sl-block" data-block-type="text" style="width: 470px; left: 405px; top: 110.5px; height: auto;" data-name="text-c29943" data-block-id="09c919907943316b01c7f5ee6928a4af">
+                    <div class="sl-block-content" data-placeholder-tag="h2" style="text-align: center; z-index: 10; line-height: 1.17;" data-has-line-height="" data-placeholder-text="Text"><h2><strong>the big players</strong></h2></div>
+                </div>
+
+<div class="sl-block sl-block-group" data-block-type="group" data-name="group-146e06" style="height: auto;" data-block-id="a5ef7266fab2c29a751b097a4634b4c2">
+                    <div class="sl-block-content sl-block-group-content" style="transform-origin: 240px 432.5px; z-index: 11; transition-duration: 0.6s; transition-delay: 0.3s;" data-animation-type="slide-up">
+                        <div class="sl-block" data-block-type="shape" style="width: 320px; height: 433px; left: 80px; top: 216px;" data-name="shape-8fd0b8" data-block-id="97233bd8c68d310149789ca26a30e2fc">
+                            <div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" style="z-index: 12;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 320 433">
+
+                                    
+                                <rect width="320" height="433" rx="0" ry="0" class="shape-element" fill="rgb(255, 255, 255)"></rect></svg></div>
+                        </div>
+                        <div class="sl-block" data-block-type="text" style="width: 228.571px; left: 125.715px; top: 504px; height: 83.6891px;" data-name="text-03e418" data-block-id="a6167464d382948e75b1e72e5aa40baf" data-text-layout="fixed">
+                            <div class="sl-block-content" data-placeholder-tag="p" style="z-index: 13; text-align: left; font-size: 60%; color: rgb(0, 0, 0);" data-placeholder-text="Text"><h2 style="text-align: center;">Amazon Web Services</h2></div>
+                        </div>
+                        
+                    </div>
+                </div>
+<div class="sl-block sl-block-group" data-block-type="group" style="height: auto;" data-name="group-2081df" data-block-id="63f0b60c06aea677f71240d8a435a1c5">
+                    <div class="sl-block-content sl-block-group-content" style="transform-origin: 640.5px 433px; z-index: 14; transition-duration: 0.6s; transition-delay: 0.5s;" data-animation-type="slide-up">
+                        <div class="sl-block" data-block-type="shape" style="width: 319px; height: 434px; left: 481px; top: 216px;" data-name="shape-6003be" data-block-id="5f0526e529ae575eec98f3ec76910482">
+                            <div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" style="z-index: 15;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 319 434">
+
+                                    
+                                <rect width="319" height="434" rx="0" ry="0" class="shape-element" fill="rgb(255, 255, 255)"></rect></svg></div>
+                        </div>
+                        <div class="sl-block" data-block-type="text" style="width: 227.857px; left: 526.072px; top: 504.506px; height: 83.1833px;" data-name="text-d78035" data-block-id="6c4b95b6d6b89c40a7ea107236cd22ec" data-text-layout="fixed">
+                            <div class="sl-block-content" data-placeholder-tag="p" style="z-index: 16; text-align: left; font-size: 60%; color: rgb(0, 0, 0);" data-placeholder-text="Text"><h2 style="text-align: center;">Microsoft Azure</h2></div>
+                        </div>
+                        
+                    </div>
+                </div>
+<div class="sl-block sl-block-group" data-block-type="group" style="height: auto;" data-name="group-000099" data-block-id="72c66521ea38e502bd963de4ec543758">
+                    <div class="sl-block-content sl-block-group-content" style="transform-origin: 1041.98px 432px; z-index: 17; transition-duration: 0.6s; transition-delay: 0.7s;" data-animation-type="slide-up">
+                        <div class="sl-block" data-block-type="shape" style="width: 320px; height: 434px; left: 881.979px; top: 215px;" data-name="shape-f12dda" data-block-id="47d2abfb32010c842fa60d33d068f5d0">
+                            <div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" style="z-index: 18;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 320 434">
+
+                                    
+                                <rect width="320" height="434" rx="0" ry="0" class="shape-element" fill="rgb(255, 255, 255)"></rect></svg></div>
+                        </div>
+                        <div class="sl-block" data-block-type="text" style="width: 228.572px; left: 925.713px; top: 504.253px; height: 83.1833px;" data-name="text-19af33" data-block-id="413ed13e26db3333b5f607bfe326502f" data-text-layout="fixed">
+                            <div class="sl-block-content" data-placeholder-tag="p" style="z-index: 19; text-align: left; font-size: 60%; color: rgb(0, 0, 0);" data-placeholder-text="Text"><h2 style="text-align: center;">Google Cloud Platform</h2></div>
+                        </div>
+                        
+                    </div>
+                </div>
+
+<div class="sl-block" data-block-type="image" style="width: 259.953px; height: 155.769px; left: 110.024px; top: 288px; min-width: 1px; min-height: 1px;" data-name="Image 1" data-block-id="591e1397c90fa4f162c6b918ed9f79e0"><div class="sl-block-content" style="z-index: 20;"><img class="" data-natural-width="1280" data-natural-height="767" data-lazy-loaded="" data-src="uis-intro-cloud-containers/1ca47d2fd84ad4677d48dc2f62a6633c.png"></div></div>
+<div class="sl-block" data-block-type="image" style="width: 260.595px; height: 260.595px; left: 909.702px; top: 235.587px; min-width: 1px; min-height: 1px;" data-name="Image 3" data-block-id="726385e9826920e61417fdc4a9254940"><div class="sl-block-content" style="z-index: 22;"><img class="" data-natural-width="1350" data-natural-height="1350" data-lazy-loaded="" data-src="uis-intro-cloud-containers/0611c170545f5c89830fc4ceec0228ab.png"></div></div>
+<div class="sl-block" data-block-type="image" style="width: 260.693px; height: 208px; left: 509.654px; top: 256px; min-width: 1px; min-height: 1px;" data-name="Image 4" data-block-id="e7fff09ccd4901c5ae0826b688ea230d"><div class="sl-block-content" style="z-index: 23;"><img class="" data-natural-width="1692" data-natural-height="1350" data-lazy-loaded="" data-src="uis-intro-cloud-containers/5e64b9113dd56cab8e7910d2272bdec4.png"></div></div></section><section data-background-color="rgb(0, 0, 0)" data-id="cfc7d0cc13a9ffba82f4d79cb60286f1"><div class="sl-block" data-block-type="image" data-name="image-3c39ef" style="width: 1059.07px; height: 591.469px; left: 110.465px; top: 128.531px; min-width: 1px; min-height: 1px;" data-block-id="a4efe50a115d8855bfd42d1b1009c894">
+                    <div class="sl-block-content" style="z-index: 10;"><img data-natural-width="2500" data-natural-height="1155" style="left: -111px; top: 0px; width: 1280px; height: 591px;" data-lazy-loaded="" data-crop-x="0.086377" data-crop-y="0" data-crop-width="0.827246" data-crop-height="1" data-src="uis-intro-cloud-containers/f7f4c0a1c51efe28d3f875ee158353b4.png"></div>
+                </div>
+<div class="sl-block" data-block-type="text" style="width: 308px; left: 486px; top: 28.5px; height: auto;" data-name="text-d18e72" data-block-id="8581998e0395ec04e3194161167a2534">
+                    <div class="sl-block-content" data-placeholder-tag="p" style="z-index: 11; text-align: left; background-color: rgba(0, 0, 0, 0.5); padding: 10px; font-size: 90%;" data-placeholder-text="Text"><h2><strong>distributed!</strong></h2></div>
+                </div>
+<div class="sl-block" data-block-type="text" style="width: 314px; height: auto; left: 160px; top: 628.5px;" data-name="Text 1" data-block-id="01e58b03d6e9c523659b66df1280b09e"><div class="sl-block-content" data-placeholder-tag="p" style="text-align: left; z-index: 12;" data-placeholder-text="Text"><p>Azure datacenter map</p></div></div></section><section data-background-color="rgb(0, 0, 0)" data-id="92aa5348201af5b1b9059864ec6ca5d3"><div class="sl-block" data-block-type="text" style="width: 1230px; left: 25px; top: 218px; height: auto;" data-name="text-6e36c0" data-block-id="1253f3e9c403a6d2913be389c8df7106">
+                    <div class="sl-block-content" data-placeholder-tag="h1" style="z-index: 10; font-size: 140%; text-align: left; line-height: 1.17; padding: 5px;" data-has-line-height="" data-placeholder-text="Text"><h1><strong>containers?</strong></h1></div>
+                </div>
+</section><section data-id="8d5b5476d59024315d2e7284d23b82d3" data-background-color="rgb(0, 0, 0)">
+						
+						<div class="sl-block" data-block-type="text" style="width: 273px; left: 960px; top: 323px; height: auto;" data-block-id="d360f93c5bc5e8da7d47ff12dc7f57f3" data-name="Text 2">
+							<div class="sl-block-content" data-placeholder-tag="h2" style="text-align: left; z-index: 10;" data-placeholder-text="Text"><h2>containers</h2></div>
+						</div>
+						
+						<div class="sl-block" data-block-type="text" style="width: 272px; left: 504px; top: 286px; height: auto;" data-block-id="2c5680195899310e2ab1721a8f89afef" data-name="Text 4">
+							<div class="sl-block-content" data-placeholder-tag="h2" style="text-align: left; z-index: 11;" data-placeholder-text="Text"><h2 style="text-align: center;">virtual machines</h2></div>
+						</div>
+						
+						<div class="sl-block" data-block-type="text" style="width: 282px; left: 38px; top: 321px; height: auto;" data-block-id="572089d5e0d4225a045addb1527266d5" data-name="Text 6">
+							<div class="sl-block-content" data-placeholder-tag="h2" style="text-align: left; z-index: 12;" data-placeholder-text="Text"><h2 style="text-align: right;">bare metal</h2></div>
+						</div>
+					<div class="sl-block" data-block-type="text" style="width: 978px; height: auto; left: 151px; top: 107px;" data-name="Text 1" data-block-id="6ee89adfa7e7aa0c6fe14fca1f0311b5"><div class="sl-block-content" data-placeholder-tag="p" style="text-align: left; z-index: 13;" data-placeholder-text="Text"><h2><strong>evolution of software deployment</strong></h2></div></div>
+<div class="sl-block" data-block-type="line" style="width: auto; height: auto; min-width: 0px; min-height: 0px; left: 372px; top: 358px;" data-name="Line 1" data-block-id="0dc2115acd4acaa063ccb01726d150f0"><div class="sl-block-content" data-line-x1="0" data-line-y1="2" data-line-x2="80" data-line-y2="0" data-line-color="#ffffff" data-line-width="11px" data-line-start-type="none" data-line-end-type="line-arrow" data-line-style="solid-rounded" style="z-index: 14;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="80" height="2" viewbox="0 0 80 2"><path class="line-element" fill="rgba(0,0,0,0)" stroke="#ffffff" stroke-width="11" stroke-linecap="round" d="M0 2 L69.003 0.275"></path><path stroke="#ffffff" stroke-width="11" d="M 49.872 -24.005 L 75.233 0.119 L 51.109 25.48 L 75.233 0.119" stroke-linecap="round" stroke-linejoin="round" class="line-end"></path><path class="line-skeleton" fill="rgba(0,0,0,0)" stroke="rgba(0,0,0,0)" d="M0 2 L80 0"></path><path class="line-hitarea" fill="rgba(0,0,0,0)" stroke="rgba(0,0,0,0)" stroke-width="15" d="M0 2 L80 0"></path></svg></div></div>
+<div class="sl-block" data-block-type="line" style="width: auto; height: auto; min-width: 0px; min-height: 0px; left: 828px; top: 360px;" data-name="Line 2" data-block-id="786e15d7d0692907cd2b7be54ebe03f3"><div class="sl-block-content" data-line-x1="0" data-line-y1="2" data-line-x2="80" data-line-y2="0" data-line-color="#ffffff" data-line-width="11px" data-line-start-type="none" data-line-end-type="line-arrow" data-line-style="solid-rounded" style="z-index: 15;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="80" height="2" viewbox="0 0 80 2"><path class="line-element" fill="rgba(0,0,0,0)" stroke="#ffffff" stroke-width="11" stroke-linecap="round" d="M0 2 L69.003 0.275"></path><path stroke="#ffffff" stroke-width="11" d="M 49.872 -24.005 L 75.233 0.119 L 51.109 25.48 L 75.233 0.119" stroke-linecap="round" stroke-linejoin="round" class="line-end"></path><path class="line-skeleton" fill="rgba(0,0,0,0)" stroke="rgba(0,0,0,0)" d="M0 2 L80 0"></path><path class="line-hitarea" fill="rgba(0,0,0,0)" stroke="rgba(0,0,0,0)" stroke-width="15" d="M0 2 L80 0"></path></svg></div></div></section><section data-background-color="rgb(0, 0, 0)" data-id="351a31802016c2f5ee89a6c917d5b041">
+<div class="sl-block" data-block-type="text" style="width: 483px; left: 160px; top: 250px; height: auto;" data-name="text-bad4e5" data-block-id="379eeab6aa29abde12ad9035078114b4">
+                    <div class="sl-block-content" data-placeholder-tag="h2" style="text-align: left; z-index: 10; padding: 10px; line-height: 1.17;" data-has-line-height="" data-placeholder-text="Text"><h2><strong>solving "works on my machine" syndrome</strong></h2></div>
+                </div>
+<div class="sl-block" data-block-type="image" style="width: 437.538px; height: 720px; left: 720px; top: 0px; min-width: 1px; min-height: 1px;" data-name="Image 1" data-block-id="00c956bc9fe44793ee787e4fa4e63093"><div class="sl-block-content" style="z-index: 12;"><img class="" data-natural-width="395" data-natural-height="650" data-lazy-loaded="" data-src="uis-intro-cloud-containers/2e6763e0e53edec36fadd4a08f54559e.png"></div></div></section><section data-background-color="rgb(0, 0, 0)" data-id="46f41dcb3eb1735fa4172cce6fd8aeb7">
+<div class="sl-block" data-block-type="image" style="width: 1029.93px; height: 648px; left: 125.035px; top: 39.425px; min-width: 1px; min-height: 1px;" data-name="Image 1" data-block-id="3b7a3135ff5e54eb6e7df3a08b420b65"><div class="sl-block-content" style="z-index: 11;"><img class="" data-natural-width="1289" data-natural-height="811" data-lazy-loaded="" data-src="uis-intro-cloud-containers/33fb0f8006e7f147e27784bcf21dde3e.png"></div></div></section><section data-background-color="rgb(0, 0, 0)" data-id="8060893c3a52db3f62b2fa8e16791393"><div class="sl-block" data-block-type="shape" style="width: 640px; height: 720px; left: 0px; top: 0px;" data-name="shape-c138f8" data-block-id="c69779db87768b5508a3553871f8d86b">
+                    <div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" style="z-index: 10;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 640 720">
+
+                            
+                        <rect width="640" height="720" rx="0" ry="0" class="shape-element" fill="rgb(255, 255, 255)"></rect></svg></div>
+                </div>
+<div class="sl-block" data-block-type="text" style="width: 453px; left: 10px; top: 96px; height: auto;" data-name="text-c29943" data-block-id="1e868e3eefe8b368d458087dfec45cad">
+                    <div class="sl-block-content" data-placeholder-tag="h2" style="text-align: left; z-index: 11; color: rgb(0, 0, 0); padding: 25px; line-height: 1.17;" data-has-line-height="" data-placeholder-text="Text"><h2><strong>containers</strong></h2></div>
+                </div>
+<div class="sl-block" data-block-type="shape" data-name="shape-6be669" style="width: 54px; height: 54px; left: 36px; top: 32px;" data-block-id="bea8a27e85c68b7ca3452228735ac06a">
+                    <div class="sl-block-content" data-shape-type="symbol-plus-circle" data-shape-fill-color="rgb(0, 0, 0)" data-shape-stretch="true" style="z-index: 12;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 32 32">
+
+                            
+                        <g class="shape-element" fill="rgb(0, 0, 0)" data-viewbox="0 0 32 32"><path d="M16 0c-8.836 0-16 7.164-16 16s7.164 16 16 16 16-7.164 16-16-7.164-16-16-16zM24 18h-6v6h-4v-6h-6v-4h6v-6h4v6h6v4z"></path></g></svg></div>
+                </div>
+<div class="sl-block" data-block-type="text" style="width: 453px; left: 13.5px; top: 250.5px; height: auto;" data-name="text-d18e72" data-block-id="8acac60c87d7b5940b91a111fd8783d1">
+                    <div class="sl-block-content" data-placeholder-tag="ul" style="z-index: 13; text-align: left; line-height: 1.69; color: rgb(0, 0, 0); padding: 8px;" data-has-line-height="" data-placeholder-text="Text"><ul>
+	<li>lightweight</li>
+	<li>fast startup</li>
+	<li>low maintenance</li>
+	<li>small attack surface</li>
+</ul></div>
+                </div>
+<div class="sl-block" data-block-type="text" style="width: 516px; left: 684px; top: 96px; height: auto;" data-name="text-e6f20f" data-block-id="fbc98af4fbdcdd2b8422a3ba46752935">
+                    <div class="sl-block-content" data-placeholder-tag="h2" style="text-align: left; z-index: 14; padding: 25px; line-height: 1.17;" data-has-line-height="" data-placeholder-text="Text"><h2><strong>virtual machines</strong></h2></div>
+                </div>
+<div class="sl-block" data-block-type="shape" style="width: 54px; height: 54px; left: 710px; top: 32px;" data-name="shape-4a931b" data-block-id="76751584d29679b2bdbc6ef8f5be3c2b">
+                    <div class="sl-block-content" data-shape-type="symbol-x-circle" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" style="z-index: 15;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 32 32">
+
+                            
+                        <g class="shape-element" fill="rgb(255, 255, 255)" data-viewbox="0 0 32 32"><path d="M16 0c-8.836 0-16 7.164-16 16s7.164 16 16 16 16-7.164 16-16-7.164-16-16-16zM23.914 21.086l-2.828 2.828-5.086-5.086-5.086 5.086-2.828-2.828 5.086-5.086-5.086-5.086 2.828-2.828 5.086 5.086 5.086-5.086 2.828 2.828-5.086 5.086 5.086 5.086z"></path></g></svg></div>
+                </div>
+<div class="sl-block" data-block-type="text" style="width: 453px; left: 684px; top: 250.5px; height: auto;" data-name="text-101edc" data-block-id="55bb0b2ec3909901dde52cfc88d88946">
+                    <div class="sl-block-content" data-placeholder-tag="ul" style="z-index: 16; text-align: left; line-height: 1.69; padding: 8px;" data-has-line-height="" data-placeholder-text="Text"><ul>
+	<li>high resource usage</li>
+	<li>slow to start</li>
+	<li>require maintenance</li>
+	<li>large attack surface</li>
+</ul></div>
+                </div></section><section data-id="a20d153f8285e2cc628e5682b1951d2e" data-background-color="rgb(0, 0, 0)">
+						<div class="sl-block" data-block-type="text" style="width: 1240px; left: 20px; top: 20px; height: 680px;" data-text-layout="fixed" data-auto-fit-text="true" data-block-id="6d80ae3389db3ec3a025010b4594e2a1" data-name="Text 1">
+							<div class="sl-block-content" data-placeholder-tag="h1" style="font-size: 500%; text-align: left; line-height: 0.97; align-content: center; z-index: 10;" data-has-line-height="true" data-placeholder-text="Text"><h1><strong>break</strong></h1></div>
+						</div>
+					</section><section data-background-color="rgb(0, 0, 0)" data-id="a268586e0f0e998537c3c137968150d4"><div class="sl-block" data-block-type="text" style="width: 1230px; left: 25px; top: 218px; height: auto;" data-name="text-6e36c0" data-block-id="e927847d0846c4a68f9122c65da91655">
+                    <div class="sl-block-content" data-placeholder-tag="h1" style="z-index: 10; font-size: 140%; text-align: left; line-height: 1.17; padding: 5px;" data-has-line-height="" data-placeholder-text="Text"><h1><strong>there are many container managers</strong></h1></div>
+                </div>
+</section><section data-id="d87bd2c6e4b094bbdf27d00b17777fff" data-background-color="rgb(0, 0, 0)">
+						<div class="sl-block" data-block-type="text" style="width: 308px; left: 806px; top: 216px; height: auto;" data-block-id="49a5b24c063051c326dd8cc5eb6b5220" data-name="Text 1">
+							<div class="sl-block-content" data-placeholder-tag="p" style="text-align: left; z-index: 10;" data-placeholder-text="Text"><h3 style="text-align: center;">running instance</h3></div>
+						</div>
+						<div class="sl-block" data-block-type="text" style="width: 290px; left: 815px; top: 107px; height: auto;" data-block-id="51af024ae359a8b9638fffa7f8a34c12" data-name="Text 2">
+							<div class="sl-block-content" data-placeholder-tag="h2" style="text-align: left; z-index: 11;" data-placeholder-text="Text"><h2 style="text-align: center;"><strong>container</strong></h2></div>
+						</div>
+						<div class="sl-block" data-block-type="text" style="width: 161px; left: 240px; top: 216px; height: auto;" data-block-id="d3cc14ecff7a7cd294ec4ef0aa91e939" data-name="Text 3">
+							<div class="sl-block-content" data-placeholder-tag="p" style="text-align: left; z-index: 12;" data-placeholder-text="Text"><h3 style="text-align: center;">blueprint</h3></div>
+						</div>
+						<div class="sl-block" data-block-type="text" style="width: 187px; left: 226.5px; top: 107px; height: auto;" data-block-id="631f72b95e8470207eaa54e02e33b0ac" data-name="Text 4">
+							<div class="sl-block-content" data-placeholder-tag="h2" style="text-align: left; z-index: 13;" data-placeholder-text="Text"><h2 style="text-align: center;"><strong>image</strong></h2></div>
+						</div>
+					<div class="sl-block" data-block-type="image" style="width: 254.52px; height: 360px; left: 192.74px; top: 288px; min-width: 1px; min-height: 1px;" data-name="Image 1" data-block-id="e359daec58aee5eac01c60ce375de81e"><div class="sl-block-content" style="z-index: 14;"><img class="" data-natural-width="707" data-natural-height="1000" data-lazy-loaded="" data-src="uis-intro-cloud-containers/fcfea578cacf149bf3649fb2c54921b2.png"></div></div>
+<div class="sl-block" data-block-type="image" style="width: 480px; height: 360px; left: 720px; top: 288px; min-width: 1px; min-height: 1px;" data-name="Image 2" data-block-id="3b82c110c413100a8fac29101ada6d55"><div class="sl-block-content" style="z-index: 15;"><img class="" data-natural-width="1500" data-natural-height="1125" data-lazy-loaded="" data-src="uis-intro-cloud-containers/1533017022b6a2d8083ff2775205ad98.png"></div></div></section><section data-background-color="rgb(0, 0, 0)" data-id="171ca5287a5a62f389c7c934cac83451"><div class="sl-block" data-block-type="text" style="width: 385px; left: 447.5px; top: 38.5px; height: auto;" data-name="text-c29943" data-block-id="ac3ec79736ca0505dabb98a0957824ae">
+                    <div class="sl-block-style" style="z-index: 10; transform: rotate(0deg);">
+                        <div class="sl-block-content" data-placeholder-tag="h2" style="text-align: left; z-index: 10; line-height: 1.17; color: rgb(255, 255, 255);" data-has-line-height="" data-placeholder-text="Text"><h2><strong>the Dockerfile</strong></h2></div>
+                    </div>
+                </div>
+
+<div class="sl-block" data-block-type="image" style="width: 782.442px; height: 551.161px; left: 248.779px; top: 144px; min-width: 1px; min-height: 1px;" data-name="Image 1" data-block-id="a3ff961452075a4bb6ddfdfa1f1bffe9"><div class="sl-block-content" style="z-index: 11;"><img class="" data-natural-width="1360" data-natural-height="958" data-lazy-loaded="" data-src="uis-intro-cloud-containers/0b4f73ca37ccbfaa45845428cc156535.png"></div></div></section><section data-background-color="rgb(0, 0, 0)" data-id="77614beb015f1fe13bcb855449ae1968"><div class="sl-block" data-block-type="text" style="width: 774px; left: 253px; top: 38.5px; height: auto;" data-name="text-c29943" data-block-id="ccd844c4688458d355439c88b1282453">
+                    <div class="sl-block-style" style="z-index: 10; transform: rotate(0deg);">
+                        <div class="sl-block-content" data-placeholder-tag="h2" style="text-align: left; z-index: 10; line-height: 1.17; color: rgb(255, 255, 255);" data-has-line-height="" data-placeholder-text="Text"><h2><strong>example docker commands</strong></h2></div>
+                    </div>
+                </div>
+
+<div class="sl-block" data-block-type="image" style="width: 883.495px; height: 546px; left: 209px; top: 144px; min-width: 1px; min-height: 1px;" data-name="Image 1" data-block-id="5b8f32ff22bb75772bfa7b0b571b2099"><div class="sl-block-content" style="z-index: 11;"><img class="" data-natural-width="1000" data-natural-height="618" data-lazy-loaded="" data-src="uis-intro-cloud-containers/534103ee4d639742618561f84fbc7471.png"></div></div></section><section data-background-color="rgb(0, 0, 0)" data-id="a60978ceecde3363a093d51915739c4a"><div class="sl-block" data-block-type="text" style="width: 774px; left: 253px; top: 110.5px; height: auto;" data-name="text-c29943" data-block-id="ea9139d678ec1e6712682b0daff5c71f">
+                    <div class="sl-block-style" style="z-index: 10; transform: rotate(0deg);">
+                        <div class="sl-block-content" data-placeholder-tag="h2" style="text-align: left; z-index: 10; line-height: 1.17; color: rgb(255, 255, 255);" data-has-line-height="" data-placeholder-text="Text"><h2><strong>docker image naming</strong></h2></div>
+                    </div>
+                </div>
+
+<div class="sl-block" data-block-type="text" style="width: 600px; height: auto; left: 316.5px; top: 404.75px;" data-name="Text 1" data-block-id="993786c2eebceec37f20dbdf32ceb6f0"><div class="sl-block-content" data-placeholder-tag="p" style="text-align: left; z-index: 11;" data-placeholder-text="Text"><h2>repository/image:tag</h2></div></div>
+<div class="sl-block" data-block-type="text" style="width: 413px; height: auto; left: 203.5px; top: 258.75px;" data-name="Text 2" data-block-id="7c049e3627b5be0f85559a72b144f289"><div class="sl-block-content" data-placeholder-tag="p" style="text-align: left; z-index: 12;" data-placeholder-text="Text"><p>name of the source repository</p></div></div>
+<div class="sl-block" data-block-type="text" style="width: 154px; height: auto; left: 762.5px; top: 258.75px;" data-name="Text 3" data-block-id="4366eda87d97756e1a120167e3ea74d9"><div class="sl-block-content" data-placeholder-tag="p" style="text-align: left; z-index: 13;" data-placeholder-text="Text"><p>version</p></div></div>
+<div class="sl-block" data-block-type="text" style="width: 232px; height: auto; left: 580.5px; top: 566.25px;" data-name="Text 4" data-block-id="492080e53593960b9e5a1e51b5965985"><div class="sl-block-content" data-placeholder-tag="p" style="text-align: left; z-index: 14;" data-placeholder-text="Text"><p>image name</p></div></div>
+<div class="sl-block" data-block-type="line" style="width: auto; height: auto; min-width: 0px; min-height: 0px; left: 384px; top: 311.25px;" data-name="Line 1" data-block-id="5674dd710ce970b598c4d83a82c6316c"><div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="36" data-line-y2="97" data-line-color="#ffffff" data-line-width="11px" data-line-start-type="none" data-line-end-type="line-arrow" data-line-style="solid-rounded" style="z-index: 15;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="36" height="97" viewbox="0 0 36 97"><path class="line-element" fill="rgba(0,0,0,0)" stroke="#ffffff" stroke-width="11" stroke-linecap="round" d="M0 0 L32.173 86.687"></path><path stroke="#ffffff" stroke-width="11" d="M 48.932 60.714 L 34.341 92.529 L 2.525 77.938 L 34.341 92.529" stroke-linecap="round" stroke-linejoin="round" class="line-end"></path><path class="line-skeleton" fill="rgba(0,0,0,0)" stroke="rgba(0,0,0,0)" d="M0 0 L36 97"></path><path class="line-hitarea" fill="rgba(0,0,0,0)" stroke="rgba(0,0,0,0)" stroke-width="15" d="M0 0 L36 97"></path></svg></div></div>
+<div class="sl-block" data-block-type="line" style="width: auto; height: auto; min-width: 0px; min-height: 0px; left: 796px; top: 312.25px;" data-name="Line 2" data-block-id="85a07f4fd4e4cb9ebc17fdb7b7089d65"><div class="sl-block-content" data-line-x1="4" data-line-y1="0" data-line-x2="0" data-line-y2="93" data-line-color="#ffffff" data-line-width="11px" data-line-start-type="none" data-line-end-type="line-arrow" data-line-style="solid-rounded" style="z-index: 16;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="4" height="93" viewbox="0 0 4 93"><path class="line-element" fill="rgba(0,0,0,0)" stroke="#ffffff" stroke-width="11" stroke-linecap="round" d="M4 0 L0.473 82.01"></path><path stroke="#ffffff" stroke-width="11" d="M 25.996 64.572 L 0.205 88.236 L -23.459 62.445 L 0.205 88.236" stroke-linecap="round" stroke-linejoin="round" class="line-end"></path><path class="line-skeleton" fill="rgba(0,0,0,0)" stroke="rgba(0,0,0,0)" d="M4 0 L0 93"></path><path class="line-hitarea" fill="rgba(0,0,0,0)" stroke="rgba(0,0,0,0)" stroke-width="15" d="M4 0 L0 93"></path></svg></div></div>
+<div class="sl-block" data-block-type="line" style="width: auto; height: auto; min-width: 0px; min-height: 0px; left: 661px; top: 485.25px;" data-name="Line 3" data-block-id="e7bfbff906e0277107d6a8964df55640"><div class="sl-block-content" data-line-x1="2" data-line-y1="70" data-line-x2="0" data-line-y2="0" data-line-color="#ffffff" data-line-width="11px" data-line-start-type="none" data-line-end-type="line-arrow" data-line-style="solid-rounded" style="z-index: 17;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="2" height="70" viewbox="0 0 2 70"><path class="line-element" fill="rgba(0,0,0,0)" stroke="#ffffff" stroke-width="11" stroke-linecap="round" d="M2 70 L0.314 10.996"></path><path stroke="#ffffff" stroke-width="11" d="M -23.897 30.214 L 0.136 4.767 L 25.583 28.8 L 0.136 4.767" stroke-linecap="round" stroke-linejoin="round" class="line-end"></path><path class="line-skeleton" fill="rgba(0,0,0,0)" stroke="rgba(0,0,0,0)" d="M2 70 L0 0"></path><path class="line-hitarea" fill="rgba(0,0,0,0)" stroke="rgba(0,0,0,0)" stroke-width="15" d="M2 70 L0 0"></path></svg></div></div></section><section data-background-color="rgb(0, 0, 0)" data-id="b436fe8f8b64be0aa21cc1e45839b7f9"><div class="sl-block" data-block-type="text" style="width: 1230px; left: 25px; top: 218px; height: auto;" data-name="text-6e36c0" data-block-id="b0bd301afced950a8d87ac41c914c01f">
+                    <div class="sl-block-content" data-placeholder-tag="h1" style="z-index: 10; font-size: 140%; text-align: left; line-height: 1.17; padding: 5px;" data-has-line-height="" data-placeholder-text="Text"><h1><strong>demo</strong></h1></div>
+                </div>
+<div class="sl-block" data-block-type="text" style="width: 1230px; left: 25px; top: 351px; height: auto;" data-name="text-2f41b8" data-block-id="ccb7061076983a2325356b30cef10bd8">
+                    <div class="sl-block-content" data-placeholder-tag="h1" style="z-index: 11; text-align: left; font-size: 90%; line-height: 1.17; padding: 5px;" data-has-line-height="" data-placeholder-text="Text"><h1>lets build a simple web server</h1></div>
+                </div></section><section data-background-color="rgb(0, 0, 0)" data-id="02ef8b755bc29533d42f98fb1064615a"><div class="sl-block" data-block-type="text" style="width: 1055px; left: 25px; top: 218px; height: auto;" data-name="text-6e36c0" data-block-id="dbe35400350bb47c00aad6d64ed04c40">
+                    <div class="sl-block-content" data-placeholder-tag="h1" style="z-index: 10; font-size: 140%; text-align: left; line-height: 1.17; padding: 5px;" data-has-line-height="" data-placeholder-text="Text"><h1><strong>containers + cloud = the future!</strong></h1></div>
+                </div>
+</section><section data-background-color="rgb(0, 0, 0)" data-id="cf887a2320ed8aa60c424f633ad04544"><div class="sl-block" data-block-type="text" style="width: 948px; left: 80px; top: 248.5px; height: auto;" data-block-id="aa3c7b112aa1d1472149faf08121a0bb" data-name="Text 1">
+                    <div class="sl-block-content" data-placeholder-tag="ul" style="z-index: 10; text-align: left; border-width: 1px; line-height: 1.69; font-size: 110%;" data-has-line-height="" data-placeholder-text="Text"><ul>
+	<li class="fragment" data-fragment-index="0">manage multiple containers at scale</li>
+	<li class="fragment" data-fragment-index="0">programmatically start/stop workloads</li>
+	<li class="fragment" data-fragment-index="0">expose applications to the internet</li>
+	<li class="fragment" data-fragment-index="0">combine containerized apps with other cloud resources</li>
+</ul></div>
+                </div>
+<div class="sl-block" data-block-type="text" style="width: 800px; left: 160px; top: 110.5px; height: auto;" data-name="text-c29943" data-block-id="620199d9a298859d9b1afd8a9501541a">
+                    <div class="sl-block-content" data-placeholder-tag="h2" style="text-align: left; z-index: 11; line-height: 1.17;" data-has-line-height="" data-placeholder-text="Text"><h2 style="text-align: center;"><strong>orchestration</strong></h2></div>
+                </div></section><section data-background-color="rgb(0, 0, 0)" data-id="03afe5bc928b5dd7f5eba2685df2a373"><div class="sl-block" data-block-type="text" style="width: 1081px; left: 99.25px; top: 38.5px; height: auto;" data-name="text-c29943" data-block-id="d2738d91aad142ac827a8ad676bdb115">
+                    <div class="sl-block-content" data-placeholder-tag="h2" style="text-align: center; z-index: 10; line-height: 1.17;" data-has-line-height="" data-placeholder-text="Text"><h2><strong>Azure Container Services</strong></h2></div>
+                </div>
+<div class="sl-block sl-block-group" data-block-type="group" data-name="group-fb20c8" style="height: auto;" data-block-id="ac69967e74f94a15c64f881479ed321a">
+                    <div class="sl-block-content sl-block-group-content" style="transform-origin: 262.25px 504px; z-index: 11; transition-duration: 0.6s; transition-delay: 0.3s;" data-animation-type="slide-up">
+
+                        <div class="sl-block" data-block-type="shape" style="width: 275px; height: 360px; left: 124.75px; top: 324px;" data-name="shape-e1e4ba" data-block-id="8efcd127eb9b2fe15ab479424b185dbc">
+                            <div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" style="z-index: 15;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 275 360">
+
+                                    
+                                <rect width="275" height="360" rx="0" ry="0" class="shape-element" fill="rgb(255, 255, 255)"></rect></svg></div>
+                        </div>
+
+
+                        <div class="sl-block" data-block-type="text" style="width: 275px; left: 124.75px; top: 468px; height: auto;" data-name="text-96a5c5" data-block-id="acff635087e3d50e3e5c4b0ac1a951ca">
+                            <div class="sl-block-content" data-placeholder-tag="p" style="z-index: 16; text-align: left; font-size: 60%; color: rgb(0, 0, 0); padding: 20px;" data-placeholder-text="Text">
+<p><strong>Azure Container Instances</strong></p>
+
+<p> </p>
+
+<p>simple, single container</p>
+</div>
+                        </div>
+                        <div class="sl-block" data-block-type="text" style="width: 275px; left: 124.75px; top: 324px; height: auto;" data-name="text-b45c7e" data-block-id="915c33e915c0f2caacbe68616054b961">
+                            <div class="sl-block-content" data-placeholder-tag="h2" style="text-align: left; z-index: 17; color: rgb(0, 0, 0); font-size: 140%; padding: 20px;" data-placeholder-text="Text"><h2 style="text-align: center;"><strong>ACI</strong></h2></div>
+                        </div>
+                    </div>
+                </div>
+
+<div class="sl-block sl-block-group" data-block-type="group" style="height: auto;" data-name="group-e33cde" data-block-id="73fdf10dcf5054dfedd2e16e5f66b19e">
+                    <div class="sl-block-content sl-block-group-content" style="transform-origin: 1017.75px 504px; z-index: 27; transition-duration: 0.8s; transition-delay: 0.5s;" data-animation-type="slide-up">
+
+                        <div class="sl-block" data-block-type="shape" style="width: 275px; height: 360px; left: 880.25px; top: 324px;" data-name="shape-fc8f7a" data-block-id="2e86e1cde1a86785cea25bfab9993746">
+                            <div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" style="z-index: 31;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 275 360">
+
+                                    
+                                <rect width="275" height="360" rx="0" ry="0" class="shape-element" fill="rgb(255, 255, 255)"></rect></svg></div>
+                        </div>
+
+
+                        <div class="sl-block" data-block-type="text" style="width: 275px; left: 880.25px; top: 468px; height: auto;" data-name="text-a99bcf" data-block-id="86f230b1ed7a1618712549d142185ff5">
+                            <div class="sl-block-content" data-placeholder-tag="p" style="z-index: 32; text-align: left; font-size: 60%; color: rgb(0, 0, 0); padding: 20px;" data-placeholder-text="Text">
+<p><strong>Azure Kubernetes Service</strong></p>
+
+<p> </p>
+
+<p>full orchestration and control, higher complexity</p>
+</div>
+                        </div>
+                        <div class="sl-block" data-block-type="text" style="width: 275px; left: 880.25px; top: 324px; height: auto;" data-name="text-ac45e0" data-block-id="2a4e7fef8fb4b8f8cde7e7f751c55e41">
+                            <div class="sl-block-content" data-placeholder-tag="h2" style="text-align: left; z-index: 33; color: rgb(0, 0, 0); font-size: 140%; padding: 20px;" data-placeholder-text="Text"><h2 style="text-align: center;"><strong>AKS</strong></h2></div>
+                        </div>
+                    </div>
+                </div>
+<div class="sl-block sl-block-group" data-block-type="group" data-name="Group 1" data-block-id="58497a981685f865552324ad5bcf2007"><div class="sl-block-content sl-block-group-content" style="transform-origin: 640px 211.25px; z-index: 34;">
+<div class="sl-block" data-block-type="shape" style="width: 502px; height: 153.5px; left: 389px; top: 134.5px;" data-name="shape-6cac13" data-block-id="e6c7404f821c6d669e7f4c59ed738a2e">
+                            <div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" style="z-index: 38;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 502 154">
+
+                                    
+                                <rect width="502" height="153.5" rx="0" ry="0" class="shape-element" fill="rgb(255, 255, 255)"></rect></svg></div>
+                        </div>
+<div class="sl-block" data-block-type="text" style="width: 279px; left: 602.75px; top: 151.75px; height: auto;" data-name="Text 5" data-block-id="37763cca41d7e21e6afa84cea00138c1">
+                            <div class="sl-block-content" data-placeholder-tag="p" style="z-index: 39; text-align: left; font-size: 60%; color: rgb(0, 0, 0); padding: 20px;" data-placeholder-text="Text">
+<p><strong>Azure Container Registry</strong></p>
+
+<p> </p>
+
+<p>repository for docker images</p>
+</div>
+                        </div>
+<div class="sl-block" data-block-type="text" style="width: 213px; left: 389.75px; top: 139.25px; height: auto;" data-name="Text 4" data-block-id="1971da4d897e7429ad5a167d7c907cf1">
+                            <div class="sl-block-content" data-placeholder-tag="h2" style="text-align: left; z-index: 40; color: rgb(0, 0, 0); font-size: 140%; padding: 20px;" data-placeholder-text="Text"><h2 style="text-align:center"><strong>ACR</strong></h2></div>
+                        </div>
+</div></div>
+<div class="sl-block sl-block-group" data-block-type="group" data-name="Group 3" data-block-id="a1d86ef7bcc58244301b84cc3ea0859c"><div class="sl-block-content sl-block-group-content" style="transform-origin: 639.75px 504px; z-index: 41;">
+<div class="sl-block sl-block-group" data-block-type="group" style="height: auto;" data-name="Group 2" data-block-id="9bc02d7b38f7bc5f134d94b770ea98aa">
+                    <div class="sl-block-content sl-block-group-content" style="transform-origin: 639.75px 504px; z-index: 42; transition-duration: 0.7s; transition-delay: 0.4s;" data-animation-type="slide-up">
+
+                        <div class="sl-block" data-block-type="shape" style="width: 279px; height: 360px; left: 500.25px; top: 324px;" data-name="Shape 2" data-origin-id="e6c7404f821c6d669e7f4c59ed738a2e" data-block-id="b726cfbca3fb0544243423e98bf27a9c">
+                            <div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" style="z-index: 43;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 279 360">
+
+                                    
+                                <rect width="279" height="360" rx="0" ry="0" class="shape-element" fill="rgb(255, 255, 255)"></rect></svg></div>
+                        </div>
+
+
+                        <div class="sl-block" data-block-type="text" style="width: 279px; left: 500.25px; top: 468px; height: auto;" data-name="Text 2" data-origin-id="6cb04a93db4541794a3ea6cda169fc54" data-block-id="caa88913e4af970ca704fee3fa89f01b">
+                            <div class="sl-block-content" data-placeholder-tag="p" style="z-index: 44; text-align: left; font-size: 60%; color: rgb(0, 0, 0); padding: 20px;" data-placeholder-text="Text">
+<p><strong>Azure Container Apps</strong></p>
+
+<p> </p>
+
+<p>microservices, autoscaling, more control</p>
+</div>
+                        </div>
+                        <div class="sl-block" data-block-type="text" style="width: 279px; left: 500.25px; top: 324px; height: auto;" data-name="Text 3" data-origin-id="a82b3efc059074ed02a8585bbcc947e3" data-block-id="4a6cd408c562c2bce8570b990afd2496">
+                            <div class="sl-block-content" data-placeholder-tag="h2" style="text-align: left; z-index: 45; color: rgb(0, 0, 0); font-size: 140%; padding: 20px;" data-placeholder-text="Text"><h2 style="text-align: center;"><strong>ACA</strong></h2></div>
+                        </div>
+                    </div>
+                </div>
+<div class="sl-block" data-block-type="text" style="width: 279px; left: 500.25px; top: 468px; height: auto;" data-name="text-bb1ba6" data-block-id="6cb04a93db4541794a3ea6cda169fc54">
+                            <div class="sl-block-content" data-placeholder-tag="p" style="z-index: 46; text-align: left; font-size: 60%; color: rgb(0, 0, 0); padding: 20px;" data-placeholder-text="Text">
+<p><strong>Azure Container Apps</strong></p>
+
+<p> </p>
+
+<p>microservices, autoscaling, more control</p>
+</div>
+                        </div>
+<div class="sl-block" data-block-type="text" style="width: 279px; left: 500.25px; top: 324px; height: auto;" data-name="text-4e447a" data-block-id="a82b3efc059074ed02a8585bbcc947e3">
+                            <div class="sl-block-content" data-placeholder-tag="h2" style="text-align: left; z-index: 47; color: rgb(0, 0, 0); font-size: 140%; padding: 20px;" data-placeholder-text="Text"><h2 style="text-align: center;"><strong>ACA</strong></h2></div>
+                        </div>
+</div></div></section><section data-background-color="rgb(0, 0, 0)" data-id="97eaaa9c6c9cba831cb08e7ce1c56b92"><div class="sl-block" data-block-type="text" style="width: 1230px; left: 25px; top: 218px; height: auto;" data-name="text-6e36c0" data-block-id="61b5af186a5ea97b7b03d9c9a2c352c1">
+                    <div class="sl-block-content" data-placeholder-tag="h1" style="z-index: 10; font-size: 140%; text-align: left; line-height: 1.17; padding: 5px;" data-has-line-height="" data-placeholder-text="Text"><h1><strong>demo</strong></h1></div>
+                </div>
+<div class="sl-block" data-block-type="text" style="width: 1230px; left: 25px; top: 351px; height: auto;" data-name="text-2f41b8" data-block-id="58b2905178129038c8a6872367fada2c">
+                    <div class="sl-block-content" data-placeholder-tag="h1" style="z-index: 11; text-align: left; font-size: 90%; line-height: 1.17; padding: 5px;" data-has-line-height="" data-placeholder-text="Text"><h1>lets build a simple web server (in Azure)</h1></div>
+                </div></section><section data-background-color="rgb(0, 0, 0)" data-id="fe119dc39fcf334a586edc52016f6d3d"><div class="sl-block" data-block-type="text" style="width: 468px; left: 160px; top: 360px; height: auto;" data-name="text-5e88d9" data-block-id="d2a2e88eba1c3674b560eaa327f9877b">
+                    <div class="sl-block-content" data-placeholder-tag="p" style="z-index: 10; text-align: left; font-size: 120%;" data-placeholder-text="Text">
+<p>what you will build:</p>
+
+<ul>
+	<li>containerized dotnet API</li>
+	<li>multiple endpoints</li>
+	<li>running on Azure</li>
+</ul>
+</div>
+                </div>
+<div class="sl-block" data-block-type="text" style="width: 856px; left: 212px; top: 254.5px; height: auto;" data-name="text-c29943" data-block-id="8d5848fbe336887d04250055f41101db">
+                    <div class="sl-block-content" data-placeholder-tag="h2" style="text-align: left; z-index: 12; line-height: 1.17;" data-has-line-height="" data-placeholder-text="Text"><h2 style="text-align: center;"><strong>workshop preparation</strong></h2></div>
+                </div>
+<div class="sl-block" data-block-type="text" style="width: 388px; left: 720px; top: 360px; height: auto;" data-name="Text 2" data-block-id="9ad9f8a460c7d7340fb6cd9c1c12c7f5">
+                    <div class="sl-block-content" data-placeholder-tag="p" style="z-index: 11; text-align: left; font-size: 120%;" data-placeholder-text="Text">
+<p>pre-requisites:</p>
+
+<ul>
+	<li>dotnet SDK</li>
+	<li>Docker desktop</li>
+	<li>Azure subscription</li>
+</ul>
+</div>
+                </div></section><section data-background-color="rgb(0, 0, 0)" data-id="4973ca5d07f95ad24750f00fad9516c8"><div class="sl-block" data-block-type="text" style="width: 1200px; left: 80px; top: 247.5px; height: auto;" data-name="text-260be3" data-block-id="6d81b99e0ebc24d2573fa6a3f7ad6994">
+                    <div class="sl-block-content" data-placeholder-tag="h1" style="z-index: 10; font-size: 160%; text-align: left; line-height: 1.17;" data-has-line-height="" data-placeholder-text="Text"><h1><strong>questions?</strong></h1></div>
+                </div>
+
+
+</section><section data-background-color="rgb(0, 0, 0)" data-id="fcf4ae577b4446aa121b926f9f1c4ad7"><div class="sl-block" data-block-type="text" style="width: 787px; left: 80px; top: 249px; height: auto;" data-name="text-6e36c0" data-block-id="beb345a3016cbcdb644d09da16755f04">
+                    <div class="sl-block-content" data-placeholder-tag="h1" style="z-index: 10; font-size: 140%; text-align: left; line-height: 1.17; padding: 5px;" data-has-line-height=""><h1><strong>day 2</strong></h1></div>
+                </div>
+<div class="sl-block" data-block-type="text" style="width: 787px; left: 80px; top: 382px; height: auto;" data-name="text-2f41b8" data-block-id="43634647ddf6d177ff978e049be33a55">
+                    <div class="sl-block-content" data-placeholder-tag="h1" style="z-index: 11; text-align: left; font-size: 90%; line-height: 1.17; padding: 5px;" data-has-line-height=""><h1>workshop</h1></div>
+                </div></section><section data-background-color="rgb(0, 0, 0)" data-id="08059bf4afba826cf6ef1f971227e902"><div class="sl-block" data-block-type="text" style="width: 871px; left: 59px; top: 218.5px; height: auto;" data-block-id="3055ee68c8b57d2e2ce99aeb1f35dc31" data-name="Text 1">
+                    <div class="sl-block-content" data-placeholder-tag="ul" style="z-index: 10; text-align: left; border-width: 1px; line-height: 1.56; font-size: 110%;" data-has-line-height=""><ul>
+	<li class="fragment" data-fragment-index="0">install az CLI (5 min)</li>
+	<li class="fragment" data-fragment-index="2">build the app (10 min)</li>
+	<li class="fragment" data-fragment-index="2">create Dockerfile (15 min)</li>
+	<li class="fragment" data-fragment-index="3">push to Azure Container Registry (15 min)</li>
+	<li class="fragment" data-fragment-index="3">deploy to Azure Container Instance (25 min)</li>
+	<li class="fragment" data-fragment-index="3">update app (10 min)</li>
+</ul></div>
+                </div>
+<div class="sl-block" data-block-type="text" style="width: 800px; left: 80px; top: 104.5px; height: auto;" data-name="text-c29943" data-block-id="5fadb0eb9c80411c2dea43f28733eae6">
+                    <div class="sl-block-content" data-placeholder-tag="h2" style="text-align: left; z-index: 11; line-height: 1.17;" data-has-line-height=""><h2><strong>steps</strong></h2></div>
+                </div></section><section data-background-color="rgb(0, 0, 0)" data-id="23ced6b2bbc20fef04eb28d67060dbd9">
+<div class="sl-block" data-block-type="text" style="width: 1189px; left: 80px; top: 325px; height: auto;" data-name="text-2f41b8" data-block-id="faae5a2854baf769d7c4a7ea6ea34ee7">
+                    <div class="sl-block-content" data-placeholder-tag="h1" style="z-index: 11; text-align: left; font-size: 90%; line-height: 1.17; padding: 5px;" data-has-line-height=""><h2><span style="font-size:0.9em">https://learn.microsoft.com/nb-no/cli/azure/install-azure-cli</span></h2></div>
+                </div></section><section data-background-color="rgb(0, 0, 0)" data-id="2a416215b18c0255a33d7256ab826a52">
+<div class="sl-block" data-block-type="text" style="width: 1189px; left: 80px; top: 325px; height: auto;" data-name="text-2f41b8" data-block-id="eddfd4d1588072cbd982644715341925">
+                    <div class="sl-block-content" data-placeholder-tag="h1" style="z-index: 10; text-align: left; font-size: 90%; line-height: 1.17; padding: 5px;" data-has-line-height=""><h2><span style="font-size:0.9em">https://github.com/eugeneromero/uis-docker-initial</span></h2></div>
+                </div></section><section data-id="462c807475d5b35a0f03dbf5f51f37c8" data-background-color="rgb(0, 0, 0)">
+						
+						
+						<div class="sl-block" data-block-type="text" style="width: 1240px; left: 80px; top: 34px; height: 76px;" data-text-layout="fixed" data-block-id="26b79faa16a1e04afad412744bcf5339" data-name="Text 1">
+							<div class="sl-block-content" data-placeholder-tag="h2" style="text-align: left; align-content: center; z-index: 11;"><h2>docker commands</h2></div>
+						</div>
+					<div class="sl-block" data-block-type="image" style="width: 1000px; height: 490px; left: 80px; top: 144px;" data-name="Image 2" data-block-id="f96d288e523793a78090f1ccf012cc53"><div class="sl-block-content" style="z-index: 12;"><img class="" data-natural-width="1000" data-natural-height="490" data-src="uis-intro-cloud-containers/41166823225be2fa1adc6b6ce57424e3.png"></div></div></section><section data-id="478ade37bb6a4fb607fbb5bd761df0bf" data-background-color="rgb(0, 0, 0)">
+						
+						
+						<div class="sl-block" data-block-type="text" style="width: 1240px; left: 80px; top: 34px; height: 76px;" data-text-layout="fixed" data-name="Text 1" data-block-id="4b3ad17c409225c890586b56cf878274">
+							<div class="sl-block-content" data-placeholder-tag="h2" style="text-align: left; align-content: center; z-index: 10;"><h2>az cli commands</h2></div>
+						</div>
+					<div class="sl-block" data-block-type="image" style="width: 1000px; height: 320px; left: 80px; top: 144px;" data-name="Image 1" data-block-id="d394ed70688162f1c065940e0db6c824"><div class="sl-block-content" style="z-index: 11;"><img class="" data-natural-width="1000" data-natural-height="320" data-src="uis-intro-cloud-containers/2def127bc2e2323da7d3bda400ebdbca.png"></div></div>
+<div class="sl-block" data-block-type="text" style="width: 1189px; left: 80px; top: 576px; height: auto;" data-name="text-2f41b8" data-block-id="414383f7348cd1506f3353d14e2abd43">
+                    <div class="sl-block-content" data-placeholder-tag="h1" style="z-index: 12; text-align: left; font-size: 90%; line-height: 1.17; padding: 5px;" data-has-line-height="" data-placeholder-text="Text"><h2><span style="font-size:0.9em">https://portal.azure.com</span></h2></div>
+                </div></section><section data-id="df1cb6893fb4ed74906634c0c7e29d83" data-background-color="rgb(0, 0, 0)">
+						
+						
+						<div class="sl-block" data-block-type="text" style="width: 1240px; left: 80px; top: 34px; height: 76px;" data-text-layout="fixed" data-name="Text 1" data-block-id="7bdaa912eec207e2d8ca007d2d045398">
+							<div class="sl-block-content" data-placeholder-tag="h2" style="text-align: left; align-content: center; z-index: 10;"><h2>az acr commands</h2></div>
+						</div>
+					<div class="sl-block" data-block-type="image" style="width: 1000px; height: 576px; left: 80px; top: 144px;" data-name="Image 1" data-block-id="7505329f71d72b78f48db757f8baa3ec"><div class="sl-block-content" style="z-index: 11;"><img class="" data-natural-width="1000" data-natural-height="576" data-src="uis-intro-cloud-containers/ea7ee64018114d8aab4aaf67ad333ebd.png"></div></div></section><section data-id="6b240dbed3fed8ddb6145686ea00fb1a" data-background-color="rgb(0, 0, 0)">
+						
+						
+						<div class="sl-block" data-block-type="text" style="width: 1240px; left: 80px; top: 34px; height: 76px;" data-text-layout="fixed" data-name="Text 1" data-block-id="56beda06ba9188c7a493747e82072377">
+							<div class="sl-block-content" data-placeholder-tag="h2" style="text-align: left; align-content: center; z-index: 10;"><h2>az aci commands</h2></div>
+						</div>
+					<div class="sl-block" data-block-type="image" style="width: 1000px; height: 490px; left: 80px; top: 144px;" data-name="Image 1" data-block-id="cd2db2a52eee1f2db9d2f4a7ef81b784"><div class="sl-block-content" style="z-index: 11;"><img class="" data-natural-width="1000" data-natural-height="490" data-src="uis-intro-cloud-containers/888311115747dc06accf4d9ee4c3c03d.png"></div></div></section><section data-background-color="rgb(0, 0, 0)" data-id="1ed7c87f20d21c9cf81811d1527e07bd"><div class="sl-block" data-block-type="text" style="width: 375px; left: 80px; top: 77.5px; height: auto;" data-name="text-6e36c0" data-block-id="83b2d9bea2dc586d7aff18930b78d5df">
+                    <div class="sl-block-content" data-placeholder-tag="h1" style="z-index: 10; font-size: 140%; text-align: left; line-height: 1.17; padding: 5px;" data-has-line-height=""><h1><strong>slides:</strong></h1></div>
+                </div>
+<div class="sl-block" data-block-type="text" style="width: 708px; left: 80px; top: 365.5px; height: auto;" data-name="Text 2" data-block-id="b032cb3693f8ae877d2466d38d17af39">
+                    <div class="sl-block-content" data-placeholder-tag="h1" style="z-index: 11; font-size: 140%; text-align: left; line-height: 1.17; padding: 5px;" data-has-line-height=""><h1><strong>github repo:</strong></h1></div>
+                </div>
+<div class="sl-block" data-block-type="text" style="width: 1189px; left: 80px; top: 506px; height: auto;" data-name="text-2f41b8" data-block-id="0a93b8b900d2f0c8c5a80ffb69d890ac">
+                    <div class="sl-block-content" data-placeholder-tag="h1" style="z-index: 13; text-align: left; font-size: 90%; line-height: 1.17; padding: 5px;" data-has-line-height="" data-placeholder-text="Text"><h2><span style="font-size:0.9em">https://github.com/eugeneromero/uis-docker-workshop</span></h2></div>
+                </div>
+<div class="sl-block" data-block-type="text" style="width: 1189px; left: 80px; top: 216px; height: auto;" data-name="Text 3" data-block-id="ee8834a690b33e7baa651e70a8859182">
+                    <div class="sl-block-content" data-placeholder-tag="h1" style="z-index: 12; text-align: left; font-size: 90%; line-height: 1.17; padding: 5px;" data-has-line-height=""><h2><span style="font-size:0.9em">https://damn.engineer/slides/</span></h2></div>
+                </div></section>
+			</div>
+		</div>
+
+		<script>
+			var SLConfig = {"deck": {"id":3533416,"slug":"uis-intro-cloud-containers","title":"UiS - Intro to Cloud and Containers","description":"","width":1280,"height":720,"margin":0.05,"visibility":"self","published_at":"2026-01-18T09:57:17.776Z","sanitize_messages":null,"thumbnail_url":"https://s3.amazonaws.com/media-p.slid.es/thumbnails/a721a1e7f6d519a1b89d26aaa22ca837/thumb.jpg?1770077283","view_count":0,"user":{"id":2161442,"username":"eugene-romero","name":"Eugene Romero","description":"I am a tech enthusiast, retro gamer, and general nerd. When I am not busy breaking stuff for fun, I can be found breaking stuff professionally at Variant. You also might find me restoring and modifying old videogame systems, most notably Game Boys.","thumbnail_url":"https://www.gravatar.com/avatar/11a2a54015914710d64d039e6e7b3561?s=140\u0026d=https%3A%2F%2Fstatic.slid.es%2Fimages%2Fdefault-profile-picture.png","account_type":"lite","team_id":null,"settings":{"id":52406646,"present_controls":false,"present_upsizing":true,"present_pointer":false,"present_notes":true,"default_deck_tag_id":null}},"background_transition":"slide","transition":"slide","theme_id":null,"theme_font":"helvetica","theme_color":"black-blue","auto_slide_interval":0,"comments_enabled":false,"forking_enabled":false,"rolling_links":false,"center":false,"shuffle":false,"should_loop":false,"share_notes":false,"slide_number":false,"slide_count":34,"rtl":false,"version":2,"collaborative":false,"deck_user_editor_limit":1,"data_updated_at":1770156934594,"font_typekit":null,"font_google":null,"time_limit":null,"navigation_mode":"default","upsizing_enabled":true,"language":"en","notes":{"d86f986696e4b109118740683fa6c3c7":"Infrastructure\nVirtualized computing resources over the internet\n\nPlatform\nReady-to-use platform to develop and run applications\n\nSoftware\nSoftware applications over the internet"}}};
+
+
+			// Use local fonts
+			SLConfig.fonts_url = 'lib/fonts/';
+		</script>
+
+		<script src="lib/reveal.js"></script>
+		<script src="lib/reveal-plugins.js"></script>
+		<script src="lib/offline.js"></script>
+
+		<!-- Initialize the presentation -->
+		<script>
+			Reveal.initialize({
+				width: 1280,
+				height: 720,
+				margin: 0.05,
+				
+
+				hash: true,
+				controls: true,
+				progress: true,
+				mouseWheel: false,
+				showNotes: false,
+				slideNumber: false,
+				fragmentInURL: true,
+
+				autoSlide: 0,
+				autoSlideStoppable: true,
+
+				autoAnimateMatcher: SL.deck.AutoAnimate.matcher,
+
+				scrollActivationWidth: null,
+
+				center: false,
+				shuffle: false,
+				loop: false,
+				rtl: false,
+				navigationMode: "default",
+
+				transition: "slide",
+				backgroundTransition: "slide",
+
+				highlight: {
+					escapeHTML: false
+				},
+
+				plugins: [ RevealZoom, RevealNotes, RevealMarkdown, RevealHighlight ]
+			});
+		</script>
+
+		
+
+
+	</body>
+</html>
