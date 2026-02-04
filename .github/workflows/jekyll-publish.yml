@@ -21,7 +21,7 @@ jobs:
           docker run \
           -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
           -w /srv/jekyll \
-          ruby:3.2.5 /bin/bash -c "gem install bundler && bundle install && jekyll build --future"
+          ruby:4.0.1 /bin/bash -c "gem install bundler && bundle install && jekyll build --future"
 
       - name: Download latest.json for comparison
         run: wget https://damn.engineer/latest.json -O ${{ github.workspace }}/current-latest.json
