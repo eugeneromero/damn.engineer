@@ -3,9 +3,5 @@
     "404": {
       "rewrite": "/404.html"
     }
-  },
-  "routes": [],
-  "globalHeaders": {
-    "Content-Security-Policy": "default-src 'self'; frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://disqus.com https://*.disqus.com; script-src 'self' 'unsafe-inline' https://www.youtube.com https://www.youtube-nocookie.com https://www.gstatic.com https://kit.fontawesome.com https://damndotengineer.disqus.com https://www.googletagmanager.com; connect-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://www.gstatic.com https://i.ytimg.com https://s.ytimg.com https://yt3.ggpht.com https://*.google.com https://damndotengineer.disqus.com; img-src 'self' data: https://i.ytimg.com https://s.ytimg.com https://yt3.ggpht.com https://www.gstatic.com https://*.googleusercontent.com https://*.disqus.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://www.gstatic.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;"
   }
 }
